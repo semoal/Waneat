@@ -37,6 +37,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('contact_phone') ? ' has-error' : '' }}">
+                            <label for="contact_phone" class="col-md-4 control-label">Telefono contacto</label>
+
+                            <div class="col-md-6">
+                                <input id="contact_phone" type="text" class="form-control" name="contact_phone" value="{{ old('contact_phone') }}" required>
+
+                                @if ($errors->has('contact_phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('contact_phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Dirección</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 
@@ -50,6 +78,7 @@
                                 @endif
                             </div>
                         </div>
+
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
