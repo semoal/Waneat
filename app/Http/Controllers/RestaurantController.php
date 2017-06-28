@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ class RestaurantController extends Controller {
     public function index(Request $request){
         //if (Auth::check()){
             $id = Auth::user()->getId();
-            $restaurant = User::all();
+            $restaurant = Restaurant::all();
             return view('restaurant')->with('restaurant', $restaurant);
         //}
     }
@@ -31,7 +31,7 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function create(){
-        //
+        return view('restaurant');
     }
 
     /**
@@ -39,8 +39,19 @@ class RestaurantController extends Controller {
      *
      * @return Response
      */
-    public function store(){
-        //
+    public function store(Request $request){
+        $this->validate($request, [
+            'name_restaurant'    => 'required',
+        ]);
+
+        $restaurante = Restaurant::create([
+            'name_restaurant' => $request->name_restaurant,
+            'id_user_id' => Auth::User()->id,
+        ]);
+
+        if($restaurante){
+            return redirect()->route('restaurant.index');
+        }
     }
 
     /**

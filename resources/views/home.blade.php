@@ -14,7 +14,6 @@
                         Nif: {{ Auth::user()->nif}} <br>
                         ID: {{ Auth::user()->id}} <br>
                         Email: {{ Auth::user()->email}} <br>
-
                     @endif 
                 </div>
             </div>
