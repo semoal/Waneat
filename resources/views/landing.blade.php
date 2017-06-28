@@ -12,7 +12,7 @@
     <meta name="author" content="">
 
     <title>Waneat - ¿Esperas?</title>
-
+    <meta name="csrf-token" content="{{ csrf_field() }}">
     <!-- Theme core CSS -->
     <link href="{{URL::asset('./css/app.css')}}" rel="stylesheet">
     <link href="{{URL::asset('./css/new-age.css')}}" rel="stylesheet">
@@ -242,9 +242,6 @@
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Theme js -->
-    <script src="{{URL::asset('./js/new-age.js')}}"></script>
 
 </body>
 </html>
