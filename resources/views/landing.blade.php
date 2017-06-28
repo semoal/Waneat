@@ -12,7 +12,7 @@
     <meta name="author" content="">
 
     <title>Waneat - ¿Esperas?</title>
-    <meta name="csrf-token" content="{{ csrf_field() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Theme core CSS -->
     <link href="{{URL::asset('./css/app.css')}}" rel="stylesheet">
     <link href="{{URL::asset('./css/new-age.css')}}" rel="stylesheet">
