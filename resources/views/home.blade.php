@@ -8,9 +8,13 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Has iniciado sesión! 
+                    Has iniciado sesión! <br>
                     @if (Auth::check())
-                        {{ Auth::user()->name}}
+                        Nombre: {{ Auth::user()->name}} <br>
+                        Nif: {{ Auth::user()->nif}} <br>
+                        ID: {{ Auth::user()->id}} <br>
+                        Email: {{ Auth::user()->email}} <br>
+
                     @endif 
                 </div>
             </div>
