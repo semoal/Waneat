@@ -41,11 +41,25 @@ class RestaurantController extends Controller {
      */
     public function store(Request $request){
         $this->validate($request, [
-            'name_restaurant'    => 'required',
+            'name_restaurant'    => 'required|unique:restaurant',
+            /*'address_restaurant' => 'required',
+            'city_restaurant' => 'required',
+            'postalcode_restaurant' => 'required', 
+            'country_restaurant' => 'required', 
+            'state_restaurant' => 'required', 
+            'description' => 'required', 
+            'email_restaurant' => 'required',*/ 
         ]);
 
         $restaurante = Restaurant::create([
             'name_restaurant' => $request->name_restaurant,
+            /*'address_restaurant' => $request->address_restaurant,
+            'city_restaurant' => $request->city_restaurant,
+            'postalcode_restaurant' => $request->postalcode_restaurant, 
+            'country_restaurant' => $request->country_restaurant, 
+            'state_restaurant' => $request->state_restaurant, 
+            'description' => $request->description, 
+            'email_restaurant' => $request->email_restaurant,*/
             'id_user_id' => Auth::User()->id,
         ]);
 

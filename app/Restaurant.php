@@ -13,7 +13,15 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model{
 
 	protected $fillable = [
-        'name_restaurant', 'id_user_id'
+        'name_restaurant', 
+		'address_restaurant',
+		'city_restaurant',
+		'postalcode_restaurant', 
+		'country_restaurant', 
+		'state_restaurant', 
+		'description', 
+		'email_restaurant', 
+        'id_user_id',
     ];
 
     protected $hidden = [
@@ -22,3 +30,4 @@ class Restaurant extends Model{
 	//Tabla de la base de datos que referencia
 	protected $table = 'restaurant';
 }
+
