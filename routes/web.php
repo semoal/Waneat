@@ -18,6 +18,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/restaurant', 'RestaurantController@getRestaurant')->name('restaurant');
+	Route::get('/home', 'HomeController@index');
+
+	Route::resource('restaurant', 'RestaurantController');
+	
+});

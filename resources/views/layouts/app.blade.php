@@ -36,7 +36,7 @@
                            <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
                            <li><a href="{{ route('register') }}">Registro</a></li>
                            @else
-                           <li><a href="#">Restaurantes</a></li>
+                           <li><a href="{{ route('restaurant.index')}}">Restaurantes</a></li>
                            <li><a href="#">Pedidos</a></li>
                            <li><a href="#">Carta</a></li>
                            <li class="dropdown">
