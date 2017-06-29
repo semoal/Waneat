@@ -29,5 +29,9 @@ class Restaurant extends Model{
     ];
 	//Tabla de la base de datos que referencia
 	protected $table = 'restaurant';
+
+	public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
 

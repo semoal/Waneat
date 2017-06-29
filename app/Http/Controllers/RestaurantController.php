@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,9 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function index(Request $request){
-        //if (Auth::check()){
-            $id = Auth::user()->getId();
-            $restaurant = Restaurant::all();
+            $id = Auth::user()->id;
+            $restaurant = User::find($id)->restaurants;
             return view('restaurant')->with('restaurant', $restaurant);
-        //}
     }
 
     /**

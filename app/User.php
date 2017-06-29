@@ -27,7 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getId(){
-        return $this->id;
+    /**
+     * Get the restaurants de users 
+     */
+    public function restaurants(){
+        return $this->hasMany('App\Restaurant', 'id_user_id');
     }
 }

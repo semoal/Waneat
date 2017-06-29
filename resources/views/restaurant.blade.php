@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('state_restaurant') ? ' has-error' : '' }}">
-                            <label for="state_restaurant" class="col-md-4 control-label">Ciudad</label>
+                            <label for="state_restaurant" class="col-md-4 control-label">Provincia</label>
 
                             <div class="col-md-6">
                                 <input id="state_restaurant" type="text" placeholder="" class="form-control" name="state_restaurant"  autofocus>
