@@ -18,10 +18,12 @@ class RestaurantController extends Controller {
      *
      * @return Response
      */
+
     public function index(Request $request){
             $id = Auth::user()->id;
             $restaurant = User::find($id)->restaurants;
-            return view('restaurant')->with('restaurant', $restaurant);
+            $prueba = User::find($id)->restaurants->count();
+            return view('restaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
     }
 
     /**

@@ -15,7 +15,7 @@ class DeviceUser extends Model{
 	'token', 
 	'latitud', 
 	'longitud', 
-	'id_user_id', 
+	//'id_user_id', 
     ];
 
     protected $hidden = [

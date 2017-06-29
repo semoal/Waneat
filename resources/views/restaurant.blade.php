@@ -125,8 +125,14 @@
                         </div>
                     </form>
                 </div>
+                Restaurantes tuyos: {{ $countRestaurantes }}
+                <ul class="list-group">
                 @forelse ($restaurant as $user)
-                    <li>{{ $user->name_restaurant }}</li>
+                    <li class="list-group-item">
+                        {{ $user->id }} ----- {{ $user->name_restaurant }} --------- {{ $user->created_at }} 
+                        <button class="btn btn-danger pull-right"> x </button>
+                    </li>
+                </ul>
                 @empty
                     <p>No users</p>
                 @endforelse

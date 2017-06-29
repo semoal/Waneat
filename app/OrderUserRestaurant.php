@@ -9,7 +9,7 @@ class OrderUserRestaurant extends Model{
 	'total_price', 
 	'iva', 
 	'payment_method', 
-	'id_user_id', 
+	//'id_user_id', 
     ];
 
     protected $hidden = [
