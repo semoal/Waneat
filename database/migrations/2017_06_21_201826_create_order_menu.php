@@ -13,13 +13,13 @@ class CreateOrderMenu extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('order_menu', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_menu_id')->unsigned();
-            $table->integer('id_user_id')->unsigned();
+            $table->integer('id_order_id')->unsigned();
             $table->timestamps();
-           
+
         });
     }
 

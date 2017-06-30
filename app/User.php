@@ -14,7 +14,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'nif','email', 'password', 'address', 'contact_phone',
+        'name', 'nif','email', 'password', 'address', 'contact_phone', 'id_table_id'
     ];
 
     /**
@@ -27,7 +27,7 @@ class User extends Authenticatable {
     ];
 
     /**
-     * Get the restaurants de users 
+     * Get the restaurants de users
      */
     public function restaurants(){
         return $this->hasMany('App\Restaurant', 'id_user_id');
@@ -38,6 +38,20 @@ class User extends Authenticatable {
     public function deviceUser(){
         return $this->hasMany('App\DeviceUser', 'id_user_id');
     }
+
+    public function ratings(){
+      return $this->hasMany('App\RestaurantRating', 'id_user_id');
+    }
+
+    public function comments(){
+      return $this->hasMany('App\RestaurantComment', 'id_user_id');
+    }
+
+    public function table(){
+      return $this->belongsTo('App\RestaurantTable')
+    }
+
+
 
 
 }

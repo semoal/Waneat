@@ -18,7 +18,6 @@ class CreateRestaurantTable extends Migration
             $table->string('title');
             $table->string('captcha_url');
             $table->integer('id_restaurant_id')->unsigned();
-            $table->integer('id_user_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -18,7 +18,8 @@ class CreateOrderUserRestaurant extends Migration
             $table->float('total_price');
             $table->float('iva');
             $table->string('payment_method');
-            $table->integer('id_user_id')->unsigned();
+            $table->boolean('status');
+            $table->integer('id_table_id')->unsigned();
             $table->timestamps();
         });
     }
