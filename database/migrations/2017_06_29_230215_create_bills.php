@@ -13,7 +13,7 @@ class CreateBills extends Migration
      */
     public function up()
     {
-        Schema::table('restaurant_bills', function (Blueprint $table) {
+        Schema::create('restaurant_bills', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('id_user_id');
           $table->integer('id_order_id');
@@ -32,8 +32,7 @@ class CreateBills extends Migration
      */
     public function down()
     {
-        Schema::table('restaurant_bills', function (Blueprint $table) {
-            //
-        });
+      Schema::dropIfExists('restaurant_bills');
+
     }
 }
