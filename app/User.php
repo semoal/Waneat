@@ -48,7 +48,7 @@ class User extends Authenticatable {
     }
 
     public function table(){
-      return $this->belongsTo('App\RestaurantTable')
+      return $this->belongsTo('App\RestaurantTable');
     }
 
 

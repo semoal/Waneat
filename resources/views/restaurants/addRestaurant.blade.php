@@ -3,7 +3,38 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Restaurantes añadidos
+          </div>
+          <div class="panel-body">
+            @forelse ($restaurant as $key => $r)
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  {{$r->name_restaurant}}
+                </div>
+                <div class="panel-body">
+                  <form action="{{ route('restaurant.destroy', $r->id) }}" method="POST">
+                          {{ method_field('DELETE') }}
+                          {{ csrf_field() }}
+                          <button class="btn btn-secondary"type="submit" value="submit">Borrar</button>
+                      </form>
+
+                </div>
+
+              </div>
+            @empty
+                No tienes restaurantes añadidos
+            @endforelse
+            <div class="panel-footer">
+                <a class="btn btn-primary" href="{{ route('home') }}" type="button" name="button">Finalizar</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+        <div class="offset-md-2 col-md-8">
             <div class="panel panel-default">
 
                 <div class="panel-heading">Añadir restaurante</div>
@@ -115,6 +146,46 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
+                            <label for="email_restaurant" class="col-md-4 control-label">Specialty</label>
+
+                            <div class="col-md-6">
+                                <input id="specialty" type="text" placeholder="" class="form-control" name="specialty"  autofocus>
+
+                                @if ($errors->has('specialty'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('specialty') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('restaurant_url') ? ' has-error' : '' }}">
+                            <label for="restaurant_url" class="col-md-4 control-label">Restaurant Url</label>
+
+                            <div class="col-md-6">
+                                <input id="restaurant_url" type="text" placeholder="" class="form-control" name="restaurant_url"  autofocus>
+
+                                @if ($errors->has('restaurant_url'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('restaurant_url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
+                            <label for="picture_url" class="col-md-4 control-label">Picture</label>
+
+                            <div class="col-md-6">
+                              <label class="btn btn-primary btn-block">
+                                  Browse <input type="file" style="display: none;">
+                              </label>
+                                @if ($errors->has('picture_url'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('picture_url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <!-- boton submit-->
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
@@ -125,17 +196,17 @@
                         </div>
                     </form>
                 </div>
-                Restaurantes tuyos: {{ $countRestaurantes }}
+                {{-- Restaurantes tuyos: {{ $countRestaurantes }}
                 <ul class="list-group">
                 @forelse ($restaurant as $user)
                     <li class="list-group-item">
-                        {{ $user->id }} ----- {{ $user->name_restaurant }} --------- {{ $user->created_at }} 
+                        {{ $user->id }} ----- {{ $user->name_restaurant }} --------- {{ $user->created_at }}
                         <button class="btn btn-danger pull-right"> x </button>
                     </li>
                 </ul>
                 @empty
                     <p>No users</p>
-                @endforelse
+                @endforelse --}}
 
             </div>
         </div>

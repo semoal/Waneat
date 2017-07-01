@@ -23,6 +23,8 @@ class CreateRestaurant extends Migration
             $table->string('state_restaurant');
             $table->string('description');
             $table->string('email_restaurant');
+            $table->string('specialty');
+            $table->string('restaurant_url');
             $table->integer('id_user_id')->unsigned();
             $table->timestamps();
         });

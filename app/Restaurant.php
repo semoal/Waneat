@@ -21,6 +21,8 @@ class Restaurant extends Model{
 		'state_restaurant',
 		'description',
 		'email_restaurant',
+		'specialty',
+		'restaurant_url',
     'id_user_id',
     ];
 

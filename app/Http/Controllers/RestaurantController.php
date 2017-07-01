@@ -7,6 +7,7 @@ use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -23,7 +24,7 @@ class RestaurantController extends Controller {
             $id = Auth::user()->id;
             $restaurant = User::find($id)->restaurants;
             $prueba = User::find($id)->restaurants->count();
-            return view('restaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
+            return view('restaurants/addRestaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
     }
 
     /**
@@ -45,21 +46,22 @@ class RestaurantController extends Controller {
             'name_restaurant'    => 'required|unique:restaurant',
             /*'address_restaurant' => 'required',
             'city_restaurant' => 'required',
-            'postalcode_restaurant' => 'required', 
-            'country_restaurant' => 'required', 
-            'state_restaurant' => 'required', 
-            'description' => 'required', 
-            'email_restaurant' => 'required',*/ 
+            'postalcode_restaurant' => 'required',
+            'country_restaurant' => 'required',
+            'state_restaurant' => 'required',
+            'description' => 'required',
+            'email_restaurant' => 'required',*/
+            'picture_url' => 'required',
         ]);
 
         $restaurante = Restaurant::create([
             'name_restaurant' => $request->name_restaurant,
             /*'address_restaurant' => $request->address_restaurant,
             'city_restaurant' => $request->city_restaurant,
-            'postalcode_restaurant' => $request->postalcode_restaurant, 
-            'country_restaurant' => $request->country_restaurant, 
-            'state_restaurant' => $request->state_restaurant, 
-            'description' => $request->description, 
+            'postalcode_restaurant' => $request->postalcode_restaurant,
+            'country_restaurant' => $request->country_restaurant,
+            'state_restaurant' => $request->state_restaurant,
+            'description' => $request->description,
             'email_restaurant' => $request->email_restaurant,*/
             'id_user_id' => Auth::User()->id,
         ]);
@@ -106,7 +108,13 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function destroy($id){
-        //
+      echo('Destroy: '.$id);
+        // Retrieve user object from database with passed parameter or give error.
+       $restarant = Restaurant::find($id)->delete();
+
+
+
+       return Redirect::route('restaurant.index');
     }
 
 }
