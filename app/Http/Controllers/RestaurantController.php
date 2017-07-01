@@ -7,7 +7,6 @@ use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -108,13 +107,8 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function destroy($id){
-      echo('Destroy: '.$id);
-        // Retrieve user object from database with passed parameter or give error.
        $restarant = Restaurant::find($id)->delete();
-
-
-
-       return Redirect::route('restaurant.index');
+       return redirect()->route('restaurant.index');
     }
 
 }
