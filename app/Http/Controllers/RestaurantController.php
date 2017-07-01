@@ -50,8 +50,8 @@ class RestaurantController extends Controller {
             'country_restaurant' => 'required',
             'state_restaurant' => 'required',
             'description' => 'required',
-            'email_restaurant' => 'required',*/
-            'picture_url' => 'required',
+            'email_restaurant' => 'required',
+            'picture_url' => 'required',*/
         ]);
 
         $restaurante = Restaurant::create([
