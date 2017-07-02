@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('./new-age');
+require('./time-picker');
 
 /*
 window.Vue = require('vue');
