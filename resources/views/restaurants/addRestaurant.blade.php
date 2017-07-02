@@ -172,6 +172,28 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
+                            <label for="time" class="col-md-4 control-label">Time</label>
+
+                            <div class="col-md-6">
+
+                              <select size="5" name="lstStates" multiple="multiple" id="lstStates">
+                                  <option value="NJ">New Jersey</option>
+                                  <option value="NY">New York</option>
+                                  <option value="OH">Ohio</option>
+                                  <option value="TX">Texas</option>
+                                  <option value="PA">Pennsylvania</option>
+                              </select>   
+
+
+
+                                @if ($errors->has('time'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('time') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
                             <label for="picture_url" class="col-md-4 control-label">Picture</label>
 
@@ -186,6 +208,7 @@
                                 @endif
                             </div>
                         </div>
+
                         <!-- boton submit-->
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">

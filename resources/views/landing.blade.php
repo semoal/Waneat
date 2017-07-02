@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-   
+
 <head>
 
     <meta charset="utf-8">
@@ -22,6 +22,7 @@
     <link href="{{URL::asset('./lib/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
     <link href="{{URL::asset('./lib/device-mockups/device-mockups.min.css')}}" rel="stylesheet">
 
+    
 </head>
 
 <body id="page-top">
@@ -52,7 +53,7 @@
                     <li>
                         <a class="page-scroll" href="{{url('home')}}">Restaurantes de {{ Auth::user()->name }} </a>
                     </li>
-                    @else 
+                    @else
                     <li>
                         <a class="page-scroll" href="{{url('home')}}">Restaurante</a>
                     </li>
@@ -184,7 +185,7 @@
                                     <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
