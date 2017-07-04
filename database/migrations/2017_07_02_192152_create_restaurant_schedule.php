@@ -17,12 +17,16 @@ class CreateRestaurantSchedule extends Migration
       Schema::create('restaurant_schedule', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('id_restaurant_id')->unsigned();
-          $table->string('day');
-          $table->boolean('open');
+          $table->boolean('mon');
+          $table->boolean('tue');
+          $table->boolean('wed');
+          $table->boolean('thr');
+          $table->boolean('fri');
+          $table->boolean('sat');
+          $table->boolean('sun');
+          $table->boolean('24h');
           $table->time('hour1');
           $table->time('hour2');
-          $table->time('hour3');
-          $table->time('hour4');
       });
     }
 

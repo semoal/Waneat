@@ -8,11 +8,16 @@ class RestaurantSchedule extends Model{
    protected $fillable = [
     	'id',
     	'id_restaurant_id',
-    	'open',
+    	'mon',
+      'tue',
+      'wed',
+      'thr',
+      'fri',
+      'sat',
+      'sun',
+      '24h',
       'hour1',
-      'hour2',
-      'hour3',
-      'hour4',
+      'hour2'
     ];
 
     protected $hidden = [
