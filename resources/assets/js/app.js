@@ -8,7 +8,6 @@
 require('./bootstrap');
 require('./new-age');
 require('./time-picker');
-require('./hour-select');
 
 /*
 window.Vue = require('vue');
