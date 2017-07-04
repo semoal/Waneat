@@ -27,6 +27,7 @@ class CreateRestaurantSchedule extends Migration
           $table->boolean('24h');
           $table->time('hour1');
           $table->time('hour2');
+          $table->timestamps();
       });
     }
 

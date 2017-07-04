@@ -173,19 +173,8 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
-                            <label for="time" class="col-md-4 control-label">Time</label>
 
-                            <div class="col-md-6">
-
-                              <select size="7" name="lstStates" multiple="multiple" id="lstStates">
-                                  <option value="Lunes">Lunes</option>
-                                  <option value="Martes">Martes</option>
-                                  <option value="Miercoles">Miercoles</option>
-                                  <option value="Jueves">Jueves</option>
-                                  <option value="Viernes">Viernes</option>
-                                  <option value="Sabado">Sabado</option>
-                                  <option value="Domingo">Domingo</option>
-                              </select>   
+                            @include('restaurants.time')
 
 
 
@@ -194,7 +183,7 @@
                                         <strong>{{ $errors->first('time') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            
                         </div>
                         <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
                             <label for="picture_url" class="col-md-4 control-label">Picture</label>

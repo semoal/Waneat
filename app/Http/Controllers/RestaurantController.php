@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\RestaurantSchedule;
 use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Log;
 
 
 
@@ -43,6 +45,7 @@ class RestaurantController extends Controller {
     public function store(Request $request){
         $this->validate($request, [
             'name_restaurant'    => 'required|unique:restaurant',
+            'hour1'    => 'required|unique:restaurant_schedule',
             /*'address_restaurant' => 'required',
             'city_restaurant' => 'required',
             'postalcode_restaurant' => 'required',
@@ -52,21 +55,34 @@ class RestaurantController extends Controller {
             'email_restaurant' => 'required',
             'picture_url' => 'required',*/
         ]);
+        // Log::info("yoquese".$request->days);
 
-        $restaurante = Restaurant::create([
-            'name_restaurant' => $request->name_restaurant,
-            /*'address_restaurant' => $request->address_restaurant,
-            'city_restaurant' => $request->city_restaurant,
-            'postalcode_restaurant' => $request->postalcode_restaurant,
-            'country_restaurant' => $request->country_restaurant,
-            'state_restaurant' => $request->state_restaurant,
-            'description' => $request->description,
-            'email_restaurant' => $request->email_restaurant,*/
-            'id_user_id' => Auth::User()->id,
-        ]);
+        $schedule = new RestaurantSchedule;
+        $schedule->hour1=$request->hour1;
+        // $schedule->save()
+
+        // $restaurante = Restaurant::create([
+        //     'name_restaurant' => $request->name_restaurant,
+        //     /*'address_restaurant' => $request->address_restaurant,
+        //     'city_restaurant' => $request->city_restaurant,
+        //     'postalcode_restaurant' => $request->postalcode_restaurant,
+        //     'country_restaurant' => $request->country_restaurant,
+        //     'state_restaurant' => $request->state_restaurant,
+        //     'description' => $request->description,
+        //     'email_restaurant' => $request->email_restaurant,*/
+        //     'id_user_id' => Auth::User()->id
+        // ]);
+        $restaurante = new Restaurant;
+        $restaurante->id_user_id = Auth::User()->id;
+        $restaurante->name_restaurant = $request->name_restaurant;
+        $restaurante->save();
+        $restaurante->schedules()->save($schedule);
+
 
         if($restaurante){
+            error_log($request->days);
             return redirect()->route('restaurant.index');
+            // echo($request->days);
         }
     }
 

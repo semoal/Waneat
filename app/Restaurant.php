@@ -59,4 +59,8 @@ class Restaurant extends Model{
 	public function payments(){
 		return $this->hasMany('App\RestaurantPayment', 'id_restaurant_id');
 	}
+
+	public function schedules(){
+		return $this->hasMany('App\RestaurantSchedule', 'id_restaurant_id');
+	}
 }

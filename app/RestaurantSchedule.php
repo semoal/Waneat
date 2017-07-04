@@ -17,7 +17,9 @@ class RestaurantSchedule extends Model{
       'sun',
       '24h',
       'hour1',
-      'hour2'
+      'hour2',
+      'created_at',
+      'updated_at'
     ];
 
     protected $hidden = [
@@ -27,7 +29,7 @@ class RestaurantSchedule extends Model{
 	protected $table = 'restaurant_schedule';
 
   public function restaurant(){
-    return $this->belongsTo('App\Restaurant')
+    return $this->belongsTo('App\Restaurant');
   }
 
 }

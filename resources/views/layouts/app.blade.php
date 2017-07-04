@@ -23,6 +23,11 @@
       <script src="http://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
+      <script type="text/javascript">
+        $('#hour1').change(function() {
+          console.log($(this));
+        });
 
+      </script>
    </body>
 </html>
