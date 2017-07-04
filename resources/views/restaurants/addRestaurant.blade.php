@@ -177,12 +177,14 @@
 
                             <div class="col-md-6">
 
-                              <select size="5" name="lstStates" multiple="multiple" id="lstStates">
-                                  <option value="NJ">New Jersey</option>
-                                  <option value="NY">New York</option>
-                                  <option value="OH">Ohio</option>
-                                  <option value="TX">Texas</option>
-                                  <option value="PA">Pennsylvania</option>
+                              <select size="7" name="lstStates" multiple="multiple" id="lstStates">
+                                  <option value="Lunes">Lunes</option>
+                                  <option value="Martes">Martes</option>
+                                  <option value="Miercoles">Miercoles</option>
+                                  <option value="Jueves">Jueves</option>
+                                  <option value="Viernes">Viernes</option>
+                                  <option value="Sabado">Sabado</option>
+                                  <option value="Domingo">Domingo</option>
                               </select>   
 
 
