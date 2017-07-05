@@ -158,13 +158,17 @@ class RestaurantController extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove in cascade the specified resource from storage 
      *
      * @param  int  $id
      * @return Response
      */
     public function destroy($id){
-       $restarant = Restaurant::find($id)->delete();
+       $restaurant = Restaurant::find($id);
+       $restaurant->images()->delete();
+       $restaurant->schedules()->delete();
+       $restaurant->delete();
+
        return redirect()->route('restaurant.index');
     }
 
