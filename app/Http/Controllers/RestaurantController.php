@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use App\RestaurantSchedule;
+use App\RestaurantImage;
 use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -88,8 +89,6 @@ class RestaurantController extends Controller {
             'email_restaurant' => 'required',
             'picture_url' => 'required',*/
         ]);
-        // Log::info("yoquese".$request->days);
-        // $schedule->save()
 
         // $restaurante = Restaurant::create([
         //     'name_restaurant' => $request->name_restaurant,
@@ -102,9 +101,9 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
-        $imagen = $this->upload($request);
-        $imagen = new RestaurantImage;
-        $imagenSubir->url = $imagen;
+        $urlImagen = $this->upload($request);
+        $restaurantImagen = new RestaurantImage;
+        $restaurantImagen->image_url = $urlImagen;
         
         $schedule = new RestaurantSchedule;
         $schedule->hour1=$request->hour1;
@@ -119,7 +118,7 @@ class RestaurantController extends Controller {
 
         $restaurante->save();
         $restaurante->schedules()->save($schedule);
-        $restaurante->images()->save($imagenSubir);
+        $restaurante->images()->save($restaurantImagen);
 
 
         if($restaurante){
