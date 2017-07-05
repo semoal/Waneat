@@ -13,6 +13,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   {{$r->name_restaurant}}
+                  <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/>
                 </div>
                 <div class="panel-body">
                   <form action="{{ route('restaurant.destroy', $r->id) }}" method="POST">

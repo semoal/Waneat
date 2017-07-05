@@ -65,12 +65,12 @@ class RestaurantController extends Controller {
           $pms = json_decode($out,true);
           $url=$pms['data']['link'];
           if($url!=""){
-           echo "<h2>Uploaded Without Any Problem</h2>";
-           echo "<img src='$url'/>";
+           //echo "<h2>Uploaded Without Any Problem</h2>";
+           //echo "<img src='$url'/>";
            return $url;
           }else{
            echo "<h2>There's a Problem</h2>";
-           echo $pms['data']['error'];  
+           //echo $pms['data']['error'];  
           } 
      }
 
