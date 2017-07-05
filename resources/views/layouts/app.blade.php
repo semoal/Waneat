@@ -25,7 +25,7 @@
       <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
       <script type="text/javascript">
         $('#hour1').change(function() {
-          console.log($(this));
+          console.log($(this).value());
         });
 
       </script>

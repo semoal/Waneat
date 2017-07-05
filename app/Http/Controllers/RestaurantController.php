@@ -42,10 +42,73 @@ class RestaurantController extends Controller {
      *
      * @return Response
      */
+
+     public function upload(Request $request){
+       $img=$_FILES['picture'];
+       error_log($img['name']);
+        $filename = $img['tmp_name'];
+        $client_id="92395e9873f8e10";
+        $handle = fopen($filename, "r");
+        $data = fread($handle, filesize($filename));
+        $pvars   = array('image' => base64_encode($data));
+        $timeout = 30;
+        $curl = curl_init();
+
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+CURLOPT_URL => "https://api.imgur.com/3/image",
+CURLOPT_RETURNTRANSFER => true,
+CURLOPT_ENCODING => "",
+CURLOPT_MAXREDIRS => 10,
+CURLOPT_TIMEOUT => 30,
+CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+CURLOPT_CUSTOMREQUEST => "POST",
+CURLOPT_POSTFIELDS => "",
+CURLOPT_HTTPHEADER => array(
+  "authorization: Client-ID 92395e9873f8e10",
+  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+error_log('response: '.$response);
+curl_close($curl);
+
+if ($err) {
+echo "cURL Error #:" . $err;
+} else {
+echo $response;
+}
+          // $curl = curl_init();
+          // curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
+          // curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+          // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
+          // curl_setopt($curl, CURLOPT_POST, 1);
+          // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+          // curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
+          // $out = curl_exec($curl);
+          // curl_close ($curl);
+          // $pms = json_decode($out,true);
+          // $url=$pms['data']['link'];
+          // if($url!=""){
+          //  echo "<h2>Uploaded Without Any Problem</h2>";
+          //  echo "<img src='$url'/>";
+          // }else{
+          //  echo "<h2>There's a Problem</h2>";
+          //  echo $pms['data']['error'];
+          // }
+
+     }
+
     public function store(Request $request){
         $this->validate($request, [
             'name_restaurant'    => 'required|unique:restaurant',
-            'hour1'    => 'required|unique:restaurant_schedule',
+            // 'hour1'    => 'required|unique:restaurant_schedule',
+            // 'hour2'    => 'required|unique:restaurant_schedule',
+
             /*'address_restaurant' => 'required',
             'city_restaurant' => 'required',
             'postalcode_restaurant' => 'required',
@@ -69,7 +132,7 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
-
+        $this->upload($request);
         $schedule = new RestaurantSchedule;
         $schedule->hour1=$request->hour1;
         $schedule->hour2=$request->hour2;
@@ -80,6 +143,7 @@ class RestaurantController extends Controller {
         $restaurante = new Restaurant;
         $restaurante->id_user_id = Auth::User()->id;
         $restaurante->name_restaurant = $request->name_restaurant;
+
         $restaurante->save();
         $restaurante->schedules()->save($schedule);
 
@@ -87,6 +151,7 @@ class RestaurantController extends Controller {
             return redirect()->route('restaurant.index');
         }
     }
+
 
     /**
      * Display the specified resource.

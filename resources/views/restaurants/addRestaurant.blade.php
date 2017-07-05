@@ -39,7 +39,7 @@
 
                 <div class="panel-heading">Añadir restaurante</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('restaurant.store') }}">
+                    <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ route('restaurant.store') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name_restaurant') ? ' has-error' : '' }}">
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
-                            <label for="email_restaurant" class="col-md-4 control-label">Specialty</label>
+                            <label for="specialty" class="col-md-4 control-label">Especialidad</label>
 
                             <div class="col-md-6">
                                 <input id="specialty" type="text" placeholder="" class="form-control" name="specialty"  autofocus>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('restaurant_url') ? ' has-error' : '' }}">
-                            <label for="restaurant_url" class="col-md-4 control-label">Restaurant Url</label>
+                            <label for="restaurant_url" class="col-md-4 control-label">Url Restaurante</label>
 
                             <div class="col-md-6">
                                 <input id="restaurant_url" type="text" placeholder="" class="form-control" name="restaurant_url"  autofocus>
@@ -172,7 +172,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
+
 
                             @include('restaurants.time')
 
@@ -183,14 +183,14 @@
                                         <strong>{{ $errors->first('time') }}</strong>
                                     </span>
                                 @endif
-                            
-                        </div>
+
+                        {{-- </div> --}}
                         <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
-                            <label for="picture_url" class="col-md-4 control-label">Picture</label>
+                            <label for="picture_url" class="col-md-4 control-label">Foto</label>
 
                             <div class="col-md-6">
                               <label class="btn btn-primary btn-block">
-                                  Browse <input type="file" style="display: none;">
+                                  Browse <input name="picture" type="file" style="display: none;">
                               </label>
                                 @if ($errors->has('picture_url'))
                                     <span class="help-block">
