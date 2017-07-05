@@ -44,63 +44,32 @@ class RestaurantController extends Controller {
      */
 
      public function upload(Request $request){
-       $img=$_FILES['picture'];
-       error_log($img['name']);
-        $filename = $img['tmp_name'];
-        $client_id="92395e9873f8e10";
-        $handle = fopen($filename, "r");
-        $data = fread($handle, filesize($filename));
-        $pvars   = array('image' => base64_encode($data));
-        $timeout = 30;
-        $curl = curl_init();
-
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-CURLOPT_URL => "https://api.imgur.com/3/image",
-CURLOPT_RETURNTRANSFER => true,
-CURLOPT_ENCODING => "",
-CURLOPT_MAXREDIRS => 10,
-CURLOPT_TIMEOUT => 30,
-CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-CURLOPT_CUSTOMREQUEST => "POST",
-CURLOPT_POSTFIELDS => "",
-CURLOPT_HTTPHEADER => array(
-  "authorization: Client-ID 92395e9873f8e10",
-  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-),
-));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-error_log('response: '.$response);
-curl_close($curl);
-
-if ($err) {
-echo "cURL Error #:" . $err;
-} else {
-echo $response;
-}
-          // $curl = curl_init();
-          // curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
-          // curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-          // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
-          // curl_setopt($curl, CURLOPT_POST, 1);
-          // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-          // curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
-          // $out = curl_exec($curl);
-          // curl_close ($curl);
-          // $pms = json_decode($out,true);
-          // $url=$pms['data']['link'];
-          // if($url!=""){
-          //  echo "<h2>Uploaded Without Any Problem</h2>";
-          //  echo "<img src='$url'/>";
-          // }else{
-          //  echo "<h2>There's a Problem</h2>";
-          //  echo $pms['data']['error'];
-          // }
-
+          $img=$_FILES['picture'];
+          error_log($img['name']);
+          $filename = $img['tmp_name'];
+          $client_id="92395e9873f8e10";
+          $handle = fopen($filename, "r");
+          $data = fread($handle, filesize($filename));
+          $pvars   = array('image' => base64_encode($data));
+          $timeout = 100;
+          $curl = curl_init();
+          curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
+          curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
+          curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
+          curl_setopt($curl, CURLOPT_POST, 1);
+          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
+          $out = curl_exec($curl);
+          curl_close ($curl);
+          $pms = json_decode($out,true);
+          $url=$pms['data']['link'];
+          if($url!=""){
+           echo "<h2>Uploaded Without Any Problem</h2>";
+           echo "<img src='$url'/>";
+          }else{
+           echo "<h2>There's a Problem</h2>";
+           echo $pms['data']['error'];  
+          } 
      }
 
     public function store(Request $request){
