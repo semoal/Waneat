@@ -29,7 +29,9 @@
         });
         $('#more-hours').click(function(){
 
-                  $('#schedules_count').data().counter++;
+          var $input = $('#schedules_count');
+
+$input.val( +$input.val() + 1 );
                   $('#time-template').append($('#time-template').html())
 
                   //console.log($('.example-1').html());

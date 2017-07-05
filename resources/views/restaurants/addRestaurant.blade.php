@@ -173,7 +173,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div id="time-template">
+
                           @include('restaurants.time')
 
 
@@ -183,7 +183,7 @@
                                       <strong>{{ $errors->first('time') }}</strong>
                                   </span>
                               @endif
-                        </div>
+                        
 
 
 
