@@ -66,6 +66,7 @@ class RestaurantController extends Controller {
           if($url!=""){
            echo "<h2>Uploaded Without Any Problem</h2>";
            echo "<img src='$url'/>";
+           return $url;
           }else{
            echo "<h2>There's a Problem</h2>";
            echo $pms['data']['error'];  
@@ -101,7 +102,10 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
-        $this->upload($request);
+        $imagen = $this->upload($request);
+        $imagen = new RestaurantImage;
+        $imagenSubir->url = $imagen;
+        
         $schedule = new RestaurantSchedule;
         $schedule->hour1=$request->hour1;
         $schedule->hour2=$request->hour2;
@@ -115,6 +119,8 @@ class RestaurantController extends Controller {
 
         $restaurante->save();
         $restaurante->schedules()->save($schedule);
+        $restaurante->images()->save($imagenSubir);
+
 
         if($restaurante){
             return redirect()->route('restaurant.index');
