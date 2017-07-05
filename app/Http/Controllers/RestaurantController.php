@@ -8,7 +8,6 @@ use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Log;
 
 
 
@@ -24,6 +23,7 @@ class RestaurantController extends Controller {
     public function index(Request $request){
             $id = Auth::user()->id;
             $restaurant = User::find($id)->restaurants;
+            $horario = User::find($id)->restaurants;
             $prueba = User::find($id)->restaurants->count();
             return view('restaurants/addRestaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
     }
@@ -56,9 +56,6 @@ class RestaurantController extends Controller {
             'picture_url' => 'required',*/
         ]);
         // Log::info("yoquese".$request->days);
-
-        $schedule = new RestaurantSchedule;
-        $schedule->hour1=$request->hour1;
         // $schedule->save()
 
         // $restaurante = Restaurant::create([
@@ -72,17 +69,22 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
+
+        $schedule = new RestaurantSchedule;
+        $schedule->hour1=$request->hour1;
+        $schedule->hour2=$request->hour2;
+        $dias = $request->days;
+        foreach ($dias as $dia) {
+            $schedule->$dia = true;
+        }
         $restaurante = new Restaurant;
         $restaurante->id_user_id = Auth::User()->id;
         $restaurante->name_restaurant = $request->name_restaurant;
         $restaurante->save();
         $restaurante->schedules()->save($schedule);
 
-
         if($restaurante){
-            error_log($request->days);
             return redirect()->route('restaurant.index');
-            // echo($request->days);
         }
     }
 
