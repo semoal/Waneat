@@ -70,8 +70,8 @@ class RestaurantController extends Controller {
            return $url;
           }else{
            echo "<h2>There's a Problem</h2>";
-           //echo $pms['data']['error'];  
-          } 
+           //echo $pms['data']['error'];
+          }
      }
 
     public function store(Request $request){
@@ -104,7 +104,7 @@ class RestaurantController extends Controller {
         $urlImagen = $this->upload($request);
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
-        
+
         $schedule = new RestaurantSchedule;
         $schedule->hour1=$request->hour1;
         $schedule->hour2=$request->hour2;
@@ -158,17 +158,13 @@ class RestaurantController extends Controller {
     }
 
     /**
-     * Remove in cascade the specified resource from storage 
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return Response
      */
     public function destroy($id){
-       $restaurant = Restaurant::find($id);
-       $restaurant->images()->delete();
-       $restaurant->schedules()->delete();
-       $restaurant->delete();
-
+       $restarant = Restaurant::find($id)->delete();
        return redirect()->route('restaurant.index');
     }
 

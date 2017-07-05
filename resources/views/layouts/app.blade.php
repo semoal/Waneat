@@ -27,7 +27,14 @@
         $('#hour1').change(function() {
           console.log($(this).value());
         });
+        $('#more-hours').click(function(){
 
+                  $('#schedules_count').data().counter++;
+                  $('#time-template').append($('#time-template').html())
+
+                  //console.log($('.example-1').html());
+
+        });
       </script>
    </body>
 </html>

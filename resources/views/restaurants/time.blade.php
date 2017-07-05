@@ -26,3 +26,12 @@
     <input type="time" id="hour2" name="hour2" class="form-control">
   </div>
 </div>
+
+<div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
+  <div class="col-md-6">
+    <a id="more-hours">más horas</a>
+  </div>
+
+</div>
+
+<input type="number" id="schedules_count" name="schedules_count" data-algo="1" hidden=true>

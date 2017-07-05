@@ -13,7 +13,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   {{$r->name_restaurant}}
-                  <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/>
+                  {{-- <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/> --}}
                 </div>
                 <div class="panel-body">
                   <form action="{{ route('restaurant.destroy', $r->id) }}" method="POST">
@@ -173,17 +173,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div id="time-template">
+                          @include('restaurants.time')
 
 
-                            @include('restaurants.time')
+
+                              @if ($errors->has('time'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('time') }}</strong>
+                                  </span>
+                              @endif
+                        </div>
 
 
-
-                                @if ($errors->has('time'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('time') }}</strong>
-                                    </span>
-                                @endif
 
                         {{-- </div> --}}
                         <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
