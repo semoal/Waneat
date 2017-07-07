@@ -2,7 +2,7 @@
   <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
     <label for="time" class="col-md-4 control-label">Dias</label>
     <div class="col-md-6">
-        <select id="days" size="7" name="days[]" multiple="multiple" id="lstStates">
+        <select class="days" size="7" name="days[]" multiple="multiple" id="lstStates">
             <option value="mon" name="Monday">Lunes</option>
             <option value="tue" name="Tuesday">Martes</option>
             <option value="wed" name="Wednesday">Miercoles</option>
@@ -29,11 +29,12 @@
   </div>
 
   <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
-    <div class="col-md-6">
-      <a id="more-hours">más horas</a>
+    <div class="col-md-6 control-label">
+      <a id="more-hours">Añadir más horarios...</a>
     </div>
-
   </div>
+  <hr>
+
 </div>
 
 

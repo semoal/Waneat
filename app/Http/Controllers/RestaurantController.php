@@ -115,6 +115,7 @@ class RestaurantController extends Controller {
         }
         //dias que abre
         $dias = $request->days;
+        error_log(json_encode($dias));
         foreach ($dias as $dia) {
             $schedule->$dia = true;
         }
@@ -183,7 +184,10 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function destroy($id){
-       $restarant = Restaurant::find($id)->delete();
+        $restaurant = Restaurant::find($id);
+        $restaurant->images()->delete();
+        $restaurant->schedules()->delete();
+        $restaurant->delete();
        return redirect()->route('restaurant.index');
     }
 

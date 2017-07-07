@@ -1707,7 +1707,7 @@ if (token) {
 /***/ (function(module, exports) {
 
 $(function () {
-    $('#days').multiselect({
+    $('.days').multiselect({
         buttonText: function buttonText(options, select) {
             //console.log(select[0].length);
             if (options.length === 0) {

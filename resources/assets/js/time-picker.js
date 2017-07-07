@@ -1,5 +1,5 @@
 $(function () {
-    $('#days').multiselect({
+    $('.days').multiselect({
         buttonText: function(options, select) {
             //console.log(select[0].length);
             if (options.length === 0) {
