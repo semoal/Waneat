@@ -17,14 +17,14 @@
   <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
     <label class="col-md-4 control-label">Apertura: </label>
     <div class="col-md-6">
-      <input type="time" id="hour1" name="hour1"class="form-control">
+      <input type="time" id="hour1" name="hour1[]"class="form-control">
     </div>
   </div>
 
   <div class="form-group{{ $errors->has('time') ? ' has-error' : '' }}">
     <label class="col-md-4 control-label">Cierre: </label>
     <div class="col-md-6">
-      <input type="time" id="hour2" name="hour2" class="form-control">
+      <input type="time" id="hour2" name="hour2[]" class="form-control">
     </div>
   </div>
 

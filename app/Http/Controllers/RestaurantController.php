@@ -79,7 +79,7 @@ class RestaurantController extends Controller {
             'name_restaurant'    => 'required|unique:restaurant',
             // 'hour1'    => 'required|unique:restaurant_schedule',
             // 'hour2'    => 'required|unique:restaurant_schedule',
-
+            'picture'         =>  'required',
             /*'address_restaurant' => 'required',
             'city_restaurant' => 'required',
             'postalcode_restaurant' => 'required',
@@ -101,17 +101,36 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
-        $urlImagen = $this->upload($request);
-        $restaurantImagen = new RestaurantImage;
-        $restaurantImagen->image_url = $urlImagen;
-
         $schedule = new RestaurantSchedule;
-        $schedule->hour1=$request->hour1;
-        $schedule->hour2=$request->hour2;
+
+        //Cogemos todos los horarios de apertura
+        $horasAbrir = $request->hour1;
+        foreach ($horasAbrir as $hora) {
+          error_log("horario de abrir".json_encode($hora));
+        }
+        //horario de cerrar
+        $horasCerrar = $request->hour2;
+        foreach ($horasCerrar as $xd) {
+          error_log("horario de cerrar".json_encode($xd));
+        }
+        //dias que abre
         $dias = $request->days;
         foreach ($dias as $dia) {
             $schedule->$dia = true;
         }
+
+        //$schedule->hour1=$request->hour1;
+        //$schedule->hour2=$request->hour2;
+
+        //Dias que abre el local
+
+
+        $urlImagen = $this->upload($request);
+        $restaurantImagen = new RestaurantImage;
+        $restaurantImagen->image_url = $urlImagen;
+
+
+
         $restaurante = new Restaurant;
         $restaurante->id_user_id = Auth::User()->id;
         $restaurante->name_restaurant = $request->name_restaurant;

@@ -13,7 +13,12 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   {{$r->name_restaurant}}
-                  {{-- <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/> --}}
+                  @if (count($r->images)>0)
+                    <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/> 
+                  @else
+                    <p> No hay imagen disponible </p>
+                  
+                  @endif
                 </div>
                 <div class="panel-body">
                   <form action="{{ route('restaurant.destroy', $r->id) }}" method="POST">
@@ -51,7 +56,7 @@
 
                                 @if ($errors->has('name_restaurant'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name_restaurant') }}</strong>
+                                        <strong>Este campo es obligatorio</strong>
                                     </span>
                                 @endif
                             </div>
@@ -188,16 +193,16 @@
 
 
                         {{-- </div> --}}
-                        <div class="form-group{{ $errors->has('picture_url') ? ' has-error' : '' }}">
-                            <label for="picture_url" class="col-md-4 control-label">Foto</label>
+                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                            <label for="picture" class="col-md-4 control-label">Foto</label>
 
                             <div class="col-md-6">
                               <label class="btn btn-primary btn-block">
                                   Browse <input name="picture" type="file" style="display: none;">
                               </label>
-                                @if ($errors->has('picture_url'))
+                                @if ($errors->has('picture'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('picture_url') }}</strong>
+                                        <strong>Selecciona una imagen</strong>
                                     </span>
                                 @endif
                             </div>
@@ -213,18 +218,6 @@
                         </div>
                     </form>
                 </div>
-                {{-- Restaurantes tuyos: {{ $countRestaurantes }}
-                <ul class="list-group">
-                @forelse ($restaurant as $user)
-                    <li class="list-group-item">
-                        {{ $user->id }} ----- {{ $user->name_restaurant }} --------- {{ $user->created_at }}
-                        <button class="btn btn-danger pull-right"> x </button>
-                    </li>
-                </ul>
-                @empty
-                    <p>No users</p>
-                @endforelse --}}
-
             </div>
         </div>
     </div>
