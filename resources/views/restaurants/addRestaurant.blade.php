@@ -126,20 +126,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="address_restaurant" class="col-md-4 control-label">Descripción</label>
-
-                            <div class="col-md-6">
-                                <input id="description" type="textarea" placeholder="" class="form-control" name="description"  autofocus>
-
-                                @if ($errors->has('description'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
+                         <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
                             <label for="email_restaurant" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
@@ -148,19 +135,6 @@
                                 @if ($errors->has('email_restaurant'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email_restaurant') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
-                            <label for="specialty" class="col-md-4 control-label">Especialidad</label>
-
-                            <div class="col-md-6">
-                                <input id="specialty" type="text" placeholder="" class="form-control" name="specialty"  autofocus>
-
-                                @if ($errors->has('specialty'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('specialty') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -174,6 +148,33 @@
                                 @if ($errors->has('restaurant_url'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('restaurant_url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label for="address_restaurant" class="col-md-4 control-label">Descripción</label>
+
+                            <div class="col-md-6">
+                                <textarea id="description" type="textarea" placeholder="" class="form-control" name="description"  autofocus> </textarea>
+
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    
+                        <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
+                            <label for="specialty" class="col-md-4 control-label">Especialidad</label>
+
+                            <div class="col-md-6">
+                                <input id="specialty" type="text" placeholder="" class="form-control" name="specialty"  autofocus>
+
+                                @if ($errors->has('specialty'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('specialty') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -198,13 +199,21 @@
 
                             <div class="col-md-6">
                               <label class="btn btn-primary btn-block">
-                                  Browse <input name="picture" type="file" style="display: none;">
+                                  Browse 
+                                  <input name="picture" type="file" class="imgInp" style="display: none;">
                               </label>
                                 @if ($errors->has('picture'))
                                     <span class="help-block">
                                         <strong>Selecciona una imagen</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                            <label for="picture" class="col-md-4 control-label">Previsualización:</label>
+                            <div class="col-md-6">
+                                <img id="imgPreview" src="#" alt="Preview" class="img-thumbnail img-preview" />
                             </div>
                         </div>
 

@@ -123,14 +123,9 @@ class RestaurantController extends Controller {
         //$schedule->hour1=$request->hour1;
         //$schedule->hour2=$request->hour2;
 
-        //Dias que abre el local
-
-
         $urlImagen = $this->upload($request);
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
-
-
 
         $restaurante = new Restaurant;
         $restaurante->id_user_id = Auth::User()->id;
