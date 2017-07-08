@@ -103,7 +103,7 @@ class RestaurantController extends Controller {
         // ]);
         $schedule = new RestaurantSchedule;
 
-        //Cogemos todos los horarios de apertura
+        /*//Cogemos todos los horarios de apertura
         $horasAbrir = $request->hour1;
         foreach ($horasAbrir as $hora) {
           error_log("horario de abrir".json_encode($hora));
@@ -112,7 +112,9 @@ class RestaurantController extends Controller {
         $horasCerrar = $request->hour2;
         foreach ($horasCerrar as $xd) {
           error_log("horario de cerrar".json_encode($xd));
-        }
+        }*/
+        $horasCerrar = $request->hour2;
+
         //dias que abre
         $dias = $request->days;
         error_log(json_encode($dias));
@@ -132,9 +134,15 @@ class RestaurantController extends Controller {
         $restaurante->name_restaurant = $request->name_restaurant;
 
         $restaurante->save();
-        $restaurante->schedules()->save($schedule);
+        //$restaurante->schedules()->save($schedule);
         $restaurante->images()->save($restaurantImagen);
 
+        foreach($horasCerrar as $cerrar){
+          $data[] = [ 
+                      'hour1' => $cerrar,
+                    ];
+          }
+          RestaurantSchedule::insert($data);
 
         if($restaurante){
             return redirect()->route('restaurant.index');

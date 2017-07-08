@@ -22,6 +22,20 @@
       <!-- Scripts -->
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
-
+ <script type="text/javascript">
+         $('#hour1').change(function() {
+           console.log($(this).value());
+         });
+         $('#more-hours').click(function(){
+  
+           var $input = $('#schedules_count');
+ 
+ $input.val( +$input.val() + 1 );
+                   $('#time-template').append($('#time-template').html())
+ 
+                   //console.log($('.example-1').html());
+ 
+         });
+       </script>
    </body>
 </html>
