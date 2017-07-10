@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model{
 
 	protected $fillable = [
-    'name_restaurant',
+    	'name_restaurant',
 		'address_restaurant',
 		'city_restaurant',
 		'postalcode_restaurant',
@@ -23,7 +23,9 @@ class Restaurant extends Model{
 		'email_restaurant',
 		'specialty',
 		'restaurant_url',
-    'id_user_id',
+    	'id_user_id',
+    	'created_at',
+    	'updated_at',
     ];
 
     protected $hidden = [

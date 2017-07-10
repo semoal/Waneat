@@ -65,12 +65,9 @@ class RestaurantController extends Controller {
           $pms = json_decode($out,true);
           $url=$pms['data']['link'];
           if($url!=""){
-           //echo "<h2>Uploaded Without Any Problem</h2>";
-           //echo "<img src='$url'/>";
-           return $url;
+            return $url;
           }else{
-           echo "<h2>There's a Problem</h2>";
-           //echo $pms['data']['error'];
+            echo "<h2>There's a Problem</h2>";
           }
      }
 
@@ -101,30 +98,9 @@ class RestaurantController extends Controller {
         //     'email_restaurant' => $request->email_restaurant,*/
         //     'id_user_id' => Auth::User()->id
         // ]);
-        $schedule = new RestaurantSchedule;
 
-        /*//Cogemos todos los horarios de apertura
-        $horasAbrir = $request->hour1;
-        foreach ($horasAbrir as $hora) {
-          error_log("horario de abrir".json_encode($hora));
-        }
-        //horario de cerrar
-        $horasCerrar = $request->hour2;
-        foreach ($horasCerrar as $xd) {
-          error_log("horario de cerrar".json_encode($xd));
-        }*/
-        $horasCerrar = $request->hour2;
 
-        //dias que abre
-        $dias = $request->days;
-        error_log(json_encode($dias));
-        foreach ($dias as $dia) {
-            $schedule->$dia = true;
-        }
-
-        //$schedule->hour1=$request->hour1;
-        //$schedule->hour2=$request->hour2;
-
+        //Imagenes y el propio restaurante
         $urlImagen = $this->upload($request);
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
@@ -134,15 +110,29 @@ class RestaurantController extends Controller {
         $restaurante->name_restaurant = $request->name_restaurant;
 
         $restaurante->save();
-        //$restaurante->schedules()->save($schedule);
         $restaurante->images()->save($restaurantImagen);
 
-        foreach($horasCerrar as $cerrar){
-          $data[] = [ 
-                      'hour1' => $cerrar,
-                    ];
-          }
-          RestaurantSchedule::insert($data);
+
+
+        //Horarios del restaurante
+        $schedule = new RestaurantSchedule;
+        $horasCerrar = $request->hour2;
+        $horasAbrir = $request->hour1;
+        $diasAbrir = $request->days;
+
+        for ($i=0; $i < count($horasCerrar); $i++) { 
+                  $diasString = implode(";", $diasAbrir);
+                  $data[] = [ 
+                    'id_restaurant_id' => $restaurante->id,
+                    'days'  => $diasString,
+                    'openSchedule' => $horasAbrir[$i],
+                    'closeSchedule' => $horasCerrar[$i],
+                    'created_at' => $restaurante->created_at,
+                    'updated_at' => $restaurante->updated_at,
+                  ];
+        }
+        
+        RestaurantSchedule::insert($data);
 
         if($restaurante){
             return redirect()->route('restaurant.index');

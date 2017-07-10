@@ -22,20 +22,15 @@
       <!-- Scripts -->
       <script src="{{ asset('js/app.js') }}"></script>
       <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"></script>
- <script type="text/javascript">
-         $('#hour1').change(function() {
-           console.log($(this).value());
-         });
-         $('#more-hours').click(function(){
-  
-           var $input = $('#schedules_count');
- 
- $input.val( +$input.val() + 1 );
-                   $('#time-template').append($('#time-template').html())
- 
-                   //console.log($('.example-1').html());
- 
-         });
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#more-hours').click(function(){  
+              var $foo = $(
+                  '<div class="form-group"> <label for="time" class="col-md-4 control-label">Dias</label> <div class="col-md-6"> <select class="days" size="7" name="days[]" multiple="multiple" id="lstStates"> <option value="Lunes" name="Lunes">Lunes</option> <option value="Martes" name="Martes">Martes</option> <option value="Miercoles" name="Miercoles">Miercoles</option> <option value="Jueves" name="Jueves">Jueves</option> <option value="Viernes" name="Viernes">Viernes</option> <option value="Sabado" name="Sabado">Sabado</option> <option value="Domingo" name="Domingo">Domingo</option> </select> </div></div><div class="form-group"> <label class="col-md-4 control-label">Apertura: </label> <div class="col-md-6"> <input type="time" id="hour1" name="hour1[]"class="form-control"> </div></div><div class="form-group"> <label class="col-md-4 control-label">Cierre: </label> <div class="col-md-6"> <input type="time" id="hour2" name="hour2[]" class="form-control"> </div></div><hr>'
+                );
+              $("#time-template").append($foo.clone());
+            });
+        });
        </script>
    </body>
 </html>
