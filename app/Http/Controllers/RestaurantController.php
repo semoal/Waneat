@@ -26,7 +26,7 @@ class RestaurantController extends Controller {
             $restaurant = User::find($id)->restaurants;
             $horario = User::find($id)->restaurants;
             $prueba = User::find($id)->restaurants->count();
-            return view('restaurants/addRestaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
+            return view('restaurants/restaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
     }
 
     /**
@@ -121,10 +121,8 @@ class RestaurantController extends Controller {
         $diasAbrir = $request->days;
 
         for ($i=0; $i < count($horasCerrar); $i++) {
-
                   error_log(json_encode($diasAbrir));
                   $diasString = implode(";", $diasAbrir[$i]);
-
                   $data[] = [
                     'id_restaurant_id' => $restaurante->id,
                     'days'  => $diasString,

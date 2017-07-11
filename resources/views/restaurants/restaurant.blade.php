@@ -14,10 +14,10 @@
                 <div class="panel-heading">
                   {{$r->name_restaurant}}
                   @if (count($r->images)>0)
-                    <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/> 
+                    <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/>
                   @else
                     <p> No hay imagen disponible </p>
-                  
+
                   @endif
                 </div>
                 <div class="panel-body">
@@ -42,7 +42,7 @@
       </div>
         <div class="offset-md-2 col-md-8">
             <!-- PANEL 1 -->
-            <div class="panel panel-default panel-1"> 
+            <div class="panel panel-default panel-1">
                 <h1> Panel 1</h1>
                 <div class="panel-body">
                     <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ route('restaurant.store') }}">
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <!-- PANEL 2 -->
-             <div class="panel panel-default panel-2" hidden> 
+             <div class="panel panel-default panel-2 hide">
                 <h1> Panel 2</h1>
                 <div class="panel-body">
                     <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
@@ -174,7 +174,7 @@
                                 @endif
                             </div>
                         </div>
-                    
+
                         <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
                             <label for="specialty" class="col-md-4 control-label">Especialidad</label>
 
@@ -195,7 +195,7 @@
                 </div>
             </div>
             <!-- PANEL 3 -->
-             <div class="panel panel-default panel-3" hidden> 
+             <div class="panel panel-default panel-3 hide">
                 <h1> Panel 3</h1>
                 <div class="panel-body">
 
@@ -212,7 +212,7 @@
                 </div>
             </div>
             <!-- PANEL 4 -->
-            <div class="panel panel-default panel-4" hidden> 
+            <div class="panel panel-default panel-4 hide">
                 <h1> Panel 4</h1>
                 <div class="panel-body">
                     <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
@@ -220,7 +220,7 @@
 
                         <div class="col-md-6">
                           <label class="btn btn-primary btn-block">
-                              Browse 
+                              Browse
                               <input name="picture" type="file" class="imgInp" style="display: none;">
                           </label>
                             @if ($errors->has('picture'))

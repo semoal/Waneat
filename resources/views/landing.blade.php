@@ -14,15 +14,16 @@
     <title>Waneat - ¿Esperas?</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Theme core CSS -->
-    <link href="{{URL::asset('./css/app.css')}}" rel="stylesheet">
+    {{-- <link href="{{URL::asset('./css/app.css')}}" rel="stylesheet"> --}}
     <link href="{{URL::asset('./css/new-age.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Plugin CSS -->
     <link href="{{URL::asset('./lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('./lib/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
     <link href="{{URL::asset('./lib/device-mockups/device-mockups.min.css')}}" rel="stylesheet">
 
-    
+
 </head>
 
 <body id="page-top">
@@ -239,10 +240,17 @@
 
 
     <!-- Bootstrap & jQuery -->
-    <script src="{{URL::asset('./js/app.js')}}"></script>
+    {{-- <script src="{{URL::asset('./js/app.js')}}"></script> --}}
 
     <!-- Plugin JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
 
 </body>
 </html>

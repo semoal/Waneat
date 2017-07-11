@@ -57,7 +57,6 @@
 
 <div class="form-group">
   <div class="col-md-6 control-label">
-    <a id="more-hours">Añadir más horarios...</a>
+    <a id="more-hours" class="add-schedule">Añadir más horarios...</a>
   </div>
 </div>
-

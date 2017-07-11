@@ -2,7 +2,7 @@
 
 
 $(document).ready(function(){
-        //Permite añadir horarios duplicados 
+        //Permite añadir horarios duplicados
         var schedules = 0;
         $('#more-hours').click(function(){
         schedules++;
@@ -14,28 +14,28 @@ $(document).ready(function(){
 
         //Navegación entre paneles en el registro de restaurantes
           $('.panel-1-next').click(function(){
-            $('.panel-1').hide();
-            $('.panel-2').show();
+            $('.panel-1').addClass('hide');
+            $('.panel-2').removeClass('hide');
           });
           $('.panel-2-back').click(function(){
-            $('.panel-2').hide();
-            $('.panel-1').show();
+            $('.panel-2').addClass('hide');
+            $('.panel-1').removeClass('hide');
           });
           $('.panel-2-next').click(function(){
-            $('.panel-2').hide();
-            $('.panel-3').show();
+            $('.panel-2').addClass('hide');
+            $('.panel-3').removeClass('hide');
           });
           $('.panel-3-back').click(function(){
-            $('.panel-3').hide();
-            $('.panel-2').show();
+            $('.panel-3').addClass('hide');
+            $('.panel-2').removeClass('hide');
           });
           $('.panel-3-next').click(function(){
-            $('.panel-3').hide();
-            $('.panel-4').show();
+            $('.panel-3').addClass('hide');
+            $('.panel-4').removeClass('hide');
           });
           $('.panel-4-back').click(function(){
-            $('.panel-4').hide();
-            $('.panel-3').show();
+            $('.panel-4').addClass('hide');
+            $('.panel-3').removeClass('hide');
           });
 
         // Funcion para previsualiazr la imagen //
