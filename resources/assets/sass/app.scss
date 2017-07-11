@@ -11,13 +11,3 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "prueba";
-
-.day-box{
-  background: gray;
-  color: white;
-  border-radius: 0.5em;
-}
-
-label input[type=checkbox]{
-  display: none;
-}

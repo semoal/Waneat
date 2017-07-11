@@ -1,5 +1,31 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+.day-box{
+  background: white;
+  color: black;
+  border-radius: 0.1em;
+  user-select: none;
+}
+.day-box:hover{
+  cursor: pointer;
+}
+
+label input[type="checkbox"]{
+  display: none;
+}
+
+label input[type="checkbox"]:checked ~ .day-box{
+  background-color:black;
+  color:white;
+}
+
+.not-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .navbar-fixed-side {
   @media (max-width: $grid-float-breakpoint) {
     margin-left: -15px;

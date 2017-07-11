@@ -41,9 +41,9 @@
         </div>
       </div>
         <div class="offset-md-2 col-md-8">
-            <div class="panel panel-default">
-
-                <div class="panel-heading">Añadir restaurante</div>
+            <!-- PANEL 1 -->
+            <div class="panel panel-default panel-1"> 
+                <h1> Panel 1</h1>
                 <div class="panel-body">
                     <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ route('restaurant.store') }}">
                         {{ csrf_field() }}
@@ -126,7 +126,16 @@
                                 @endif
                             </div>
                         </div>
-                         <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary panel-1-next"> Siguiente </button>
+                </div>
+            </div>
+            <!-- PANEL 2 -->
+             <div class="panel panel-default panel-2" hidden> 
+                <h1> Panel 2</h1>
+                <div class="panel-body">
+                    <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
                             <label for="email_restaurant" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
@@ -179,54 +188,61 @@
                                 @endif
                             </div>
                         </div>
-
-                          @include('restaurants.time')
-
-
-
-                              @if ($errors->has('time'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('time') }}</strong>
-                                  </span>
-                              @endif
-                        
-
-
-
-                        {{-- </div> --}}
-                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
-                            <label for="picture" class="col-md-4 control-label">Foto</label>
-
-                            <div class="col-md-6">
-                              <label class="btn btn-primary btn-block">
-                                  Browse 
-                                  <input name="picture" type="file" class="imgInp" style="display: none;">
-                              </label>
-                                @if ($errors->has('picture'))
-                                    <span class="help-block">
-                                        <strong>Selecciona una imagen</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
-                            <label for="picture" class="col-md-4 control-label">Previsualización:</label>
-                            <div class="col-md-6">
-                                <img id="imgPreview" src="#" alt="Preview" class="img-thumbnail img-preview" />
-                            </div>
-                        </div>
-
-                        <!-- boton submit-->
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Insertar
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
+                    <button type="button" class="btn btn-primary panel-2-next"> Siguiente </button>
+                </div>
+            </div>
+            <!-- PANEL 3 -->
+             <div class="panel panel-default panel-3" hidden> 
+                <h1> Panel 3</h1>
+                <div class="panel-body">
+
+                    @include('restaurants.time')
+                    @if ($errors->has('time'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('time') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
+                    <button type="button" class="btn btn-primary panel-3-next"> Siguiente </button>
+                </div>
+            </div>
+            <!-- PANEL 4 -->
+            <div class="panel panel-default panel-4" hidden> 
+                <h1> Panel 4</h1>
+                <div class="panel-body">
+                    <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                        <label for="picture" class="col-md-4 control-label">Foto</label>
+
+                        <div class="col-md-6">
+                          <label class="btn btn-primary btn-block">
+                              Browse 
+                              <input name="picture" type="file" class="imgInp" style="display: none;">
+                          </label>
+                            @if ($errors->has('picture'))
+                                <span class="help-block">
+                                    <strong>Selecciona una imagen</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                        <label for="picture" class="col-md-4 control-label">Previsualización:</label>
+                        <div class="col-md-6">
+                            <img id="imgPreview" src="" alt="Preview" class="img-thumbnail img-preview" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>
+                    <button type="submit" class="btn btn-primary"> Terminar </button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
