@@ -2,15 +2,34 @@
   <div class="form-group">
     <label for="time" class="col-md-4 control-label">Dias</label>
     <div class="col-md-6">
-        <select class="days" size="7" name="days[]" multiple="multiple" id="lstStates">
-            <option value="Lunes" name="Lunes">Lunes</option>
-            <option value="Martes" name="Martes">Martes</option>
-            <option value="Miercoles" name="Miercoles">Miercoles</option>
-            <option value="Jueves" name="Jueves">Jueves</option>
-            <option value="Viernes" name="Viernes">Viernes</option>
-            <option value="Sabado" name="Sabado">Sabado</option>
-            <option value="Domingo" name="Domingo">Domingo</option>
-        </select>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Lunes">
+          <span class="day-box">Lun</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Martes">
+          <span class="day-box">Mar</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Miercoles">
+          <span class="day-box">Mié</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Jueves">
+          <span class="day-box">Jue</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Viernes">
+          <span class="day-box">Vie</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Sabado">
+          <span class="day-box">Sáb</span>
+        </label>
+        <label>
+          <input type="checkbox" name="days[0][]" value="Domingo">
+          <span class="day-box">Dom</span>
+        </label>
     </div>
   </div>
 
@@ -34,4 +53,3 @@
     <a id="more-hours">Añadir más horarios...</a>
   </div>
 </div>
-

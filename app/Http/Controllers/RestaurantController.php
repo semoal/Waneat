@@ -120,9 +120,12 @@ class RestaurantController extends Controller {
         $horasAbrir = $request->hour1;
         $diasAbrir = $request->days;
 
-        for ($i=0; $i < count($horasCerrar); $i++) { 
-                  $diasString = implode(";", $diasAbrir);
-                  $data[] = [ 
+        for ($i=0; $i < count($horasCerrar); $i++) {
+
+                  error_log(json_encode($diasAbrir));
+                  $diasString = implode(";", $diasAbrir[$i]);
+
+                  $data[] = [
                     'id_restaurant_id' => $restaurante->id,
                     'days'  => $diasString,
                     'openSchedule' => $horasAbrir[$i],
@@ -131,7 +134,7 @@ class RestaurantController extends Controller {
                     'updated_at' => $restaurante->updated_at,
                   ];
         }
-        
+
         RestaurantSchedule::insert($data);
 
         if($restaurante){
