@@ -15,8 +15,9 @@ trait Uploader{
           }else{
             echo "<h2>There's a Problem</h2>";
           }
-        
+
     }
+
     private function CurltoImgur($pvars){
           $client_id="92395e9873f8e10";
           $timeout = 100;
@@ -32,5 +33,5 @@ trait Uploader{
           $pms = json_decode($out,true);
           return $pms;
     }
-
+    
 }

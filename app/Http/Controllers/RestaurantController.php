@@ -22,11 +22,8 @@ class RestaurantController extends Controller {
      */
     use Uploader;
     public function index(Request $request){
-            $id = Auth::user()->id;
-            $user = User::find($id);
-            $restaurants = $user->restaurants;
-            $cuentaRestaurantes = $user->restaurants->count();
-            return view('restaurants/new',['countRestaurantes' => $cuentaRestaurantes])->with('restaurant', $restaurants);
+        $restaurants = Auth::user()->restaurants;
+        return view('restaurants/new',['restaurants' => $restaurants]);
     }
 
     /**
@@ -155,7 +152,7 @@ class RestaurantController extends Controller {
         $restaurant->images()->delete();
         $restaurant->schedules()->delete();
         $restaurant->delete();
-       return redirect()->route('restaurant.index');
+       return redirect()->route('home');
     }
 
 }
