@@ -87,7 +87,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-primary panel-1-next"> Siguiente </button>
+                                <button type="button" class="btn btn-primary panel-1-next float-right"> Siguiente </button>
                             </div>
                             <div class="panel-2 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -147,7 +147,7 @@
                                         @endif
                                     </div>
                                     <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
-                                    <button type="button" class="btn btn-primary panel-2-next"> Siguiente </button>
+                                    <button type="button" class="btn btn-primary panel-2-next float-right"> Siguiente </button>
                             </div>
                             <div class="panel-3 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -173,7 +173,7 @@
                                     </span>
                                 @endif
                                 <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
-                                <button type="button" class="btn btn-primary panel-3-next"> Siguiente </button>
+                                <button type="button" class="btn btn-primary panel-3-next float-right"> Siguiente </button>
                             </div>
                             <div class="panel-4 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -205,11 +205,11 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label for="picture" class=" form-label">Previsualización:</label>
-                                    <img id="imgPreview" src="" alt="" class="img-thumbnail img-preview" />
+                                    <img id="imgPreview" src="" alt="" class="img-preview" />
                                 </div>
 
                                 <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>
-                                <button type="submit" class="btn btn-primary"> Terminar </button>
+                                <button type="submit" class="btn btn-primary float-right"> Terminar </button>
 
                             </div>
                         </form>
