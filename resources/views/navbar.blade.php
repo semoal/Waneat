@@ -21,7 +21,9 @@
       <div id="sidebar" class="docs-sidebar column col-3 col-sm-12">
         <ul class="docs-nav nav">
           <li class="nav-item active">
+            @if (Auth::user())
             <a href="#">{{ Auth::user()->name }}</a>
+            @endif
             <ul class="nav">
               @if (Auth::guest())
               <li class="nav-item">

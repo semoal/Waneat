@@ -21,9 +21,15 @@ class RestaurantController extends Controller {
      * @return Response
      */
     use Uploader;
+<<<<<<< HEAD
     public function index(Request $request){
         $restaurants = Auth::user()->restaurants;
         return view('restaurants/new',['restaurants' => $restaurants]);
+=======
+    public function index(){
+            $restaurants = Auth::user()->restaurants;
+            return view('index', ['restaurants' => $restaurants]);
+>>>>>>> 7a1d3178976aa29b5f6e78909fe66cd99f1e47ea
     }
 
     /**
@@ -32,7 +38,7 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function create(){
-        return view('new');
+        return view('restaurants.new');
     }
 
     /**
@@ -71,7 +77,7 @@ class RestaurantController extends Controller {
 
 
         //Imagenes y el propio restaurante
-        $urlImagen = $this->uploadToImgur($request);
+        $urlImagen = $this->uploadToImgur($request->picture);
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
 
