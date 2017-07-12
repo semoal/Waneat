@@ -20,7 +20,7 @@ class RestaurantController extends Controller {
      *
      * @return Response
      */
-
+    use Uploader;
     public function index(Request $request){
             $id = Auth::user()->id;
             $restaurant = User::find($id)->restaurants;
@@ -43,33 +43,6 @@ class RestaurantController extends Controller {
      *
      * @return Response
      */
-
-     public function upload(Request $request){
-          $img=$_FILES['picture'];
-          error_log($img['name']);
-          $filename = $img['tmp_name'];
-          $client_id="92395e9873f8e10";
-          $handle = fopen($filename, "r");
-          $data = fread($handle, filesize($filename));
-          $pvars   = array('image' => base64_encode($data));
-          $timeout = 100;
-          $curl = curl_init();
-          curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
-          curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-          curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
-          curl_setopt($curl, CURLOPT_POST, 1);
-          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
-          $out = curl_exec($curl);
-          curl_close ($curl);
-          $pms = json_decode($out,true);
-          $url=$pms['data']['link'];
-          if($url!=""){
-            return $url;
-          }else{
-            echo "<h2>There's a Problem</h2>";
-          }
-     }
 
     public function store(Request $request){
         $this->validate($request, [
@@ -101,7 +74,7 @@ class RestaurantController extends Controller {
 
 
         //Imagenes y el propio restaurante
-        $urlImagen = $this->upload($request);
+        $urlImagen = $this->uploadToImgur($request->file('picture'));
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
 
