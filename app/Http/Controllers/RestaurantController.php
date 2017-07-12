@@ -23,10 +23,9 @@ class RestaurantController extends Controller {
     use Uploader;
     public function index(Request $request){
             $id = Auth::user()->id;
-            $restaurant = User::find($id)->restaurants;
-            $horario = User::find($id)->restaurants;
-            $prueba = User::find($id)->restaurants->count();
-            return view('restaurants/restaurant',['countRestaurantes' => $prueba])->with('restaurant', $restaurant);
+            $restaurants = User::find($id)->restaurants;
+
+            return view('restaurants/index', ['restaurants' => $restaurants]);
     }
 
     /**
@@ -35,7 +34,7 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function create(){
-        return view('restaurant');
+        return view('new');
     }
 
     /**
