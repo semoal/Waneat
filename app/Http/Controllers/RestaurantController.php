@@ -21,15 +21,9 @@ class RestaurantController extends Controller {
      * @return Response
      */
     use Uploader;
-<<<<<<< HEAD
-    public function index(Request $request){
-        $restaurants = Auth::user()->restaurants;
-        return view('restaurants/new',['restaurants' => $restaurants]);
-=======
     public function index(){
             $restaurants = Auth::user()->restaurants;
-            return view('index', ['restaurants' => $restaurants]);
->>>>>>> 7a1d3178976aa29b5f6e78909fe66cd99f1e47ea
+            return view('restaurants/new', ['restaurants' => $restaurants]);
     }
 
     /**
@@ -112,7 +106,7 @@ class RestaurantController extends Controller {
         RestaurantSchedule::insert($data);
 
         if($restaurante){
-            return redirect()->route('restaurant.index');
+            return redirect()->route('home');
         }
     }
 

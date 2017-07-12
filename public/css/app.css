@@ -16,3 +16,8 @@ a.dropdown-toggle:active + .dropdown-menu {
 .dropdown-menu:hover {
   display: block;
 }
+
+.img-preview {
+  max-width: 200px;
+  max-height: 200px;
+}
