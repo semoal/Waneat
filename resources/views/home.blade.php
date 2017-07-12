@@ -4,7 +4,7 @@
 @section('content')
         @include('navbar')
         <div class="docs-content column col-9 col-sm-12">
-          <div id="introduction" class="container">
+          <div class="container">
             <header class="text-center">
               <h3>
                 <a href="#introduction" class="anchor" aria-hidden="true">#</a>Introducción a Waneat
