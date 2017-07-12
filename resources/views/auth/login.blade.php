@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('navbar')
+{{-- @section('navbar')
   @include('navbar')
-@endsection
+@endsection --}}
 @section('content')
 <div class="container">
     <div class="row">

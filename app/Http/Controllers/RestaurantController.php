@@ -9,7 +9,7 @@ use App\User as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+Use App\Traits\Uploader as Uploader;
 
 
 class RestaurantController extends Controller {
@@ -23,9 +23,10 @@ class RestaurantController extends Controller {
     use Uploader;
     public function index(Request $request){
             $id = Auth::user()->id;
-            $restaurants = User::find($id)->restaurants;
-
-            return view('restaurants/index', ['restaurants' => $restaurants]);
+            $user = User::find($id);
+            $restaurants = $user->restaurants;
+            $cuentaRestaurantes = $user->restaurants->count();
+            return view('restaurants/new',['countRestaurantes' => $cuentaRestaurantes])->with('restaurant', $restaurants);
     }
 
     /**
@@ -73,7 +74,7 @@ class RestaurantController extends Controller {
 
 
         //Imagenes y el propio restaurante
-        $urlImagen = $this->uploadToImgur($request->file('picture'));
+        $urlImagen = $this->uploadToImgur($request);
         $restaurantImagen = new RestaurantImage;
         $restaurantImagen->image_url = $urlImagen;
 

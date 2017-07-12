@@ -3,8 +3,8 @@ namespace App\Traits;
 
 trait Uploader{
     public function uploadToImgur($img){
-          error_log($img['name']);
-          $filename = $img['tmp_name'];
+          error_log(json_encode($img));
+          $filename = $img['picture'];
           $handle = fopen($filename, "r");
           $data = fread($handle, filesize($filename));
           $pvars   = array('image' => base64_encode($data));
