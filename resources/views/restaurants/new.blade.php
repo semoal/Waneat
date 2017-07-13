@@ -194,7 +194,7 @@
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label class="btn btn-primary btn-block">
                                       Browse
-                                      <input name="picture" type="file" class="imgInp" style="display: none;">
+                                      <input name="picture" id="gallery-photo-add" multiple type="file" class="imgInp" style="display: none;">
                                     </label>
                                     @if ($errors->has('picture'))
                                         <span class="help-block">
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label for="picture" class=" form-label">Previsualización:</label>
-                                    <img id="imgPreview" src="" alt="" class="img-preview" />
+                                    <div class="gallery img-preview"> </div>
                                 </div>
 
                                 <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>

@@ -6,11 +6,11 @@
         <div class="docs-content column col-9 col-sm-12">
           <div class="container rel">
             <div class="abs" style="top: 30%; left: 0;">
-              <div class="contatiner">
+              <div class="container">
                 <div class="columns">
                   <div class="col-6">
                     <div class="dropdown float-left">
-                       <a href="#" onclick="javascript:return false;" class="btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Restaurantes
+                       <a href="#" onclick="x(); return false;;" class="btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Restaurantes
                          <i class="caret fa fa-caret-down"></i>
                        </a>
                        <ul class="dropdown-menu menu">

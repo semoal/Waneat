@@ -61,18 +61,22 @@ $(document).ready(function(){
             $('.panel-4').addClass('hide');
             $('.panel-3').removeClass('hide');
           });
-        // Funcion para previsualiazr la imagen //
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imgPreview').attr('src', e.target.result);
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img class="img-preview">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
                 }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $(".imgInp").change(function(){
-            readURL(this);
+            };
+            $('#gallery-photo-add').on('change', function() {
+                imagesPreview(this, 'div.gallery');
+            });
         });
 });
