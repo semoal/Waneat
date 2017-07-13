@@ -36,9 +36,9 @@
               <li class="nav-item">
                 <a href="{{ route('home')}}">Home</a>
               </li>
-              {{-- <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{ route('restaurant.index')}}">Restaurantes</a>
-              </li> --}}
+              </li>
               <li class="nav-item">
                 <a href="#">Pedidos</a>
               </li>

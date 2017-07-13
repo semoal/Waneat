@@ -4,7 +4,7 @@
 @section('content')
         @include('navbar')
         <div class="docs-content column col-9 col-sm-12">
-          <div class="container rel" id="#home">
+          <div class="container rel" id="#modals">
             <div class="abs" style="top: 30%; left: 0;">
               <div class="contatiner">
                 <div class="columns">
@@ -16,7 +16,7 @@
                        <ul class="dropdown-menu menu">
                          @forelse ($restaurants as $key => $r)
                            <li class="menu-item">
-                            <a link={{ route('restaurant.details',$r->id)}} href="#myModal" class="btn btn-link">{{$r->name_restaurant}}</a>
+                            <a data-link={{ route('restaurant.details',$r->id)}} class="modal-toggle btn btn-link">{{$r->name_restaurant}}</a>
                            </li>
                            <li class="divider"></li>
                          @empty
@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="modal" id="myModal">
-                
+                <a href="#modals" class="modal-overlay" aria-label="Close"></a>
               </div>
             </div>
             <header class="text-center">
