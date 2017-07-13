@@ -155,4 +155,10 @@ class RestaurantController extends Controller {
        return redirect()->route('home');
     }
 
+    public function details($id){
+      return view('restaurants/details',Auth::user()->restaurants->find($id));
+    }
+
+
+
 }

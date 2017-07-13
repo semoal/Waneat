@@ -4,7 +4,7 @@
 @section('content')
         @include('navbar')
         <div class="docs-content column col-9 col-sm-12">
-          <div class="container rel">
+          <div class="container rel" id="#home">
             <div class="abs" style="top: 30%; left: 0;">
               <div class="contatiner">
                 <div class="columns">
@@ -15,26 +15,10 @@
                        </a>
                        <ul class="dropdown-menu menu">
                          @forelse ($restaurants as $key => $r)
-                           <div class="panel panel-default">
-                             <div class="panel-heading">
-                               {{$r->name_restaurant}}
-                               @if (count($r->images)>0)
-                                 <img class="img-responsive img-rounded" src="{{$r->images[0]->image_url}}"/>
-                               @else
-                                 <p> No hay imagen disponible </p>
-
-                               @endif
-                             </div>
-                             <div class="panel-body">
-                               <form action="{{ route('restaurant.destroy', $r->id) }}" method="POST">
-                                       {{ method_field('DELETE') }}
-                                       {{ csrf_field() }}
-                                       <button class="btn btn-secondary"type="submit" value="submit">Borrar</button>
-                               </form>
-
-                             </div>
-
-                           </div>
+                           <li class="menu-item">
+                            <a href={{ route('restaurant.details', $r->id)}} class="btn btn-link">{{$r->name_restaurant}}</a>
+                           </li>
+                           <li class="divider"></li>
                          @empty
                              No tienes restaurantes añadidos
                          @endforelse
@@ -47,7 +31,6 @@
                 </div>
 
               </div>
-
 
             </div>
             <header class="text-center">

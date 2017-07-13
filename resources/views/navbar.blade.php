@@ -14,7 +14,7 @@
     </section>
   </section>
   <!-- ./nav-->
-  
+
   <!-- SIDE NAV -->
   <section class="container">
     <section class="columns">
@@ -36,20 +36,20 @@
               <li class="nav-item">
                 <a href="{{ route('home')}}">Home</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('restaurant.index')}}">Restaurantes</a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="#">Pedidos</a>
               </li>
               <li class="nav-item">
                 <a href="#">Carta</a>
               </li>
-              <li class="nav-item"> 
-                <a href="#"> Empleados </a> 
+              <li class="nav-item">
+                <a href="#"> Empleados </a>
               </li>
               <li class="nav-item">
-                <a href="#"> Pagos </a> 
+                <a href="#"> Pagos </a>
               </li>
             </ul>
           </li>
