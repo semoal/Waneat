@@ -24,37 +24,51 @@ a.dropdown-toggle:active+.dropdown-menu {
   max-height: 200px;
 }
 
+.add-schedule:hover{
+  cursor: pointer;
+}
+
+.day-box{
+  background: white;
+  color: black;
+  border-radius: 0.1em;
+  user-select: none;
+}
+.day-box:hover{
+  cursor: pointer;
+  background: #5764c6;
+  border-color: #4c59c2;
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+label input[type="checkbox"]{
+  display: none;
+}
+
+label input[type="checkbox"]:checked ~ .day-box{
+  background: #5764c6;
+  border-color: #4c59c2;
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.not-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 //Mierda varias
 //
-// .add-schedule:hover{
-//   cursor: pointer;
-// }
-//
-// .day-box{
-//   background: white;
-//   color: black;
-//   border-radius: 0.1em;
-//   user-select: none;
-// }
-// .day-box:hover{
-//   cursor: pointer;
-// }
-//
-// label input[type="checkbox"]{
-//   display: none;
-// }
-//
-// label input[type="checkbox"]:checked ~ .day-box{
-//   background-color:black;
-//   color:white;
-// }
-//
-// .not-select{
-//     -webkit-user-select: none;
-//     -moz-user-select: none;
-//     -ms-user-select: none;
-//     user-select: none;
-// }
 //
 // .navbar-fixed-side {
 //   @media (max-width: $grid-float-breakpoint) {

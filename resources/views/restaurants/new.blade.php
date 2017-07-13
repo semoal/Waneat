@@ -18,13 +18,13 @@
                                       <li class="step-item active">
                                         <a href="#" class="tooltip" data-tooltip="Información sobre tu restaurante">Datos iniciales</a>
                                       </li>
-                                      <li class="step-item ">
+                                      <li class="step-item 2">
                                         <a href="#" class="tooltip" data-tooltip="Necesaria para poder hacer reservas">Contacto</a>
                                       </li>
-                                      <li class="step-item">
+                                      <li class="step-item 3">
                                         <a href="#" class="tooltip" data-tooltip="Puedes añadir todos los horarios de tu restaurante">Horarios</a>
                                       </li>
-                                      <li class="step-item">
+                                      <li class="step-item 4">
                                         <a href="#" class="tooltip" data-tooltip="Añade tantas fotos como gustes">Foto</a>
                                       </li>
                                     </ul>
@@ -155,13 +155,13 @@
                                       <li class="step-item">
                                         <a href="#" class="tooltip" data-tooltip="Información sobre tu restaurante">Datos iniciales</a>
                                       </li>
-                                      <li class="step-item ">
+                                      <li class="step-item 2">
                                         <a href="#" class="tooltip" data-tooltip="Necesaria para poder hacer reservas">Contacto</a>
                                       </li>
-                                      <li class="step-item active">
+                                      <li class="step-item 3 active">
                                         <a href="#" class="tooltip" data-tooltip="Puedes añadir todos los horarios de tu restaurante">Horarios</a>
                                       </li>
-                                      <li class="step-item">
+                                      <li class="step-item 4">
                                         <a href="#" class="tooltip" data-tooltip="Añade tantas fotos como gustes">Foto</a>
                                       </li>
                                     </ul>
@@ -180,14 +180,13 @@
                                   <ul class="step">
                                       <li class="step-item">
                                         <a href="#" class="tooltip" data-tooltip="Información sobre tu restaurante">Datos iniciales</a>
-                                      </li>
-                                      <li class="step-item ">
+                                      <li class="step-item 2">
                                         <a href="#" class="tooltip" data-tooltip="Necesaria para poder hacer reservas">Contacto</a>
                                       </li>
-                                      <li class="step-item ">
+                                      <li class="step-item 3">
                                         <a href="#" class="tooltip" data-tooltip="Puedes añadir todos los horarios de tu restaurante">Horarios</a>
                                       </li>
-                                      <li class="step-item active">
+                                      <li class="step-item 4 active">
                                         <a href="#" class="tooltip" data-tooltip="Añade tantas fotos como gustes">Foto</a>
                                       </li>
                                     </ul>

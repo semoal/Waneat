@@ -14,7 +14,6 @@
       <link rel="stylesheet" href="{{ asset('css/spectre-exp.min.css') }}" />
       <link rel="stylesheet" href="{{ asset('css/spectre-icons.min.css') }}" />
       <link rel="stylesheet" href="{{ asset('css/spectre-docs.css') }}">
-
 </head>
    <body>
     <div class="container-fluid">
@@ -29,7 +28,5 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
       <script src="{{ asset('js/app.js') }}"></script>
-
-
    </body>
 </html>
