@@ -69,17 +69,19 @@ class RestaurantController extends Controller {
         //     'id_user_id' => Auth::User()->id
         // ]);
 
-        //Imagenes y el propio restaurante
-        $urlImagen = $this->uploadToImgur($request->picture);
-        $restaurantImagen = new RestaurantImage;
-        $restaurantImagen->image_url = $urlImagen;
-
         $restaurante = new Restaurant;
         $restaurante->id_user_id = Auth::User()->id;
         $restaurante->name_restaurant = $request->name_restaurant;
 
         $restaurante->save();
-        $restaurante->images()->save($restaurantImagen);
+        //Imagenes y el propio restaurante
+        foreach ($request->file("picture") as $key => $image) {
+          $urlImagen = $this->uploadToImgur($image);
+          $restaurantImagen = new RestaurantImage;
+          $restaurantImagen->image_url = $urlImagen;
+          $restaurante->images()->save($restaurantImagen);
+        }
+
 
 
 

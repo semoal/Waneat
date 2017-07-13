@@ -1,15 +1,34 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @danipe
+ Sign out
+ Watch 0
+  Star 2
+  Fork 0 semoal/Waneat
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights
+Tree: 92bc8ad60a Find file Copy pathWaneat/resources/views/restaurants/new.blade.php
+92bc8ad  8 hours ago
+@semoal semoal Fix
+2 contributors @semoal @kloppz
+RawBlameHistory
+225 lines (212 sloc)  15.4 KB
 @extends('layouts.app')
 
 @section('content')
-        @include('navbar')  
+        @include('navbar')
         <div class="docs-contens col-9 col-sm-12">
             <div class="container">
                 <div class="columns">
                     <div class="column">
-                        <form class="form" 
-                         enctype="multipart/form-data" 
-                         role="form" 
-                         method="POST" 
+                        <form class="form"
+                         enctype="multipart/form-data"
+                         role="form"
+                         method="POST"
                          action="{{ route('restaurant.store') }}">
                             {{ csrf_field() }}
                             <div class="panel-1 column col-9 col-xs-12" style="padding-top:50px;">
@@ -194,7 +213,7 @@
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label class="btn btn-primary btn-block">
                                       Browse
-                                      <input name="picture" type="file" class="imgInp" style="display: none;">
+                                      <input name="picture[]" id="gallery-photo-add" multiple type="file" class="imgInp" style="display: none;">
                                     </label>
                                     @if ($errors->has('picture'))
                                         <span class="help-block">
@@ -204,7 +223,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label for="picture" class=" form-label">Previsualización:</label>
-                                    <img id="imgPreview" src="" alt="" class="img-preview" />
+                                    <div class="gallery img-preview"> </div>
                                 </div>
 
                                 <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>
