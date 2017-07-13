@@ -221,7 +221,11 @@
                         <div class="col-md-6">
                           <label class="btn btn-primary btn-block">
                               Browse
+<<<<<<< HEAD
                               <input id="gallery-photo-add" name="picture[]" type="file" class="imgInp" style="display: none;" multiple="">
+=======
+                              <input name="picture[]" multiple type="file" class="imgInp" style="display: none;">
+>>>>>>> e844d84819ea5b44d78e145ced9a05f415ac4f41
                           </label>
                             @if ($errors->has('picture'))
                                 <span class="help-block">
@@ -234,9 +238,13 @@
                     <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                         <label for="picture" class="col-md-4 control-label">Previsualización:</label>
                         <div class="col-md-6">
+<<<<<<< HEAD
                             <div class="gallery">
 
                             </div>
+=======
+                            <div class="gallery"> </div>
+>>>>>>> e844d84819ea5b44d78e145ced9a05f415ac4f41
                         </div>
                     </div>
                 </div>
