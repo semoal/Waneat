@@ -156,7 +156,8 @@ class RestaurantController extends Controller {
     }
 
     public function details($id){
-      return view('restaurants/details',Auth::user()->restaurants->find($id));
+      $restaurant = Auth::user()->restaurants->find($id);
+      return view('restaurants/details',['restaurant' => $restaurant]);
     }
 
 

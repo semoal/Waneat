@@ -16,7 +16,7 @@
                        <ul class="dropdown-menu menu">
                          @forelse ($restaurants as $key => $r)
                            <li class="menu-item">
-                            <a href={{ route('restaurant.details', $r->id)}} class="btn btn-link">{{$r->name_restaurant}}</a>
+                            <a link={{ route('restaurant.details',$r->id)}} href="#myModal" class="btn btn-link">{{$r->name_restaurant}}</a>
                            </li>
                            <li class="divider"></li>
                          @empty
@@ -29,9 +29,10 @@
                       <a class="btn" href={{ route('restaurant.index') }}>Añadir Restaurante</a>
                   </div>
                 </div>
-
               </div>
-
+              <div class="modal" id="myModal">
+                
+              </div>
             </div>
             <header class="text-center">
               <h3>

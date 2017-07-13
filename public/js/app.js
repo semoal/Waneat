@@ -155,6 +155,12 @@ $(document).ready(function () {
   $(".imgInp").change(function () {
     readURL(this);
   });
+
+  //Restaurant details modal
+  $("#myModal").on("show.bs.modal", function (e) {
+    var link = $(e.relatedTarget);
+    $(this).find(".modal-body").load(link.attr("href"));
+  });
 });
 
 /***/ }),
