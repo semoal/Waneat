@@ -69,7 +69,6 @@ class RestaurantController extends Controller {
         //     'id_user_id' => Auth::User()->id
         // ]);
 
-
         //Imagenes y el propio restaurante
         $urlImagen = $this->uploadToImgur($request->picture);
         $restaurantImagen = new RestaurantImage;
@@ -91,16 +90,15 @@ class RestaurantController extends Controller {
         $diasAbrir = $request->days;
 
         for ($i=0; $i < count($horasCerrar); $i++) {
-                  error_log(json_encode($diasAbrir));
-                  $diasString = implode(";", $diasAbrir[$i]);
-                  $data[] = [
-                    'id_restaurant_id' => $restaurante->id,
-                    'days'  => $diasString,
-                    'openSchedule' => $horasAbrir[$i],
-                    'closeSchedule' => $horasCerrar[$i],
-                    'created_at' => $restaurante->created_at,
-                    'updated_at' => $restaurante->updated_at,
-                  ];
+          $diasString = implode(";", $diasAbrir[$i]);
+          $data[] = [
+            'id_restaurant_id' => $restaurante->id,
+            'days'  => $diasString,
+            'openSchedule' => $horasAbrir[$i],
+            'closeSchedule' => $horasCerrar[$i],
+            'created_at' => $restaurante->created_at,
+            'updated_at' => $restaurante->updated_at,
+          ];
         }
 
         RestaurantSchedule::insert($data);
@@ -152,7 +150,7 @@ class RestaurantController extends Controller {
         $restaurant->images()->delete();
         $restaurant->schedules()->delete();
         $restaurant->delete();
-       return redirect()->route('home');
+        return redirect()->route('home');
     }
 
 }
