@@ -1,6 +1,8 @@
 <?php
   $daysArray = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
   $boolean = false;
+  setlocale(LC_ALL,"es_ES");
+  $today = strftime("%A");
 ?>
 @extends('layouts.app')
 @section('content')
@@ -20,10 +22,6 @@
         @empty
 
         @endforelse
-        {{-- <input type="radio" id="slide-1" name="carousel-radio" hidden="" class="carousel-locator" checked="">
-        <input type="radio" id="slide-2" name="carousel-radio" hidden="" class="carousel-locator">
-        <input type="radio" id="slide-3" name="carousel-radio" hidden="" class="carousel-locator">
-        <input type="radio" id="slide-4" name="carousel-radio" hidden="" class="carousel-locator"> --}}
         <div class="carousel-container">
           @forelse ($restaurant->images as $key => $image)
             <figure class="carousel-item">
@@ -58,10 +56,7 @@
           @empty
 
           @endforelse
-          {{-- <label class="nav-item text-hide hand" for="slide-1">1</label>
-          <label class="nav-item text-hide hand" for="slide-2">2</label>
-          <label class="nav-item text-hide hand" for="slide-3">3</label>
-          <label class="nav-item text-hide hand" for="slide-4">4</label> --}}
+
         </div>
       </div>
     </div>
@@ -71,69 +66,65 @@
       <a class="collapse-toggler">
         <i class="icon icon-link"></i> Horarios
       </a>
-      <div>
-        <ul>
+      <div class="">
 
+        <table>
           @forelse ($daysArray as $key => $day)
-            <li>
-              {{$day}}
-              <ul>
+            <tbody>
+              <tr>
+              @if (strcasecmp($today, $day) == 0)
+                <th>
+                  {{$day}}
+                </th>
+              @else 
+                <th style="font-weight: lighter;">
+                  {{$day}}
+                </th>
+              @endif  
             @foreach ($restaurant->schedules as $key => $schedule)
               @forelse (explode(";",$schedule->days) as $key => $dayDatabase)
                 @if ($dayDatabase==$day)
                   @if (!$boolean)
                     <?php $boolean=!$boolean ?>
                   @endif
-                  <li>{{date('G:i', strtotime($schedule->openSchedule))}} -- {{date('G:i', strtotime($schedule->closeSchedule))}}</li>
+                  @if (strcasecmp($today, $day) == 0)
+                   <td style="font-weight:bolder;" class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td> 
+                  @else
+                    <td class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td>
+                  @endif 
                 @endif
               @empty
               @endforelse
 
             @endforeach
             @if (!$boolean)
-              <li><b>Cerrado</b></li>
+              @if (strcasecmp($today, $day) == 0)
+                  <td style="font-weight:bolder;">Cerrado</td>
+                @else
+                  <td>Cerrado</td>
+                @endif 
             @endif
             @if ($boolean)
               <?php $boolean = !$boolean ?>
             @endif
-            </ul>
-          </li>
+            </th>
+            </tr>
+          </tbody>
           @empty
-
           @endforelse
-
-
-          {{-- <li>
-            {{$dayDatabase}}
-            <ul>
-              <li>{{date('G:i', strtotime($schedule->openSchedule))}} -- {{date('G:i', strtotime($schedule->closeSchedule))}}</li>
-            </ul>
-          </li> --}}
-        </ul>
+        </table>
       </div>
     </li>
-    <li class="menu-item">
-      <a href="#menus">
-        <i class="icon icon-link"></i> Hipchat
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="#menus">
-        <i class="icon icon-link"></i> Skype
-      </a>
-    </li>
-    </div>
     <div class="card-footer">
-      <div class="btn-group btn-group-block">
+        <button type="button" class="btn btn-block" value="submit">Editar</button>
         <form action="{{ route('restaurant.destroy',$restaurant->id) }}" method="POST">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
-            <button type="submit" class="btn" value="submit">Borrar</button>
+            <button type="submit" class="btn btn-primary btn-block" value="submit">Borrar</button>
         </form>
-        <button class="btn">Buy</button>
-        <button class="btn">Buy</button>
-      </div>
     </div>
+    </div>
+   
 
   </div>
 

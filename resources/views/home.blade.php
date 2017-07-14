@@ -17,11 +17,6 @@
                          @forelse ($restaurants as $key => $r)
                            <li class="menu-item">
                             <a data-link={{ route('restaurant.details',$r->id)}} class="restaurant-toggle btn btn-default">{{$r->name_restaurant}}</a>
-                            {{-- <form action="{{ route('restaurant.details',$r->id)}}" method="GET">
-                                 {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button class="btn btn-default" type="submit" value="submit">{{$r->name_restaurant}}</button>
-                            </form> --}}
                            </li>
                            <li class="divider"></li>
                          @empty
