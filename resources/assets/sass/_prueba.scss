@@ -19,9 +19,37 @@ a.dropdown-toggle:active+.dropdown-menu {
     display: block;
 }
 
+.collapse-content{
+  display:none;
+  heigth:0;
+  transition: height 1s linear;
+}
+
+a.collapse-toggler:focus+.collapse-content,
+a.collapse-toggler:active+.collapse-content{
+  display:block;
+  height: 100%;
+}
+
+.collapse-content:hover{
+  display:block
+}
+
+
+
+
+
+.img-responsive{
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
 .img-preview{
   max-width: 200px;
   max-height: 200px;
+  display: inline;
 }
 
 .add-schedule:hover{

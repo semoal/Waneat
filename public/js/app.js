@@ -145,6 +145,15 @@ $(document).ready(function () {
 
 
   $(function () {
+
+    $('.restaurant-toggle').click(function () {
+      var link = $(this).attr('data-link');
+      $("#restaurant-content").load(link);
+      // $("#myModal").addClass('active');
+    });
+  });
+
+  $(function () {
     // Multiple images preview in browser
     var imagesPreview = function imagesPreview(input, placeToInsertImagePreview) {
       if (input.files) {

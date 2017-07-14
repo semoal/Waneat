@@ -16,7 +16,12 @@
                        <ul class="dropdown-menu menu">
                          @forelse ($restaurants as $key => $r)
                            <li class="menu-item">
-                            <a data-link={{ route('restaurant.details',$r->id)}} class="modal-toggle btn btn-link">{{$r->name_restaurant}}</a>
+                            <a data-link={{ route('restaurant.details',$r->id)}} class="restaurant-toggle btn btn-default">{{$r->name_restaurant}}</a>
+                            {{-- <form action="{{ route('restaurant.details',$r->id)}}" method="GET">
+                                 {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="btn btn-default" type="submit" value="submit">{{$r->name_restaurant}}</button>
+                            </form> --}}
                            </li>
                            <li class="divider"></li>
                          @empty
@@ -30,9 +35,6 @@
                   </div>
                 </div>
               </div>
-              <div class="modal" id="myModal">
-                <a href="#modals" class="modal-overlay" aria-label="Close"></a>
-              </div>
             </div>
             <header class="text-center">
               <h3>
@@ -42,6 +44,10 @@
             <div class="notes">
               <p><strong>Waneat</strong> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
+
+          </div>
+          <div id="restaurant-content" class="restaurant-content">
+
           </div>
         </div>
         <!-- cierra el navbar -->

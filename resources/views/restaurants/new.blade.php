@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @danipe
- Sign out
- Watch 0
-  Star 2
-  Fork 0 semoal/Waneat
- Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights
-Tree: 92bc8ad60a Find file Copy pathWaneat/resources/views/restaurants/new.blade.php
-92bc8ad  8 hours ago
-@semoal semoal Fix
-2 contributors @semoal @kloppz
-RawBlameHistory
-225 lines (212 sloc)  15.4 KB
 @extends('layouts.app')
 
 @section('content')
