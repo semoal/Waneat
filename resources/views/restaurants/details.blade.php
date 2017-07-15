@@ -3,6 +3,9 @@
   $boolean = false;
   setlocale(LC_ALL,"es_ES");
   $today = strftime("%A");
+  function removeAccents($string) {
+    return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8'))), ' '));
+  }
 ?>
 @extends('layouts.app')
 @section('content')
@@ -46,9 +49,6 @@
           @empty
 
           @endforelse
-
-
-
         </div>
         <div class="carousel-nav">
           @forelse ($restaurant->images as $key => $image)
@@ -62,17 +62,15 @@
     </div>
     <div class="card-body menu">
     <li class="divider" data-content="INFORMACIÓN"></li>
-    <li class="menu-item">
-      <a class="collapse-toggler">
+    <details class="menu-item">
+      <summary class="collapse-toggler">
         <i class="icon icon-link"></i> Horarios
-      </a>
-      <div class="">
-
+      </summary>
         <table>
           @forelse ($daysArray as $key => $day)
             <tbody>
               <tr>
-              @if (strcasecmp($today, $day) == 0)
+              @if (strcasecmp(removeAccents($today), removeAccents($day)) == 0)
                 <th>
                   {{$day}}
                 </th>
@@ -87,7 +85,7 @@
                   @if (!$boolean)
                     <?php $boolean=!$boolean ?>
                   @endif
-                  @if (strcasecmp($today, $day) == 0)
+                  @if (strcasecmp(removeAccents($today), removeAccents($day)) == 0)
                    <td style="font-weight:bolder;" class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td> 
                   @else
                     <td class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td>
@@ -98,7 +96,7 @@
 
             @endforeach
             @if (!$boolean)
-              @if (strcasecmp($today, $day) == 0)
+              @if (strcasecmp(removeAccents($today), removeAccents($day)) == 0)
                   <td style="font-weight:bolder;">Cerrado</td>
                 @else
                   <td>Cerrado</td>
@@ -113,8 +111,7 @@
           @empty
           @endforelse
         </table>
-      </div>
-    </li>
+    </details>
     <div class="card-footer">
         <button type="button" class="btn btn-block" value="submit">Editar</button>
         <form action="{{ route('restaurant.destroy',$restaurant->id) }}" method="POST">
