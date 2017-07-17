@@ -166,7 +166,110 @@
                                       </li>
                                     </ul>
                                 </header>
-                                @include('restaurants.time')
+
+                                <div id="time-template">
+                                  <div class="time-inner">
+
+                                    <div class="col-md-6" style="padding-top:20px;">
+                                      <h3 for="time" class="text-centered">Dias
+                                      <button type="button" class="btn btn-primary remove-schedule float-right">
+                                          <i class="icon icon-delete"></i>
+                                      </button>
+                                      <button type="button" id="more-hours" class="btn btn-default add-schedule float-right">
+                                          <i class="icon icon-plus"></i>
+                                      </button></h3>
+                                    </div>
+                                    @foreach ($restaurant->schedules as $key => $value)
+                                      <div class="">
+                                        <div class="form-group">
+
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Lunes"
+                                              @if (in_array("Lunes", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Lun</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Martes"
+                                              @if (in_array("Martes", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Mar</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Miercoles"
+                                              @if (in_array("Miercoles", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Mié</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Jueves"
+                                              @if (in_array("Jueves", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Jue</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Viernes"
+                                              @if (in_array("Viernes", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Vie</span>
+                                            </label>
+                                            <label>
+                                            -
+                                              <input type="checkbox" name="days[$key][]" value="Sabado"
+                                              @if (in_array("Sabado", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Sáb</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[$key][]" value="Domingo"
+                                              @if (in_array("Domingo", explode(";", $value->days)))
+                                                checked
+                                              @endif
+                                              >
+                                              <span class="day-box">Dom</span>
+                                            </label>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label">Apertura: </label>
+                                        <div class="col-md-6">
+                                          <input type="time" id="hour1" name="hour1[]" class="form-control" value="{{ $value->openSchedule }}">
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label">Cierre: </label>
+                                        <div class="col-md-6">
+                                          <input type="time" id="hour2" name="hour2[]" class="form-control" value="{{ $value->closeSchedule }}">
+                                          <div class="divider"> </div>
+                                        </div>
+                                      </div>
+                                    @endforeach
+                                  </div>
+                                </div>
+
+
+
+
+
                                 @if ($errors->has('time'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('time') }}</strong>
@@ -204,7 +307,11 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label for="picture" class=" form-label">Previsualización:</label>
-                                    <div class="gallery img-preview"> </div>
+                                    <div class="gallery img-preview">
+                                      @foreach ($restaurant->images as $key => $value)
+                                        <img src="{{$value->image_url}}" class="img-responsive">
+                                      @endforeach
+                                    </div>
                                 </div>
 
                                 <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>

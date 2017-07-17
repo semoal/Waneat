@@ -1,8 +1,9 @@
 <?php
   $daysArray = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
   $boolean = false;
-  setlocale(LC_ALL,"es_ES");
+  setlocale(LC_ALL,"spanish");
   $today = strftime("%A");
+  error_log($today);
   function removeAccents($string) {
     return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8'))), ' '));
   }
@@ -74,11 +75,11 @@
                 <th>
                   {{$day}}
                 </th>
-              @else 
+              @else
                 <th style="font-weight: lighter;">
                   {{$day}}
                 </th>
-              @endif  
+              @endif
             @foreach ($restaurant->schedules as $key => $schedule)
               @forelse (explode(";",$schedule->days) as $key => $dayDatabase)
                 @if ($dayDatabase==$day)
@@ -86,10 +87,10 @@
                     <?php $boolean=!$boolean ?>
                   @endif
                   @if (strcasecmp(removeAccents($today), removeAccents($day)) == 0)
-                   <td style="font-weight:bolder;" class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td> 
+                   <td style="font-weight:bolder;" class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td>
                   @else
                     <td class="block">{{date('g:ia', strtotime($schedule->openSchedule))}} - {{date('g:ia', strtotime($schedule->closeSchedule))}} </td>
-                  @endif 
+                  @endif
                 @endif
               @empty
               @endforelse
@@ -100,7 +101,7 @@
                   <td style="font-weight:bolder;">Cerrado</td>
                 @else
                   <td>Cerrado</td>
-                @endif 
+                @endif
             @endif
             @if ($boolean)
               <?php $boolean = !$boolean ?>
@@ -123,7 +124,7 @@
         </form>
     </div>
     </div>
-   
+
 
   </div>
 
