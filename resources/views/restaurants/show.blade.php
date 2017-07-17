@@ -113,7 +113,9 @@
         </table>
     </details>
     <div class="card-footer">
-        <button type="button" class="btn btn-block" value="submit">Editar</button>
+        <a href="{{ route('restaurant.edit',$restaurant->id) }}">
+          <button type="button" class="btn btn-block" value="submit">Editar</button>
+        </a>
         <form action="{{ route('restaurant.destroy',$restaurant->id) }}" method="POST">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}

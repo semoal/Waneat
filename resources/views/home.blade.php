@@ -6,7 +6,7 @@
         <div class="docs-content column col-9 col-sm-12">
           <div class="container rel" id="#modals">
             <div class="abs" style="top: 30%; left: 0;">
-              <div class="contatiner">
+              <div class="container">
                 <div class="columns">
                   <div class="col-6">
                     <div class="dropdown float-left">
@@ -16,7 +16,7 @@
                        <ul class="dropdown-menu menu">
                          @forelse ($restaurants as $key => $r)
                            <li class="menu-item">
-                            <a data-link={{ route('restaurant.details',$r->id)}} class="restaurant-toggle btn btn-default">{{$r->name_restaurant}}</a>
+                            <a data-link={{ route('restaurant.show',$r->id)}} class="restaurant-toggle btn btn-default">{{$r->name_restaurant}}</a>
                            </li>
                            <li class="divider"></li>
                          @empty

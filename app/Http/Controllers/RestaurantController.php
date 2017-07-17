@@ -22,8 +22,8 @@ class RestaurantController extends Controller {
      */
     use Uploader;
     public function index(){
-            $restaurants = Auth::user()->restaurants;
-            return view('restaurants/new', ['restaurants' => $restaurants]);
+        $restaurants = Auth::user()->restaurants;
+        return view('restaurants/new', ['restaurants' => $restaurants]);
     }
 
     /**
@@ -44,8 +44,6 @@ class RestaurantController extends Controller {
     public function store(Request $request){
         $this->validate($request, [
             'name_restaurant'    => 'required|unique:restaurant',
-            // 'hour1'    => 'required|unique:restaurant_schedule',
-            // 'hour2'    => 'required|unique:restaurant_schedule',
             'picture'         =>  'required',
             /*'address_restaurant' => 'required',
             'city_restaurant' => 'required',
@@ -82,9 +80,6 @@ class RestaurantController extends Controller {
           $restaurante->images()->save($restaurantImagen);
         }
 
-
-
-
         //Horarios del restaurante
         $schedule = new RestaurantSchedule;
         $horasCerrar = $request->hour2;
@@ -118,7 +113,8 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function show($id){
-        //
+        $restaurant = Auth::user()->restaurants->find($id);
+        return view('restaurants/show',['restaurant' => $restaurant]);
     }
 
     /**
@@ -128,7 +124,8 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function edit($id){
-        //
+        $restaurant = Auth::user()->restaurants->find($id);
+        return view('restaurants/edit',['restaurant' => $restaurant]);
     }
 
     /**
@@ -138,7 +135,7 @@ class RestaurantController extends Controller {
      * @return Response
      */
     public function update($id) {
-        //
+        
     }
 
     /**
@@ -154,12 +151,5 @@ class RestaurantController extends Controller {
         $restaurant->delete();
         return redirect()->route('home');
     }
-
-    public function details($id){
-      $restaurant = Auth::user()->restaurants->find($id);
-      return view('restaurants/details',['restaurant' => $restaurant]);
-    }
-
-
 
 }
