@@ -9,9 +9,10 @@
                         <form class="form"
                          enctype="multipart/form-data"
                          role="form"
-                         method="PUT"
+                         method="POST"
                          action="{{ route('restaurant.update', $restaurant->id)}}">
                             {{ csrf_field() }}
+                            {{ method_field('PATCH') }}
                             <div class="panel-1 column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
                                     <ul class="step">

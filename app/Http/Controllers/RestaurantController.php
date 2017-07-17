@@ -134,8 +134,59 @@ class RestaurantController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id) {
+        public function update(Request $request,$id) {
+        //Restaurante a editar
+        $restaurante = Auth::user()->restaurants->find($id);
+
+        //Cogemos los campos de restaurantes 
+        $restaurante->name_restaurant = $request->name_restaurant;
+        $restaurante->address_restaurant = $request->address_restaurant;
+        $restaurante->city_restaurant = $request->city_restaurant;
+        $restaurante->postalcode_restaurant = $request->postalcode_restaurant;
+        $restaurante->country_restaurant = $request->country_restaurant;
+        $restaurante->state_restaurant = $request->state_restaurant;
+        $restaurante->description = $request->description;
+        $restaurante->email_restaurant = $request->email_restaurant;
+        $restaurante->specialty = $request->specialty;
+        $restaurante->restaurant_url = $request->restaurant_url;
+
+        //Guardamos el restaurante editado
+        $restaurante->save();
+
+        //Ahora a ese restaurante le editamos las imagenes/horarios si es necesario
         
+        //Imagenes y el propio restaurante
+        foreach ($request->file("picture") as $key => $image) {
+          $urlImagen = $this->uploadToImgur($image);
+          $restaurantImagen = new RestaurantImage;
+          $restaurantImagen->image_url = $urlImagen;
+          $restaurante->images()->save($restaurantImagen);
+        }
+
+        //Horarios del restaurante
+        $schedule = new RestaurantSchedule;
+        $horasCerrar = $request->hour2;
+        $horasAbrir = $request->hour1;
+        $diasAbrir = $request->days;
+
+        for ($i=0; $i < count($horasCerrar); $i++) {
+          $diasString = implode(";", $diasAbrir[$i]);
+          $data[] = [
+            'id_restaurant_id' => $restaurante->id,
+            'days'  => $diasString,
+            'openSchedule' => $horasAbrir[$i],
+            'closeSchedule' => $horasCerrar[$i],
+            'created_at' => $restaurante->created_at,
+            'updated_at' => $restaurante->updated_at,
+          ];
+        }
+
+        RestaurantSchedule::insert($data);
+
+        //Se ha guardado correctamente
+        if($restaurante){
+            return redirect()->route('home');
+        }
     }
 
     /**
