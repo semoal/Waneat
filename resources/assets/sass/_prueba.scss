@@ -19,6 +19,9 @@ a.dropdown-toggle:active+.dropdown-menu {
     display: block;
 }
 
+.collapse-toggler:hover{
+  cursor: pointer;
+}
 
 .collapse-content{
   display:none;

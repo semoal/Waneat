@@ -138,7 +138,7 @@ class RestaurantController extends Controller {
         //Restaurante a editar
         $restaurante = Auth::user()->restaurants->find($id);
 
-        //Cogemos los campos de restaurantes 
+        //Cogemos los campos de restaurantes
         $restaurante->name_restaurant = $request->name_restaurant;
         $restaurante->address_restaurant = $request->address_restaurant;
         $restaurante->city_restaurant = $request->city_restaurant;
@@ -154,14 +154,17 @@ class RestaurantController extends Controller {
         $restaurante->save();
 
         //Ahora a ese restaurante le editamos las imagenes/horarios si es necesario
-        
+
         //Imagenes y el propio restaurante
-        foreach ($request->file("picture") as $key => $image) {
-          $urlImagen = $this->uploadToImgur($image);
-          $restaurantImagen = new RestaurantImage;
-          $restaurantImagen->image_url = $urlImagen;
-          $restaurante->images()->save($restaurantImagen);
+        if($request->file("picture")){
+          foreach ($request->file("picture") as $key => $image) {
+            $urlImagen = $this->uploadToImgur($image);
+            $restaurantImagen = new RestaurantImage;
+            $restaurantImagen->image_url = $urlImagen;
+            $restaurante->images()->save($restaurantImagen);
+          }
         }
+
 
         //Horarios del restaurante
         $schedule = new RestaurantSchedule;
@@ -169,16 +172,20 @@ class RestaurantController extends Controller {
         $horasAbrir = $request->hour1;
         $diasAbrir = $request->days;
 
+        $restaurante->schedules()->delete();
+
         for ($i=0; $i < count($horasCerrar); $i++) {
-          $diasString = implode(";", $diasAbrir[$i]);
-          $data[] = [
-            'id_restaurant_id' => $restaurante->id,
-            'days'  => $diasString,
-            'openSchedule' => $horasAbrir[$i],
-            'closeSchedule' => $horasCerrar[$i],
-            'created_at' => $restaurante->created_at,
-            'updated_at' => $restaurante->updated_at,
-          ];
+          if(array_key_exists($i, $diasAbrir)){
+            $diasString = implode(";", $diasAbrir[$i]);
+            $data[] = [
+              'id_restaurant_id' => $restaurante->id,
+              'days'  => $diasString,
+              'openSchedule' => $horasAbrir[$i],
+              'closeSchedule' => $horasCerrar[$i],
+              'created_at' => $restaurante->created_at,
+              'updated_at' => $restaurante->updated_at,
+            ];
+          }
         }
 
         RestaurantSchedule::insert($data);
@@ -195,12 +202,18 @@ class RestaurantController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id){
-        $restaurant = Restaurant::find($id);
-        $restaurant->images()->delete();
-        $restaurant->schedules()->delete();
-        $restaurant->delete();
-        return redirect()->route('home');
+    // public function destroy($id){
+    //     $restaurant = Restaurant::find($id);
+    //     $restaurant->images()->delete();
+    //     $restaurant->schedules()->delete();
+    //     $restaurant->delete();
+    //     return redirect()->route('home');
+    // }
+
+    public function destroyImage($id){
+        $restaurantImage = RestaurantImage::find($id);
+        $restaurantImage->delete();
+        return redirect()->back();
     }
 
 }

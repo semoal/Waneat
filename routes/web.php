@@ -23,4 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	Route::resource('restaurant', 'RestaurantController');
+
+  Route::get('/image/{image}/remove', 'RestaurantController@destroyImage')->name('restaurant.destroyImage');
+
 });

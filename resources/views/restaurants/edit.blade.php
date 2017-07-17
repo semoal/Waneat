@@ -169,7 +169,7 @@
                                 </header>
 
                                 <div id="time-template">
-                                  <div class="time-inner">
+
 
                                     <div class="col-md-6" style="padding-top:20px;">
                                       <h3 for="time" class="text-centered">Dias
@@ -180,12 +180,12 @@
                                           <i class="icon icon-plus"></i>
                                       </button></h3>
                                     </div>
-                                    @foreach ($restaurant->schedules as $key => $value)
-                                      <div class="">
+                                    @forelse ($restaurant->schedules as $key => $value)
+                                      <div class="time-inner">
                                         <div class="form-group">
 
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Lunes"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Lunes"
                                               @if (in_array("Lunes", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -194,7 +194,7 @@
                                             </label>
                                             -
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Martes"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Martes"
                                               @if (in_array("Martes", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -203,7 +203,7 @@
                                             </label>
                                             -
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Miercoles"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Miercoles"
                                               @if (in_array("Miercoles", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -212,7 +212,7 @@
                                             </label>
                                             -
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Jueves"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Jueves"
                                               @if (in_array("Jueves", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -221,7 +221,7 @@
                                             </label>
                                             -
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Viernes"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Viernes"
                                               @if (in_array("Viernes", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -230,7 +230,7 @@
                                             </label>
                                             <label>
                                             -
-                                              <input type="checkbox" name="days[$key][]" value="Sabado"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Sabado"
                                               @if (in_array("Sabado", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -239,7 +239,7 @@
                                             </label>
                                             -
                                             <label>
-                                              <input type="checkbox" name="days[$key][]" value="Domingo"
+                                              <input type="checkbox" name="days[{{$key}}][]" value="Domingo"
                                               @if (in_array("Domingo", explode(";", $value->days)))
                                                 checked
                                               @endif
@@ -247,7 +247,7 @@
                                               <span class="day-box">Dom</span>
                                             </label>
                                         </div>
-                                      </div>
+
 
                                       <div class="form-group">
                                         <label class="col-md-4 control-label">Apertura: </label>
@@ -263,8 +263,66 @@
                                           <div class="divider"> </div>
                                         </div>
                                       </div>
-                                    @endforeach
-                                  </div>
+                                      </div>
+                                    @empty
+                                      <div class="">
+                                        <div class="form-group">
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Lunes">
+                                              <span class="day-box">Lun</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Martes">
+                                              <span class="day-box">Mar</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Miercoles">
+                                              <span class="day-box">Mié</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Jueves">
+                                              <span class="day-box">Jue</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Viernes">
+                                              <span class="day-box">Vie</span>
+                                            </label>
+                                            <label>
+                                            -
+                                              <input type="checkbox" name="days[0][]" value="Sabado">
+                                              <span class="day-box">Sáb</span>
+                                            </label>
+                                            -
+                                            <label>
+                                              <input type="checkbox" name="days[0][]" value="Domingo">
+                                              <span class="day-box">Dom</span>
+                                            </label>
+                                        </div>
+
+
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label">Apertura: </label>
+                                        <div class="col-md-6">
+                                          <input type="time" id="hour1" name="hour1[]"class="form-control">
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label">Cierre: </label>
+                                        <div class="col-md-6">
+                                          <input type="time" id="hour2" name="hour2[]" class="form-control">
+                                          <div class="divider"> </div>
+                                        </div>
+                                      </div>
+                                      </div>
+                                    @endforelse
+
+
+
                                 </div>
 
 
@@ -311,6 +369,7 @@
                                     <div class="gallery img-preview">
                                       @foreach ($restaurant->images as $key => $value)
                                         <img src="{{$value->image_url}}" class="img-responsive">
+                                        <a class="btn btn-primary" href="{{ route('restaurant.destroyImage', $value->id) }}">Borrar</a>
                                       @endforeach
                                     </div>
                                 </div>
