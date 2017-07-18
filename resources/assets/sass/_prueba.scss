@@ -36,6 +36,10 @@ a.collapse-toggler:active+.collapse-content{
 }
 
 
+.button-group{
+  margin-bottom: 20px;
+}
+
 //Summary & details -- Collapse
 details[open] SUMMARY~* {
   animation: sweepin .5s ease-in-out;

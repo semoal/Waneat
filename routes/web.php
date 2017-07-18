@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::resource('restaurant', 'RestaurantController');
 
+  Route::resource('table', 'TableController');
+
   Route::get('/image/{image}/remove', 'RestaurantController@destroyImage')->name('restaurant.destroyImage');
 
 });

@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('navbar')
+  @include('navbar')
+@endsection
 
 @section('content')
-        @include('navbar')
+
         <div class="docs-content column col-9 col-sm-12">
           <div class="container rel" id="#modals">
             <div class="abs" style="top: 30%; left: 0;">

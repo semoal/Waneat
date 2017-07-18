@@ -34,10 +34,13 @@
               </li>
               @else
               <li class="nav-item">
-                <a href="{{ route('home')}}">Home</a>
+                <a href="{{ route('home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('restaurant.index')}}">Restaurantes</a>
+                <a href="{{ route('restaurant.index') }}">Restaurantes</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('table.index') }}"> Mesas </a>
               </li>
               <li class="nav-item">
                 <a href="#">Pedidos</a>

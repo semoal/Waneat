@@ -29,7 +29,11 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-1-next float-right"> Siguiente </button>
+                                </div>
                                 <div class="form-group{{ $errors->has('name_restaurant') ? ' has-error' : '' }}">
+
                                     <label for="name_restaurant" class="form-label">Nombre restaurante</label>
                                     <input id="name_restaurant" type="text" placeholder="" class="form-input" name="name_restaurant"  autofocus>
                                     @if ($errors->has('name_restaurant'))
@@ -87,7 +91,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-primary panel-1-next float-right"> Siguiente </button>
+
                             </div>
                             <div class="panel-2 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -106,6 +110,10 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
+                                  <button type="button" class="btn btn-primary panel-2-next float-right"> Siguiente </button>
+                                </div>
                                     <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
                                         <label for="email_restaurant" class=" form-label">Email</label>
                                         <input id="email_restaurant" type="email" placeholder="" class="form-input" name="email_restaurant"  autofocus>
@@ -146,8 +154,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
-                                    <button type="button" class="btn btn-primary panel-2-next float-right"> Siguiente </button>
+
                             </div>
                             <div class="panel-3 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -166,14 +173,17 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
+                                  <button type="button" class="btn btn-primary panel-3-next float-right"> Siguiente </button>
+                                </div>
                                 @include('restaurants.time')
                                 @if ($errors->has('time'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('time') }}</strong>
                                     </span>
                                 @endif
-                                <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
-                                <button type="button" class="btn btn-primary panel-3-next float-right"> Siguiente </button>
+
                             </div>
                             <div class="panel-4 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -191,6 +201,10 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>
+                                  <button type="submit" class="btn btn-primary float-right"> Terminar </button>
+                                </div>
                                 <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                                     <label class="btn btn-primary btn-block">
                                       Browse
@@ -207,8 +221,7 @@
                                     <div class="gallery img-preview"> </div>
                                 </div>
 
-                                <button type="button" class="btn btn-primary panel-4-back"> Atrás </button>
-                                <button type="submit" class="btn btn-primary float-right"> Terminar </button>
+
 
                             </div>
                         </form>

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RestaurantTable extends Model{
    protected $fillable = [
-	'title',
-	'captcha_url',
-	'id_restaurant_id',
+    	'title',
+    	'captcha_url',
+    	'id_restaurant_id',
     ];
 
     protected $hidden = [

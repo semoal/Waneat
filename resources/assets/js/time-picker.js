@@ -62,6 +62,8 @@ $(document).ready(function(){
 
         });
 
+
+
         $(function () {
           // Multiple images preview in browser
           var imagesPreview = function imagesPreview(input, placeToInsertImagePreview) {
@@ -70,7 +72,8 @@ $(document).ready(function(){
               for (i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                  $($.parseHTML('<img class="img-preview">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                  var template = '<div class="img-container"><img class="img-responsive" src="'+event.target.result+'"></div>';
+                  $(template).appendTo(placeToInsertImagePreview);
                 };
                 reader.readAsDataURL(input.files[i]);
               }
@@ -81,14 +84,8 @@ $(document).ready(function(){
           });
         });
 
-        //Restaurant details modal
-        $('.modal-toggle').click(function(){
 
-            var link = $(this).attr('data-link');
-            $("#myModal").load(link);
-            // $("#myModal").addClass('active');
-            window.location.href = "#myModal";
 
-        });
+
 
 });

@@ -33,6 +33,10 @@ a.collapse-toggler:active + .collapse-content {
   height: 100%;
 }
 
+.button-group {
+  margin-bottom: 20px;
+}
+
 details[open] SUMMARY ~ * {
   -webkit-animation: sweepin .5s ease-in-out;
           animation: sweepin .5s ease-in-out;
