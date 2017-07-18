@@ -10,6 +10,11 @@
                 <div class="columns">
                   <div class="col-6">
                     <div class="dropdown float-left">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                        <a href="#" onclick="javascript:return false;" class="btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Restaurantes
                          <i class="caret fa fa-caret-down"></i>
                        </a>

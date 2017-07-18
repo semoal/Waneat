@@ -109,10 +109,22 @@
             </th>
             </tr>
           </tbody>
+
           @empty
           @endforelse
         </table>
     </details>
+    <ul>
+      <li> Dirección: {{$restaurant->address_restaurant}} </li>
+      <li> Ciudad: {{$restaurant->city_restaurant}} </li>
+      <li> Pais: {{$restaurant->country_restaurant}} </li>
+      <li> CP: {{$restaurant->postalcode_restaurant}} </li>
+      <li> Provincia: {{$restaurant->state_restaurant}} </li>
+      <li> Descripción: {{$restaurant->description}} </li>
+      <li> Email: {{$restaurant->email_restaurant}} </li>
+      <li> Categoria: {{$restaurant->specialty}} </li>
+      <li> Página web: {{$restaurant->restaurant_url}} </li>
+    </ul>
     <div class="card-footer">
         <a href="{{ route('restaurant.edit',$restaurant->id) }}">
           <button type="button" class="btn btn-block" value="submit">Editar</button>

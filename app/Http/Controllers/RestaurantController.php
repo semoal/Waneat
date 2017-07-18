@@ -55,23 +55,22 @@ class RestaurantController extends Controller {
             'picture_url' => 'required',*/
         ]);
 
-        // $restaurante = Restaurant::create([
-        //     'name_restaurant' => $request->name_restaurant,
-        //     /*'address_restaurant' => $request->address_restaurant,
-        //     'city_restaurant' => $request->city_restaurant,
-        //     'postalcode_restaurant' => $request->postalcode_restaurant,
-        //     'country_restaurant' => $request->country_restaurant,
-        //     'state_restaurant' => $request->state_restaurant,
-        //     'description' => $request->description,
-        //     'email_restaurant' => $request->email_restaurant,*/
-        //     'id_user_id' => Auth::User()->id
-        // ]);
-
         $restaurante = new Restaurant;
-        $restaurante->id_user_id = Auth::User()->id;
+
         $restaurante->name_restaurant = $request->name_restaurant;
+/*        $restaurante->address_restaurant = $request->address_restaurant;
+        $restaurante->city_restaurant = $request->city_restaurant;
+        $restaurante->postalcode_restaurant = $request->postalcode_restaurant;
+        $restaurante->country_restaurant = $request->country_restaurant;
+        $restaurante->state_restaurant = $request->state_restaurant;
+        $restaurante->description = $request->description;
+        $restaurante->email_restaurant = $request->email_restaurant;
+        $restaurante->specialty = $request->specialty;
+        $restaurante->restaurant_url = $request->restaurant_url;*/
+        $restaurante->id_user_id = Auth::User()->id;
 
         $restaurante->save();
+
         //Imagenes y el propio restaurante
         foreach ($request->file("picture") as $key => $image) {
           $urlImagen = $this->uploadToImgur($image);
@@ -202,13 +201,13 @@ class RestaurantController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    // public function destroy($id){
-    //     $restaurant = Restaurant::find($id);
-    //     $restaurant->images()->delete();
-    //     $restaurant->schedules()->delete();
-    //     $restaurant->delete();
-    //     return redirect()->route('home');
-    // }
+    public function destroy($id){
+        $restaurant = Restaurant::find($id);
+        $restaurant->images()->delete();
+        $restaurant->schedules()->delete();
+        $restaurant->delete();
+        return redirect()->route('home')->with('message', 'Restaurante eliminado');;
+    }
 
     public function destroyImage($id){
         $restaurantImage = RestaurantImage::find($id);
