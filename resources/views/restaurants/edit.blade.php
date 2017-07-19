@@ -30,6 +30,9 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-1-next float-right"> Siguiente </button>
+                                </div>
                                 <div class="form-group{{ $errors->has('name_restaurant') ? ' has-error' : '' }}">
                                     <label for="name_restaurant" class="form-label">Nombre restaurante</label>
                                     <input id="name_restaurant" type="text" placeholder="" class="form-input" name="name_restaurant"  autofocus value="{{$restaurant->name_restaurant}}">
@@ -41,7 +44,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('address_restaurant') ? ' has-error' : '' }}">
                                     <label for="address_restaurant" class="form-label">Dirección</label>
-                                    <input id="address_restaurant" type="text" placeholder="" class="form-input" name="address_restaurant"  autofocus>
+                                    <input id="address_restaurant" type="text" placeholder="" class="form-input" name="address_restaurant"  autofocus value="{{$restaurant->address_restaurant}}">
 
                                     @if ($errors->has('address_restaurant'))
                                         <span class="help-block">
@@ -51,7 +54,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('city_restaurant') ? ' has-error' : '' }}">
                                     <label for="city_restaurant" class=" form-label">Ciudad</label>
-                                    <input id="city_restaurant" type="text" placeholder="" class="form-input" name="city_restaurant"  autofocus>
+                                    <input id="city_restaurant" type="text" placeholder="" class="form-input" name="city_restaurant"  autofocus value="{{$restaurant->city_restaurant}}">
 
                                     @if ($errors->has('city_restaurant'))
                                         <span class="help-block">
@@ -61,7 +64,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('postalcode_restaurant') ? ' has-error' : '' }}">
                                     <label for="postalcode_restaurant" class="form-label">Código postal</label>
-                                    <input id="postalcode_restaurant" type="text" placeholder="" class="form-input" name="postalcode_restaurant"  autofocus>
+                                    <input id="postalcode_restaurant" type="text" placeholder="" class="form-input" name="postalcode_restaurant"  autofocus value="{{$restaurant->postalcode_restaurant}}">
 
                                     @if ($errors->has('postalcode_restaurant'))
                                         <span class="help-block">
@@ -71,7 +74,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('state_restaurant') ? ' has-error' : '' }}">
                                     <label for="state_restaurant" class=" form-label">Provincia</label>
-                                    <input id="state_restaurant" type="text" placeholder="" class="form-input" name="state_restaurant"  autofocus>
+                                    <input id="state_restaurant" type="text" placeholder="" class="form-input" name="state_restaurant"  autofocus value="{{$restaurant->state_restaurant}}">
 
                                     @if ($errors->has('state_restaurant'))
                                         <span class="help-block">
@@ -81,14 +84,13 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('country_restaurant') ? ' has-error' : '' }}">
                                     <label for="country_restaurant" class=" form-label">Pais</label>
-                                    <input id="country_restaurant" type="text" placeholder="" class="form-input" name="country_restaurant"  autofocus> </input>
+                                    <input id="country_restaurant" type="text" placeholder="" class="form-input" name="country_restaurant"  autofocus value="{{$restaurant->country_restaurant}}"> </input>
                                     @if ($errors->has('country_restaurant'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('country_restaurant') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-primary panel-1-next float-right"> Siguiente </button>
                             </div>
                             <div class="panel-2 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -107,9 +109,12 @@
                                       </li>
                                     </ul>
                                 </header>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
+                                    <button type="button" class="btn btn-primary panel-2-next float-right"> Siguiente </button>                                </div>
                                     <div class="form-group{{ $errors->has('email_restaurant') ? ' has-error' : '' }}">
                                         <label for="email_restaurant" class=" form-label">Email</label>
-                                        <input id="email_restaurant" type="email" placeholder="" class="form-input" name="email_restaurant"  autofocus>
+                                        <input id="email_restaurant" type="email" placeholder="" class="form-input" name="email_restaurant"  autofocus value="{{$restaurant->email_restaurant}}">
 
                                         @if ($errors->has('email_restaurant'))
                                             <span class="help-block">
@@ -119,7 +124,7 @@
                                     </div>
                                     <div class="form-group{{ $errors->has('restaurant_url') ? ' has-error' : '' }}">
                                         <label for="restaurant_url" class=" form-label">Url Restaurante</label>
-                                        <input id="restaurant_url" type="text" placeholder="" class="form-input" name="restaurant_url"  autofocus>
+                                        <input id="restaurant_url" type="text" placeholder="" class="form-input" name="restaurant_url"  autofocus value="{{$restaurant->restaurant_url}}">
 
                                         @if ($errors->has('restaurant_url'))
                                             <span class="help-block">
@@ -129,7 +134,7 @@
                                     </div>
                                     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                         <label for="address_restaurant" class=" form-label">Descripción</label>
-                                        <textarea id="description" type="textarea" placeholder="" class="form-input" name="description"  autofocus> </textarea>
+                                        <textarea id="description" type="textarea" placeholder="" class="form-input" name="description"  autofocus >{{$restaurant->description}} </textarea>
 
                                         @if ($errors->has('description'))
                                             <span class="help-block">
@@ -139,7 +144,7 @@
                                     </div>
                                     <div class="form-group{{ $errors->has('specialty') ? ' has-error' : '' }}">
                                         <label for="specialty" class=" form-label">Especialidad</label>
-                                        <input id="specialty" type="text" placeholder="" class="form-input" name="specialty"  autofocus>
+                                        <input id="specialty" type="text" placeholder="" class="form-input" name="specialty"  autofocus value="{{$restaurant->specialty}}">
 
                                         @if ($errors->has('specialty'))
                                             <span class="help-block">
@@ -147,8 +152,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <button type="button" class="btn btn-primary panel-2-back"> Atrás </button>
-                                    <button type="button" class="btn btn-primary panel-2-next float-right"> Siguiente </button>
+                                    
                             </div>
                             <div class="panel-3 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">
@@ -167,7 +171,10 @@
                                       </li>
                                     </ul>
                                 </header>
-
+                                <div class="button-group">
+                                  <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
+                                  <button type="button" class="btn btn-primary panel-3-next float-right"> Siguiente </button>
+                                </div>
                                 <div id="time-template">
 
 
@@ -334,8 +341,6 @@
                                         <strong>{{ $errors->first('time') }}</strong>
                                     </span>
                                 @endif
-                                <button type="button" class="btn btn-primary panel-3-back"> Atrás </button>
-                                <button type="button" class="btn btn-primary panel-3-next float-right"> Siguiente </button>
                             </div>
                             <div class="panel-4 hide column col-9 col-xs-12" style="padding-top:50px;">
                                 <header class="text-center">

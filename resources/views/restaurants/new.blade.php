@@ -220,9 +220,6 @@
                                     <label for="picture" class=" form-label">Previsualización:</label>
                                     <div class="gallery img-preview"> </div>
                                 </div>
-
-
-
                             </div>
                         </form>
                     </div>
