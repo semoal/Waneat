@@ -20,14 +20,16 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
 
-	Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/home', 'HomeController@index')->name('home');
 
-	Route::resource('restaurant', 'RestaurantController');
-
-  Route::resource('table', 'TableController');
+  Route::resource('restaurant', 'RestaurantController');
 
   Route::get('/image/{image}/remove', 'RestaurantController@destroyImage')->name('restaurant.destroyImage');
 
 });
 
-//falta ruta group con subdomain api y con prefix api y etc
+Route::group(['middleware' => 'exist.restaurant'], function() {
+
+  Route::resource('table', 'TableController');
+
+});
