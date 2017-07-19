@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 use App\User as User;
 use App\RestaurantTable;
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class TableController extends Controller {
@@ -14,8 +16,7 @@ class TableController extends Controller {
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         return view('tables/index');
     }
 
@@ -34,9 +35,12 @@ class TableController extends Controller {
      *
      * @return Response
      */
-    public function store()
-    {
-        //
+    public function store(Request $request) {
+        $cantidadMesas = $request->valuetables;
+        for ($i=1; $i <= $cantidadMesas; $i++) { 
+            error_log("Mesa-".$i);
+        }
+        return redirect()->route('table.index');
     }
 
     /**

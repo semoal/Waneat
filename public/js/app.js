@@ -172,6 +172,25 @@ $(document).ready(function () {
       imagesPreview(this, 'div.gallery');
     });
   });
+
+  //Insertamos la cantidad de mesas que el usuario diga
+  var valueInput = 0;
+  $('.more-val').on('click', function () {
+    if (valueInput >= 25) {
+      console.log('Valor demasiado grande');
+    } else {
+      valueInput++;
+      $('.input-tables').val(valueInput);
+    }
+  });
+  $('.less-val').on('click', function () {
+    if (valueInput <= 0) {
+      console.log('Valor demasiado pequeño');
+    } else {
+      valueInput--;
+      $('.input-tables').val(valueInput);
+    }
+  });
 });
 
 /***/ }),
