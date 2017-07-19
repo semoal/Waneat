@@ -29,3 +29,5 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/image/{image}/remove', 'RestaurantController@destroyImage')->name('restaurant.destroyImage');
 
 });
+
+//falta ruta group con subdomain api y con prefix api y etc
