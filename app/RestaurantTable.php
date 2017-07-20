@@ -18,7 +18,7 @@ class RestaurantTable extends Model{
 	protected $table = 'restaurant_table';
 
   public function restaurant(){
-    return $this->belongsTo('App\Restaurant')
+    return $this->belongsTo('App\Restaurant');
   }
 
 }

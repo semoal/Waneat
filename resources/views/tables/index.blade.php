@@ -12,8 +12,38 @@
       </select>
 
       <!-- Si hay mesas que las muestre --> 
+      <div class="columns">
+      @forelse ($tables as $table)
+            <div class="column col-xs-12">
+              <ul class="menu">
+                <li class="menu-item">
+                  <div class="tile tile-centered">
+                    <div class="tile-icon">
+                      <img src="{{ $table->captcha_url}}" onclick="window.print();" class="avatar">
+                    </div>
+                    <div class="tile-content">
+                      {{ $table->title }}
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li class="menu-item">
+                  <a href="#" class="active">
+                    <button class="btn btn-link"> Imprimir </button>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <form method="POST" action="{{ route('table.destroy',$table->id)}}">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button class="btn btn-link"> Borrar </button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+      @empty
       <!-- si no, que muestre añadir mesas -->
-            <!-- Modal --> 
+      <!-- Modal --> 
       <div class="modal model-md" id="tables">
         <a href="#" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container" role="document">
@@ -49,6 +79,8 @@
       <a class="btn btn-default" href="#tables"> Añadir mesas </a>
       <!-- ./boton --> 
 
+      @endforelse
+      </div>
     </div>
 
   </div>
