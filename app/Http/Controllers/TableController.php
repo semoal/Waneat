@@ -42,8 +42,6 @@ class TableController extends Controller {
         ]);
 
         $cantidadMesas = $request->valuetables;
-        $mesaId = Table::get();
-        error_log(json_encode($mesaId));
         for ($i=1; $i <= $cantidadMesas; $i++) { 
             $data[] = [
             'title' => "Mesa-".$i,
@@ -54,6 +52,9 @@ class TableController extends Controller {
           ];
         }
         Table::insert($data); 
+        //ultimo id de una mesa
+        $mesaId = Table::get()->last()->id;
+        error_log(json_encode($mesaId));
         return redirect()->route('table.index');
     }
 
