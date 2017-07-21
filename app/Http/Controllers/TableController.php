@@ -8,6 +8,9 @@ use App\RestaurantTable as Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\BaconQrCodeGenerator;
+Use App\Traits\Uploader as Uploader;
+
 
 
 class TableController extends Controller {
@@ -36,6 +39,7 @@ class TableController extends Controller {
      *
      * @return Response
      */
+    use Uploader;
     public function store(Request $request) {
          $this->validate($request, [
             'valuetables'    => 'required',
@@ -45,16 +49,14 @@ class TableController extends Controller {
         for ($i=1; $i <= $cantidadMesas; $i++) { 
             $data[] = [
             'title' => "Mesa-".$i,
-            'captcha_url' => 'http://mqr.kr/static/images/main/qr.plain.png',
+            'captcha_url' => '',
             'id_restaurant_id' => Auth::user()->restaurants[0]->id,
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime(),
           ];
         }
         Table::insert($data); 
-        //ultimo id de una mesa
-        $mesaId = Table::get()->last()->id;
-        error_log(json_encode($mesaId));
+
         return redirect()->route('table.index');
     }
 

@@ -19,7 +19,7 @@
                 <li class="menu-item">
                   <div class="tile tile-centered">
                     <div class="tile-icon">
-                      <img src="{{ $table->captcha_url}}" onclick="window.print();" class="avatar">
+<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->merge('http://i.imgur.com/kWDi3YO.png', .9, true)->generate('http://localhost:8000/restaurant/'.$table->id_restaurant_id.'?table='.$table->id)) !!} ">
                     </div>
                     <div class="tile-content">
                       {{ $table->title }}
