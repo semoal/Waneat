@@ -34,6 +34,9 @@ Route::group(['middleware' => 'exist.restaurant'], function() {
 
 });
 
-Route::get('/api/restaurant/{id}', 'Api\RestaurantController@show');
-Route::get('/api/restaurant', 'Api\RestaurantController@showAll');
-Route::get('/api/images/{id}', 'Api\ImagesController@show');
+Route::group(['middleware' => ['api.token']], function () {
+	Route::get('/api/restaurant/{id}', 'Api\RestaurantController@show');
+	Route::get('/api/restaurant', 'Api\RestaurantController@showAll');
+ });
+
+

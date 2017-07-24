@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'exist.restaurant' => \App\Http\Middleware\CheckIfRestaurant::class,
+        'api.token' => \App\Http\Middleware\VerifyAccessKey::class,
     ];
 }
