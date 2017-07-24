@@ -102,6 +102,12 @@ $(document).ready(function(){
             $('.input-tables').val(valueInput);
           }
         });
-
+/*
+      $('#printImage').on('click', function(){
+        popup = window.open(); // display popup
+        popup.document.write("<img src='"+this.src+"' />"); // This is where the image url goes which will just open up the image
+        setTimeout(function(){ popup.print(); }, 2000);
+      });*/
+  
 
 });

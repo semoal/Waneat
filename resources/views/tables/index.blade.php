@@ -4,7 +4,7 @@
 @endsection
 @section('content')
   <div class="content-container column col-9">
-    <div class="abs" style="top:10%;">
+    <div class="abs" style="top:10%;padding-right:4%;">
       <select class="form-select" onchange="changeRestaurant()">
         @foreach (Auth::user()->restaurants as $key => $restaurant)
           <option value="{{$restaurant->name_restaurant}}">{{ $restaurant->name_restaurant}}</option>
@@ -14,12 +14,12 @@
       <!-- Si hay mesas que las muestre --> 
       <div class="columns">
       @forelse ($tables as $table)
-            <div class="column col-xs-12">
+            <div class="column col-xs-12 col-3">
               <ul class="menu">
                 <li class="menu-item">
                   <div class="tile tile-centered">
                     <div class="tile-icon">
-<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->merge('http://i.imgur.com/kWDi3YO.png', .9, true)->generate('http://localhost:8000/restaurant/'.$table->id_restaurant_id.'?table='.$table->id)) !!} ">
+<img id="printImage" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->errorCorrection('H')->merge('http://i.imgur.com/kWDi3YO.png', .9, true)->generate('http://localhost:8000/restaurant/'.$table->id_restaurant_id.'?table='.$table->id)) !!} ">
                     </div>
                     <div class="tile-content">
                       {{ $table->title }}

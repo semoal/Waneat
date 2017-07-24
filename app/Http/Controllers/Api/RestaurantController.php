@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Restaurant;
 
-use App\RestaurantImage;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
@@ -54,5 +52,4 @@ class RestaurantController extends ApiController {
             'restaurants' => $restaurant,
         ]);
     }
-    
 }

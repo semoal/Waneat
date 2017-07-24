@@ -18,7 +18,7 @@ class CheckIfRestaurant {
      */
     public function handle($request, Closure $next){
         if (Auth::user()->restaurants->count() > 0) {
-            error_log("entra");
+            //error_log("entra");
         }else{
             return redirect('home')->with('message','No tienes ningún restaurante');
         }
