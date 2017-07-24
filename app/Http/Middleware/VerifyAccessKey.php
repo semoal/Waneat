@@ -24,5 +24,6 @@ class VerifyAccessKey
             // Si falla devolvemos el mensaje de error
             return response()->json(['error' => 'unauthorized' ], 401);
         }
+        return $next($request);
     }
 }

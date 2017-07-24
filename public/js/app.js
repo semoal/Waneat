@@ -191,12 +191,28 @@ $(document).ready(function () {
       $('.input-tables').val(valueInput);
     }
   });
-  /*
-        $('#printImage').on('click', function(){
-          popup = window.open(); // display popup
-          popup.document.write("<img src='"+this.src+"' />"); // This is where the image url goes which will just open up the image
-          setTimeout(function(){ popup.print(); }, 2000);
-        });*/
+
+  $('.printImage').on('click', function () {
+    var popup = window.open(); // display popup
+    popup.document.write("<img src='" + this.src + "' />"); // This is where the image url goes which will just open up the image
+    setTimeout(function () {
+      popup.print();
+    }, 1000);
+  });
+
+  $('#printAll').on('click', function () {
+    var popup = window.open();
+    var tables = document.getElementsByClassName('printImage');
+    console.log(tables);
+    for (var i = 0; i < tables.length; i++) {
+      $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='" + tables[i].src + "' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa " + (i + 1) + "</div></div>");
+      // $("<img src='"+tables[i].src+"' />").appendTo(popup.document.body);
+      // $("<span style='position:absolute;top:100%;>Mesa "+(i+1)+"</span>").appendTo(popup.document.body);
+    }
+    setTimeout(function () {
+      popup.print();
+    }, 3000);
+  });
 });
 
 /***/ }),

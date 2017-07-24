@@ -10,8 +10,8 @@
           <option value="{{$restaurant->name_restaurant}}">{{ $restaurant->name_restaurant}}</option>
         @endforeach
       </select>
-
-      <!-- Si hay mesas que las muestre --> 
+      <button class="btn btn-primary" name="button" id="printAll">Imprimir All</button>
+      <!-- Si hay mesas que las muestre -->
       <div class="columns">
       @forelse ($tables as $table)
             <div class="column col-xs-12 col-3">
@@ -19,7 +19,7 @@
                 <li class="menu-item">
                   <div class="tile tile-centered">
                     <div class="tile-icon">
-<img id="printImage" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->errorCorrection('H')->merge('http://i.imgur.com/kWDi3YO.png', .9, true)->generate('http://localhost:8000/restaurant/'.$table->id_restaurant_id.'?table='.$table->id)) !!} ">
+<img class="printImage" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->errorCorrection('H')->merge('http://i.imgur.com/kWDi3YO.png', .9, true)->generate('http://localhost:8000/restaurant/'.$table->id_restaurant_id.'?table='.$table->id)) !!} ">
                     </div>
                     <div class="tile-content">
                       {{ $table->title }}
@@ -43,14 +43,14 @@
             </div>
       @empty
       <!-- si no, que muestre añadir mesas -->
-      <!-- Modal --> 
+      <!-- Modal -->
       <div class="modal model-md" id="tables">
         <a href="#" class="modal-overlay" aria-label="Close"></a>
         <div class="modal-container" role="document">
           <div class="modal-header">
             <a href="#modals" class="btn btn-clear float-right" aria-label="Close"></a>
             <div class="modal-title">
-             ¿Cuantas mesas tienes en tu restaurante? 
+             ¿Cuantas mesas tienes en tu restaurante?
             </div>
           </div>
           <div class="modal-body">
@@ -77,7 +77,7 @@
 
       <!-- boton de abrir modal -->
       <a class="btn btn-default" href="#tables"> Añadir mesas </a>
-      <!-- ./boton --> 
+      <!-- ./boton -->
 
       @endforelse
       </div>
