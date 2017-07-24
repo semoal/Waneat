@@ -5,14 +5,14 @@
 @section('content')
   <div class="content-container column col-9">
     <div class="abs" style="top:10%;padding-right:4%;">
-      <select class="form-select" onchange="changeRestaurant()">
+      <select class="form-select" id="select-restaurant" form="input-form" name="restaurantId">
         @foreach (Auth::user()->restaurants as $key => $restaurant)
-          <option value="{{$restaurant->name_restaurant}}">{{ $restaurant->name_restaurant}}</option>
+          <option value="{{$restaurant->id}}">{{ $restaurant->name_restaurant}}</option>
         @endforeach
       </select>
       <button class="btn btn-primary" name="button" id="printAll">Imprimir All</button>
       <!-- Si hay mesas que las muestre -->
-      <div class="columns">
+      <div class="columns tables-content">
       @forelse ($tables as $table)
             <div class="column col-xs-12 col-3">
               <ul class="menu">
@@ -55,7 +55,7 @@
           </div>
           <div class="modal-body">
             <div class="content">
-              <form method="POST" action="{{route('table.store')}}" role="form">
+              <form id="input-form" method="POST" action="{{route('table.store')}}" role="form">
                 {{ csrf_field() }}
                 <div class="form-group">
                   <label class="form-label">Mesas:</label>

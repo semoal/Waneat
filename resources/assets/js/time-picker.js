@@ -86,7 +86,7 @@ $(document).ready(function(){
 
         //Insertamos la cantidad de mesas que el usuario diga
         var valueInput = 0;
-        $('.more-val').on('click', function(){
+        $(document).on('click', '.more-val', function(){
           if (valueInput>=25) {
             console.log('Valor demasiado grande');
           }else{
@@ -94,7 +94,7 @@ $(document).ready(function(){
             $('.input-tables').val(valueInput);
           }
         });
-        $('.less-val').on('click', function(){
+        $(document).on('click', '.less-val', function(){
           if (valueInput<=0) {
             console.log('Valor demasiado pequeño');
           }else{
@@ -103,7 +103,7 @@ $(document).ready(function(){
           }
         });
 
-      $('.printImage').on('click', function(){
+      $(document).on('click','.printImage', function(){
         var  popup = window.open(); // display popup
         popup.document.write("<img src='"+this.src+"' />"); // This is where the image url goes which will just open up the image
         setTimeout(function(){ popup.print(); }, 1000);
@@ -121,5 +121,12 @@ $(document).ready(function(){
         setTimeout(function(){ popup.print(); }, 3000);
       });
 
+      $('#select-restaurant').on('change',function(){
+          // console.log($(this).val());
+          $.get('http://localhost:8000/table/'+$(this).val(), function(data){
+            $('.tables-content').html(data);
+          });
+
+      });
 
 });

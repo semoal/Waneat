@@ -46,16 +46,16 @@ class TableController extends Controller {
         ]);
 
         $cantidadMesas = $request->valuetables;
-        for ($i=1; $i <= $cantidadMesas; $i++) { 
+        for ($i=1; $i <= $cantidadMesas; $i++) {
             $data[] = [
             'title' => "Mesa-".$i,
             'captcha_url' => '',
-            'id_restaurant_id' => Auth::user()->restaurants[0]->id,
+            'id_restaurant_id' => $request->restaurantId,
             'created_at' => new \DateTime(),
             'updated_at' => new \DateTime(),
           ];
         }
-        Table::insert($data); 
+        Table::insert($data);
 
         return redirect()->route('table.index');
     }
@@ -68,7 +68,8 @@ class TableController extends Controller {
      */
     public function show($id)
     {
-        //
+        $tables = Table::where('id_restaurant_id', $id)->get();
+        return view('tables/restaurantTables', ['tables' => $tables]);
     }
 
     /**
