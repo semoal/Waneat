@@ -1,5 +1,5 @@
 @forelse ($tables as $table)
-<div class="column col-xs-12 col-3">
+<div class="column">
   <ul class="menu">
     <li class="menu-item">
       <div class="tile tile-centered">

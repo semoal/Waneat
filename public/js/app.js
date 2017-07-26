@@ -221,14 +221,6 @@ $(document).ready(function () {
     }
   });
 
-  // $('#select-restaurant').on('change',function(){
-  //     // console.log($(this).val());
-  //     $.get('http://localhost:8000/table/'+$(this).val(), function(data){
-  //       $('.tables-content').html(data);
-  //     });
-
-  // });
-
   //Métodos para mantener el select que el usuario elije 
   var select = document.querySelector(".form-select");
   var selectOption = select.options[select.selectedIndex];

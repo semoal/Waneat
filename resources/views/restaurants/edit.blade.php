@@ -373,8 +373,11 @@
                                     <label for="picture" class=" form-label">Previsualización:</label>
                                     <div class="gallery img-preview">
                                       @foreach ($restaurant->images as $key => $value)
-                                        <img src="{{$value->image_url}}" class="img-responsive">
-                                        <a class="btn btn-primary" href="{{ route('restaurant.destroyImage', $value->id) }}">Borrar</a>
+                                        <a href="{{ route('restaurant.destroyImage', $value->id) }}">
+                                        <img style=" z-index: 999;position: absolute;left: 27%;width: 50px;" src="https://lh3.googleusercontent.com/G2jzG8a6-GAA4yhxx3XMJfPXsm6_pluyeEWKr9I5swUGF62d2xo_Qg3Kdnu00HAmDQ=w300"/>
+                                        </a>
+                                        <img style="max-width:300px;border-radius: 5%;" src="{{$value->image_url}}" class="img-responsive" />
+                                                                              
                                       @endforeach
                                     </div>
                                 </div>
