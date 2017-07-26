@@ -69,7 +69,7 @@ class TableController extends Controller {
     public function show($id)
     {
         $tables = Table::where('id_restaurant_id', $id)->get();
-        return view('tables/restaurantTables', ['tables' => $tables]);
+        return view('tables/show', ['tables' => $tables]);
     }
 
     /**

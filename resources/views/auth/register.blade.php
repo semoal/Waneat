@@ -4,7 +4,7 @@
 <div class="all">
     <div class="panel-grey">
       <div class="logo">
-        <h2 class="bold"> Waneat </h2>
+        <img src="{{URL::asset('./images/logo2.png')}}">
     </div>
     <div class="inputlar">
         <form role="form" method="POST" action="{{ route('register') }}">
