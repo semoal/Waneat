@@ -17,16 +17,21 @@
 </head>
    <body>
     <div class="container-fluid">
-        
+
         @yield('navbar')
 
         @yield('content')
     </div>
       <!-- Scripts -->
+
       <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+        <script>
+    window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+</script>
       <script src="{{ asset('js/app.js') }}"></script>
+
    </body>
 </html>
