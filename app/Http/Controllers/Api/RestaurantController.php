@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Restaurant;
+use App\RestaurantTable as Table;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -52,7 +53,12 @@ class RestaurantController extends ApiController {
             'restaurants' => $restaurant,
         ]);
     }
-
+    /**
+     * Muestra todos los restaurantes de UN USUARIO EN CONCRETO
+     * Imagenes, horarios, comentarios, puntuación y mesas incorporadas
+     * GET - api/restaurant
+     * @return Json
+     */
     public function userRestaurants(){
       $restaurant = Auth::user()->restaurants;
       foreach ($restaurant as $res) {
@@ -64,6 +70,13 @@ class RestaurantController extends ApiController {
       }
       return response()->json([
           'restaurants' => $restaurant,
+      ]);
+    }
+
+    public function destroyTables($id){
+      Table::destroy($id);
+      return response()->json([
+          'success' => 'Mesa eliminada',
       ]);
     }
 }

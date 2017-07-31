@@ -131,24 +131,4 @@ $(document).ready(function(){
         
       });
 
-      //Métodos para mantener el select que el usuario elije 
-      var select = document.querySelector(".form-select");
-      var selectOption = select.options[select.selectedIndex];
-      var lastSelected = localStorage.getItem('select');
-
-      if(lastSelected) {
-          select.value = lastSelected; 
-          $.get('http://localhost:8000/table/'+select.value, function(data){
-            $('.tables-content').html(data);
-          });
-      }
-
-      select.onchange = function () {
-         lastSelected = select.options[select.selectedIndex].value;
-          $.get('http://localhost:8000/table/'+lastSelected, function(data){
-            $('.tables-content').html(data);
-          });
-         localStorage.setItem('select', lastSelected);
-      }
-
 });
