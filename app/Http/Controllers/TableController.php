@@ -20,7 +20,7 @@ class TableController extends Controller {
      * @return Response
      */
     public function index() {
-        $tables = Table::where('id_restaurant_id', Auth::user()->restaurants[0]->id)->get();
+          $tables = Table::where('id_restaurant_id', Auth::user()->restaurants[0]->id)->get();
         return view('tables/index', ['tables' => $tables]);
     }
 

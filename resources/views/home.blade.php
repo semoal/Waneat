@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-  
+
         <div class="docs-content column col-9 col-sm-12">
           <div class="container rel" id="#modals">
             <div class="abs" style="top: 30%; left: 0;">
@@ -50,11 +50,7 @@
             </div>
 
           </div>
-          <div id="app">
-            <ul>
-              <li v-for="restaurant in results">@{{restaurant}}</li>
-            </ul>
-          </div>
+          
           <div id="restaurant-content" class="restaurant-content">
 
           </div>

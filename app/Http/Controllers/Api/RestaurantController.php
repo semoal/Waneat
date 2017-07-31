@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Restaurant;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -51,5 +51,19 @@ class RestaurantController extends ApiController {
       return response()->json([
             'restaurants' => $restaurant,
         ]);
+    }
+
+    public function userRestaurants(){
+      $restaurant = Auth::user()->restaurants;
+      foreach ($restaurant as $res) {
+        $res->images;
+        $res->comments;
+        $res->ratings;
+        $res->tables;
+        $res->schedules;
+      }
+      return response()->json([
+          'restaurants' => $restaurant,
+      ]);
     }
 }

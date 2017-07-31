@@ -13,10 +13,10 @@ require('./time-picker');
 window.Vue = require('vue');
 window.axios = require('axios');
 
-var data = {
-  v1users: []
-};
-
+Vue.component('mesas', require('./components/mesas.vue'));
+import Vue from 'vue'
+import VueQRCodeComponent from 'vue-qrcode-component'
+Vue.component('qr-code', VueQRCodeComponent)
 
 // Vue.component('example',{
 //   template: '<ul><li v-for="table in v1users">{{table}}</li></ul>',
@@ -40,15 +40,5 @@ var data = {
 
 const app = new Vue({
     el: '#app',
-  data: {
-    results: []
-  },
-  mounted() {
-    axios.get("http://localhost:8000/api/restaurant")
-    .then(response => {
-      this.results = response.data;
-      console.log(response);
-    })
-  }
 });
 // */
