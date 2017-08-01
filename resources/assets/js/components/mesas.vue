@@ -4,12 +4,12 @@
       <option disabled value="">Por favor, selecciona un restaurante</option>
       <option 
       v-for="restaurant in restaurants" 
-      v-bind:value="restaurant.tables">
+      v-bind:value="restaurant">
       {{restaurant.name_restaurant}}
     </option>
   </select>
   <div class="columns">
-    <div class="column" v-for="r in rest">
+    <div class="column" v-for="r in rest.tables">
       <ul class="menu">
         <li class="menu-item">
           <div class="tile tile-centered">
@@ -24,35 +24,62 @@
         <li class="divider"></li>
         <li class="menu-item">
           <a href="#" class="active">
-            <button class="btn btn-link" v-on:click="destroyTables(r.id)"> Imprimir </button>
+            <button class="btn btn-link delete-table" v-on:click="destroyTables(r.id)"> Eliminar </button>
           </a>
         </li>
       </ul>
     </div>
+    <div class="form-group">
+      <label class="form-label">Mesas:</label>
+      <div class="input-group">
+        <button type="button" class="btn btn-primary input-group-btn less-val">-</button>
+        <input type="number" name="valuetables" class="form-input input-tables" placeholder="0" min="0" max="25">
+        <button type="button" class="btn btn-primary input-group-btn more-val">+</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" v-on:click="setTables()">Generar mesas</button>
   </div>
 </div>
 </template>
 
 <script>
-
   export default {
     data(){
       return{
         restaurants: [],
-        rest: ''
+        rest: '',
       }
     },
     methods: {
+      setTables() {
+        var quantity = $('.input-tables').val();
+        var idRestaurant = this.rest.id;
+        axios.post('http://localhost:8000/api/putTables', {
+          id: idRestaurant,
+          quantity: quantity,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); 
+      },
       getTables () {
         axios.get("http://localhost:8000/api/userRestaurants").then(response => {
-          this.restaurants=response.data.restaurants;
+          this.restaurants = response.data.restaurants;
         });
       },
       destroyTables(id){
-        console.log("eliminar mesa"+id);
-        axios.post("http://localhost:8000/api/destroyTables/"+id).then(response =>{
-          console.log("mesa eliminada");
-        });      
+        axios.post('http://localhost:8000/api/destroyTables', {
+          id: id,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); 
       }
     },
     mounted() {

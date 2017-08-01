@@ -103,32 +103,32 @@ $(document).ready(function(){
           }
         });
 
-      $(document).on('click','.printImage', function(){
-        var  popup = window.open(); // display popup
-        popup.document.write("<div style='position:relative;display:inline-block;'><img src='"+this.src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa 1</div></div>"); // This is where the image url goes which will just open up the image
-        setTimeout(function(){ popup.print(); }, 1000);
-      });
+      // $(document).on('click','.printImage', function(){
+      //   var popup = window.open(); // display popup
+      //   popup.document.write("<div style='position:relative;display:inline-block;'><img src='"+this.src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa 1</div></div>"); // This is where the image url goes which will just open up the image
+      //   setTimeout(function(){ popup.print(); }, 1000);
+      // });
 
-      $('.delete-table').on('click',function(){
-        $(this).addClass('loading');
-      });
+      // $(document).on('click','.delete-table', function(){
+      //   $(this).addClass('loading');
+      // });
 
-      $('#printAll').on('click', function(){
-        var tables = document.getElementsByClassName('printImage');
-        if (tables.length > 0) {
-          $(this).addClass('loading');
-          var popup = window.open();
-          for (var i = 0; i < tables.length; i++) {
-            $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='"+tables[i].src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa "+(i+1)+"</div></div>");
-          }
-          setTimeout(function(){ 
-            $('#printAll').removeClass('loading');
-            popup.print(); 
-          }, 3000);
-        }else{
-          alert("No hay mesas para imprimir");
-        }
+      // $('#printAll').on('click', function(){
+      //   var tables = document.getElementsByClassName('printImage');
+      //   if (tables.length > 0) {
+      //     $(this).addClass('loading');
+      //     var popup = window.open();
+      //     for (var i = 0; i < tables.length; i++) {
+      //       $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='"+tables[i].src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa "+(i+1)+"</div></div>");
+      //     }
+      //     setTimeout(function(){ 
+      //       $('#printAll').removeClass('loading');
+      //       popup.print(); 
+      //     }, 3000);
+      //   }else{
+      //     alert("No hay mesas para imprimir");
+      //   }
         
-      });
+      // });
 
 });
