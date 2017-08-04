@@ -1783,6 +1783,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1794,7 +1813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    fuckMe: function fuckMe(event) {
+    changeSelect: function changeSelect(event) {
       this.rest = event.target.value;
       this.getTables(event.target.value);
     },
@@ -1823,19 +1842,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getTables: function getTables(id) {
       var _this3 = this;
 
-      console.log(id);
       axios.get("http://localhost:8000/api/getTables/" + id).then(function (response) {
         _this3.tables = JSON.parse(response.data.table);
       });
     },
-    destroyTables: function destroyTables(id) {
+    initialGo: function initialGo() {
       var _this4 = this;
+
+      var id = $('#select-restaurant').val();
+      axios.get("http://localhost:8000/api/getTables/" + id).then(function (response) {
+        _this4.tables = JSON.parse(response.data.table);
+      });
+    },
+    destroyTables: function destroyTables(id) {
+      var _this5 = this;
 
       axios.post('http://localhost:8000/api/destroyTables', {
         id: id
       }).then(function (response) {
         console.log(response);
-        _this4.getTables(_this4.rest);
+        _this5.getTables(_this5.rest);
       }).catch(function (error) {
         console.log(error);
       });
@@ -1843,6 +1869,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {
     this.getRestaurants();
+    setTimeout(this.initialGo, 1000);
   }
 });
 
@@ -1941,6 +1968,9 @@ $(document).ready(function () {
       $('.input-tables').val(valueInput);
     }
   });
+  $(document).on('click', '.btn-create-tables', function () {
+    $('.input-tables').val(0);
+  });
 
   // $(document).on('click','.printImage', function(){
   //   var popup = window.open(); // display popup
@@ -1948,27 +1978,22 @@ $(document).ready(function () {
   //   setTimeout(function(){ popup.print(); }, 1000);
   // });
 
-  // $(document).on('click','.delete-table', function(){
-  //   $(this).addClass('loading');
-  // });
-
-  // $('#printAll').on('click', function(){
-  //   var tables = document.getElementsByClassName('printImage');
-  //   if (tables.length > 0) {
-  //     $(this).addClass('loading');
-  //     var popup = window.open();
-  //     for (var i = 0; i < tables.length; i++) {
-  //       $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='"+tables[i].src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa "+(i+1)+"</div></div>");
-  //     }
-  //     setTimeout(function(){ 
-  //       $('#printAll').removeClass('loading');
-  //       popup.print(); 
-  //     }, 3000);
-  //   }else{
-  //     alert("No hay mesas para imprimir");
-  //   }
-
-  // });
+  $('#printAll').on('click', function () {
+    var tables = document.getElementsByClassName('printImage');
+    if (tables.length > 0) {
+      $(this).addClass('loading');
+      var popup = window.open();
+      for (var i = 0; i < tables.length; i++) {
+        $(popup.document.body).append("<div style='position:relative;display:inline-block;margin:20px;'><img src='" + $(tables[i]).find('img').attr('src') + "' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>Mesa " + (i + 1) + "</div></div>");
+      }
+      setTimeout(function () {
+        $('#printAll').removeClass('loading');
+        popup.print();
+      }, 1500);
+    } else {
+      alert("No hay mesas para imprimir");
+    }
+  });
 });
 
 /***/ }),
@@ -2800,7 +2825,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\yo\\Desktop\\WaneatProjects\\waneat\\node_modules\\vue-qrcode-component\\src\\QRCode.vue"
+Component.options.__file = "/Users/sergiomoreno/Desktop/waneat/node_modules/vue-qrcode-component/src/QRCode.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] QRCode.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2834,7 +2859,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\yo\\Desktop\\WaneatProjects\\waneat\\resources\\assets\\js\\components\\mesas.vue"
+Component.options.__file = "/Users/sergiomoreno/Desktop/waneat/resources/assets/js/components/mesas.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] mesas.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2861,8 +2886,20 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('div', {}, [_c('select', {
-    staticClass: "form-select",
+  }, [_c('div', {}, [_c('div', {
+    staticClass: "column"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "id": "printAll"
+    }
+  }, [_vm._v("Imprimir todas")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "href": "#tables"
+    }
+  }, [_vm._v("Generar mesas")]), _vm._v(" "), _c('select', {
+    staticClass: "form-select col-3",
     attrs: {
       "id": "select-restaurant",
       "form": "input-form",
@@ -2870,22 +2907,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "change": function($event) {
-        _vm.fuckMe($event)
+        _vm.changeSelect($event)
       }
     }
-  }, [_c('option', {
-    attrs: {
-      "disabled": "",
-      "value": ""
-    }
-  }, [_vm._v("Por favor, selecciona un restaurante")]), _vm._v(" "), _vm._l((_vm.restaurants), function(restaurant) {
+  }, _vm._l((_vm.restaurants), function(restaurant) {
     return _c('option', {
       domProps: {
         "value": restaurant.id
       }
     }, [_vm._v("\n        " + _vm._s(restaurant.name_restaurant) + "\n      ")])
-  })], 2)]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary",
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "tables"
+    }
+  }, [_c('a', {
+    staticClass: "modal-overlay",
+    attrs: {
+      "href": "#modals",
+      "aria-label": "Close"
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "modal-container col-6",
+    attrs: {
+      "role": "document"
+    }
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-primary btn-create-tables",
     attrs: {
       "type": "button"
     },
@@ -2894,11 +2944,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.setTables()
       }
     }
-  }, [_vm._v("Generar mesas")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Generar mesas")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "columns"
   }, _vm._l((_vm.tables), function(r) {
     return _c('div', {
-      staticClass: "column"
+      staticClass: "column col-6"
     }, [_c('ul', {
       staticClass: "menu"
     }, [_c('li', {
@@ -2908,6 +2958,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "tile-icon"
     }, [_c('qr-code', {
+      staticClass: "printImage",
       attrs: {
         "text": 'https://localhost:8000/tables/' + r.id,
         "error-level": "Q",
@@ -2919,22 +2970,33 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "divider"
     }), _vm._v(" "), _c('li', {
       staticClass: "menu-item"
-    }, [_c('a', {
-      staticClass: "active",
-      attrs: {
-        "href": "#"
-      }
     }, [_c('button', {
-      staticClass: "btn btn-link delete-table",
+      staticClass: "btn btn-link btn-block delete-table",
       on: {
         "click": function($event) {
           _vm.destroyTables(r.id)
         }
       }
-    }, [_vm._v(" Eliminar ")])])])])])
+    }, [_vm._v(" Eliminar ")])])])])
   }))])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('a', {
+    staticClass: "btn btn-clear float-right",
+    attrs: {
+      "href": "#modals",
+      "aria-label": "Close"
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "modal-title"
+  }, [_vm._v("Generar mesas")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "content"
+  }, [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "form-label"
@@ -2959,7 +3021,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "button"
     }
-  }, [_vm._v("+")])])])
+  }, [_vm._v("+")])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

@@ -54,7 +54,7 @@ class RestaurantController extends ApiController {
         ]);
     }
     /**
-     * Muestra todos los restaurantes de UN USUARIO EN CONCRETO
+     * Muestra todos los restaurantes del usuario logeado
      * Imagenes, horarios, comentarios, puntuación y mesas incorporadas
      * GET - api/restaurant
      * @return Json
