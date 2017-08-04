@@ -1802,13 +1802,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       restaurants: [],
       rest: '',
-      tables: []
+      tables: [],
+      firstId: null
     };
   },
 
@@ -1826,7 +1829,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         id: idRestaurant,
         quantity: quantity
       }).then(function (response) {
-        console.log('yas' + response);
         _this.getTables(_this.rest);
       }).catch(function (error) {
         console.log(error);
@@ -1837,31 +1839,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
         _this2.restaurants = response.data.restaurants;
+        _this2.rest = response.data.restaurants[0].id;
+        _this2.getTables(_this2.rest);
       });
     },
     getTables: function getTables(id) {
       var _this3 = this;
 
+      console.log("Tables:" + id);
       axios.get("http://localhost:8000/api/getTables/" + id).then(function (response) {
         _this3.tables = JSON.parse(response.data.table);
       });
     },
-    initialGo: function initialGo() {
-      var _this4 = this;
-
-      var id = $('#select-restaurant').val();
-      axios.get("http://localhost:8000/api/getTables/" + id).then(function (response) {
-        _this4.tables = JSON.parse(response.data.table);
-      });
-    },
     destroyTables: function destroyTables(id) {
-      var _this5 = this;
+      var _this4 = this;
 
       axios.post('http://localhost:8000/api/destroyTables', {
         id: id
       }).then(function (response) {
-        console.log(response);
-        _this5.getTables(_this5.rest);
+        _this4.getTables(_this4.rest);
       }).catch(function (error) {
         console.log(error);
       });
@@ -1869,15 +1865,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {
     this.getRestaurants();
-    setTimeout(this.initialGo, 1000);
   }
 });
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
-
-
 
 $(document).ready(function () {
   //Permite añadir horarios duplicados
@@ -1918,20 +1911,17 @@ $(document).ready(function () {
     $('.panel-4').addClass('hide');
     $('.panel-3').removeClass('hide');
   });
-  // Funcion para previsualiazr la imagen //
 
-
+  //Función para preivsualiazr el restaurante que seleccionar
   $(function () {
-
     $('.restaurant-toggle').click(function () {
       var link = $(this).attr('data-link');
       $("#restaurant-content").load(link);
-      // $("#myModal").addClass('active');
     });
   });
 
+  // Multiple images preview in browser
   $(function () {
-    // Multiple images preview in browser
     var imagesPreview = function imagesPreview(input, placeToInsertImagePreview) {
       if (input.files) {
         var filesAmount = input.files.length;
@@ -1972,12 +1962,18 @@ $(document).ready(function () {
     $('.input-tables').val(0);
   });
 
-  // $(document).on('click','.printImage', function(){
-  //   var popup = window.open(); // display popup
-  //   popup.document.write("<div style='position:relative;display:inline-block;'><img src='"+this.src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa 1</div></div>"); // This is where the image url goes which will just open up the image
-  //   setTimeout(function(){ popup.print(); }, 1000);
-  // });
+  // Imprimimos una mesa en concreto con su nombre
+  $(document).on('click', '.printImage', function () {
+    var popup = window.open();
+    var src = $(this).find('img').attr('src');
+    var tableName = $(this).find('div');
+    popup.document.write("<div style='position:relative;display:inline-block;margin:20px;'><img src='" + src + "' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>" + $(tableName[3]).text() + "</div></div>"); // This is where the image url goes which will just open up the image
+    setTimeout(function () {
+      popup.print();
+    }, 1000);
+  });
 
+  // Imprimimos todas las mesas que hay en X restaurante
   $('#printAll').on('click', function () {
     var tables = document.getElementsByClassName('printImage');
     if (tables.length > 0) {
@@ -2915,7 +2911,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": restaurant.id
       }
-    }, [_vm._v("\n        " + _vm._s(restaurant.name_restaurant) + "\n      ")])
+    }, [_vm._v("\n          " + _vm._s(restaurant.name_restaurant) + "\n        ")])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
@@ -2944,13 +2940,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.setTables()
       }
     }
-  }, [_vm._v("Generar mesas")])])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Generar mesas")])])])])]), _vm._v(" "), (_vm.tables.length > 0) ? _c('div', {
     staticClass: "columns"
   }, _vm._l((_vm.tables), function(r) {
     return _c('div', {
       staticClass: "column col-6"
     }, [_c('ul', {
-      staticClass: "menu"
+      staticClass: "menu printImage"
     }, [_c('li', {
       staticClass: "menu-item"
     }, [_c('div', {
@@ -2958,19 +2954,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "tile-icon"
     }, [_c('qr-code', {
-      staticClass: "printImage",
       attrs: {
+        "data-value": r.title,
         "text": 'https://localhost:8000/tables/' + r.id,
         "error-level": "Q",
         "size": "100"
       }
     })], 1), _vm._v(" "), _c('div', {
       staticClass: "tile-content"
-    }, [_vm._v("\n              " + _vm._s(r.title) + "\n            ")])])]), _vm._v(" "), _c('li', {
+    }, [_vm._v("\n            " + _vm._s(r.title) + "\n          ")])])]), _vm._v(" "), _c('li', {
       staticClass: "divider"
     }), _vm._v(" "), _c('li', {
       staticClass: "menu-item"
     }, [_c('button', {
+      staticClass: "btn btn-link btn-block"
+    }, [_vm._v(" Imprimir ")]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-link btn-block delete-table",
       on: {
         "click": function($event) {
@@ -2978,7 +2976,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(" Eliminar ")])])])])
-  }))])
+  })) : _c('h5', [_vm._v(" No tienes mesas ")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
