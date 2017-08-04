@@ -7,6 +7,15 @@
   padding-right: 4%;
 }
 
+.right-column {
+  padding: 5em 0 !important;
+}
+
+.title-icon img {
+  height: auto;
+  width: 100px;
+}
+
 .dropdown-menu {
   display: none;
   position: absolute;

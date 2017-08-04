@@ -44,3 +44,4 @@ Route::get('/api/restaurant', 'Api\RestaurantController@showAll');
 Route::get('/api/userRestaurants', 'Api\RestaurantController@userRestaurants');
 Route::post('/api/destroyTables', 'Api\RestaurantController@destroyTables');
 Route::post('/api/putTables', 'Api\RestaurantController@putTables');
+Route::get('/api/getTables/{id}', 'Api\TableController@getTables');

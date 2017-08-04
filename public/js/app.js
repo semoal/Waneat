@@ -805,7 +805,7 @@ module.exports = function normalizeComponent (
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(44);
+__webpack_require__(30);
 
 window.Vue = __webpack_require__(37);
 window.axios = __webpack_require__(10);
@@ -1781,52 +1781,197 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       restaurants: [],
-      rest: ''
+      rest: '',
+      tables: []
     };
   },
 
   methods: {
+    fuckMe: function fuckMe(event) {
+      this.rest = event.target.value;
+      this.getTables(event.target.value);
+    },
     setTables: function setTables() {
+      var _this = this;
+
       var quantity = $('.input-tables').val();
-      var idRestaurant = this.rest.id;
+      var idRestaurant = this.rest;
       axios.post('http://localhost:8000/api/putTables', {
         id: idRestaurant,
         quantity: quantity
       }).then(function (response) {
-        console.log(response);
+        console.log('yas' + response);
+        _this.getTables(_this.rest);
       }).catch(function (error) {
         console.log(error);
       });
     },
-    getTables: function getTables() {
-      var _this = this;
+    getRestaurants: function getRestaurants() {
+      var _this2 = this;
 
       axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
-        _this.restaurants = response.data.restaurants;
+        _this2.restaurants = response.data.restaurants;
+      });
+    },
+    getTables: function getTables(id) {
+      var _this3 = this;
+
+      console.log(id);
+      axios.get("http://localhost:8000/api/getTables/" + id).then(function (response) {
+        _this3.tables = JSON.parse(response.data.table);
       });
     },
     destroyTables: function destroyTables(id) {
+      var _this4 = this;
+
       axios.post('http://localhost:8000/api/destroyTables', {
         id: id
       }).then(function (response) {
         console.log(response);
+        _this4.getTables(_this4.rest);
       }).catch(function (error) {
         console.log(error);
       });
     }
   },
   mounted: function mounted() {
-    this.getTables();
+    this.getRestaurants();
   }
 });
 
 /***/ }),
-/* 30 */,
+/* 30 */
+/***/ (function(module, exports) {
+
+
+
+$(document).ready(function () {
+  //Permite añadir horarios duplicados
+  var schedules = 0;
+  $('#more-hours').click(function () {
+    schedules++;
+    var $foo = $('<div class="time-inner"> <div class="form-group"> <div class="col-md-6"> ' + '<label> <input type="checkbox" name="days[' + schedules + '][]" value="Lunes">' + '<span class="day-box">Lun</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Martes"> <span class="day-box">Mar</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Miercoles">' + '<span class="day-box">Mié</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Jueves"> <span class="day-box">Jue</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Viernes"> ' + '<span class="day-box">Vie</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Sabado"> <span class="day-box">Sáb</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Domingo">' + '<span class="day-box">Dom</span> </label> </div></div><div class="form-group"> <label class="col-md-4 control-label">Apertura: </label> <div class="col-md-6"> <input type="time" id="hour1" name="hour1[]"class="form-control"> </div></div>' + '<div class="form-group"> <label class="col-md-4 control-label">Cierre: </label> <div class="col-md-6"> <input type="time" id="hour2" name="hour2[]" class="form-control"> <div class="divider"> </div> </div></div></div>');
+    $("#time-template").append($foo);
+  });
+
+  $('.remove-schedule').click(function (e) {
+    $(".time-inner:last-child").remove();
+    e.event;
+  });
+
+  //Navegación entre paneles en el registro de restaurantes
+  $('.panel-1-next').click(function () {
+    $('.panel-1').addClass('hide');
+    $('.panel-2').removeClass('hide');
+  });
+  $('.panel-2-back').click(function () {
+    $('.panel-2').addClass('hide');
+    $('.panel-1').removeClass('hide');
+  });
+  $('.panel-2-next').click(function () {
+    $('.panel-2').addClass('hide');
+    $('.panel-3').removeClass('hide');
+  });
+  $('.panel-3-back').click(function () {
+    $('.panel-3').addClass('hide');
+    $('.panel-2').removeClass('hide');
+  });
+  $('.panel-3-next').click(function () {
+    $('.panel-3').addClass('hide');
+    $('.panel-4').removeClass('hide');
+  });
+  $('.panel-4-back').click(function () {
+    $('.panel-4').addClass('hide');
+    $('.panel-3').removeClass('hide');
+  });
+  // Funcion para previsualiazr la imagen //
+
+
+  $(function () {
+
+    $('.restaurant-toggle').click(function () {
+      var link = $(this).attr('data-link');
+      $("#restaurant-content").load(link);
+      // $("#myModal").addClass('active');
+    });
+  });
+
+  $(function () {
+    // Multiple images preview in browser
+    var imagesPreview = function imagesPreview(input, placeToInsertImagePreview) {
+      if (input.files) {
+        var filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            var template = '<div class="img-container"><img class="img-responsive" src="' + event.target.result + '"></div>';
+            $(template).appendTo(placeToInsertImagePreview);
+          };
+          reader.readAsDataURL(input.files[i]);
+        }
+      }
+    };
+    $('#gallery-photo-add').on('change', function () {
+      imagesPreview(this, 'div.gallery');
+    });
+  });
+
+  //Insertamos la cantidad de mesas que el usuario diga
+  var valueInput = 0;
+  $(document).on('click', '.more-val', function () {
+    if (valueInput >= 25) {
+      console.log('Valor demasiado grande');
+    } else {
+      valueInput++;
+      $('.input-tables').val(valueInput);
+    }
+  });
+  $(document).on('click', '.less-val', function () {
+    if (valueInput <= 0) {
+      console.log('Valor demasiado pequeño');
+    } else {
+      valueInput--;
+      $('.input-tables').val(valueInput);
+    }
+  });
+
+  // $(document).on('click','.printImage', function(){
+  //   var popup = window.open(); // display popup
+  //   popup.document.write("<div style='position:relative;display:inline-block;'><img src='"+this.src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa 1</div></div>"); // This is where the image url goes which will just open up the image
+  //   setTimeout(function(){ popup.print(); }, 1000);
+  // });
+
+  // $(document).on('click','.delete-table', function(){
+  //   $(this).addClass('loading');
+  // });
+
+  // $('#printAll').on('click', function(){
+  //   var tables = document.getElementsByClassName('printImage');
+  //   if (tables.length > 0) {
+  //     $(this).addClass('loading');
+  //     var popup = window.open();
+  //     for (var i = 0; i < tables.length; i++) {
+  //       $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='"+tables[i].src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa "+(i+1)+"</div></div>");
+  //     }
+  //     setTimeout(function(){ 
+  //       $('#printAll').removeClass('loading');
+  //       popup.print(); 
+  //     }, 3000);
+  //   }else{
+  //     alert("No hay mesas para imprimir");
+  //   }
+
+  // });
+});
+
+/***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
@@ -2655,7 +2800,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/sergiomoreno/Desktop/waneat/node_modules/vue-qrcode-component/src/QRCode.vue"
+Component.options.__file = "C:\\Users\\yo\\Desktop\\WaneatProjects\\waneat\\node_modules\\vue-qrcode-component\\src\\QRCode.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] QRCode.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2689,7 +2834,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/sergiomoreno/Desktop/waneat/resources/assets/js/components/mesas.vue"
+Component.options.__file = "C:\\Users\\yo\\Desktop\\WaneatProjects\\waneat\\resources\\assets\\js\\components\\mesas.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] mesas.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2714,13 +2859,9 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {}, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.rest),
-      expression: "rest"
-    }],
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {}, [_c('select', {
     staticClass: "form-select",
     attrs: {
       "id": "select-restaurant",
@@ -2729,13 +2870,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.rest = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.fuckMe($event)
       }
     }
   }, [_c('option', {
@@ -2746,12 +2881,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Por favor, selecciona un restaurante")]), _vm._v(" "), _vm._l((_vm.restaurants), function(restaurant) {
     return _c('option', {
       domProps: {
-        "value": restaurant
+        "value": restaurant.id
       }
-    }, [_vm._v("\n      " + _vm._s(restaurant.name_restaurant) + "\n    ")])
-  })], 2), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n        " + _vm._s(restaurant.name_restaurant) + "\n      ")])
+  })], 2)]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.setTables()
+      }
+    }
+  }, [_vm._v("Generar mesas")]), _vm._v(" "), _c('div', {
     staticClass: "columns"
-  }, [_vm._l((_vm.rest.tables), function(r) {
+  }, _vm._l((_vm.tables), function(r) {
     return _c('div', {
       staticClass: "column"
     }, [_c('ul', {
@@ -2765,8 +2910,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('qr-code', {
       attrs: {
         "text": 'https://localhost:8000/tables/' + r.id,
-        "size": "100",
-        "error-level": "Q"
+        "error-level": "Q",
+        "size": "100"
       }
     })], 1), _vm._v(" "), _c('div', {
       staticClass: "tile-content"
@@ -2787,17 +2932,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(" Eliminar ")])])])])])
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.setTables()
-      }
-    }
-  }, [_vm._v("Generar mesas")])], 2)])
+  }))])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"
@@ -12610,134 +12745,6 @@ module.exports = function(module) {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
-
-/***/ }),
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */
-/***/ (function(module, exports) {
-
-
-
-$(document).ready(function () {
-  //Permite añadir horarios duplicados
-  var schedules = 0;
-  $('#more-hours').click(function () {
-    schedules++;
-    var $foo = $('<div class="time-inner"> <div class="form-group"> <div class="col-md-6"> ' + '<label> <input type="checkbox" name="days[' + schedules + '][]" value="Lunes">' + '<span class="day-box">Lun</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Martes"> <span class="day-box">Mar</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Miercoles">' + '<span class="day-box">Mié</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Jueves"> <span class="day-box">Jue</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Viernes"> ' + '<span class="day-box">Vie</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Sabado"> <span class="day-box">Sáb</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Domingo">' + '<span class="day-box">Dom</span> </label> </div></div><div class="form-group"> <label class="col-md-4 control-label">Apertura: </label> <div class="col-md-6"> <input type="time" id="hour1" name="hour1[]"class="form-control"> </div></div>' + '<div class="form-group"> <label class="col-md-4 control-label">Cierre: </label> <div class="col-md-6"> <input type="time" id="hour2" name="hour2[]" class="form-control"> <div class="divider"> </div> </div></div></div>');
-    $("#time-template").append($foo);
-  });
-
-  $('.remove-schedule').click(function (e) {
-    $(".time-inner:last-child").remove();
-    e.event;
-  });
-
-  //Navegación entre paneles en el registro de restaurantes
-  $('.panel-1-next').click(function () {
-    $('.panel-1').addClass('hide');
-    $('.panel-2').removeClass('hide');
-  });
-  $('.panel-2-back').click(function () {
-    $('.panel-2').addClass('hide');
-    $('.panel-1').removeClass('hide');
-  });
-  $('.panel-2-next').click(function () {
-    $('.panel-2').addClass('hide');
-    $('.panel-3').removeClass('hide');
-  });
-  $('.panel-3-back').click(function () {
-    $('.panel-3').addClass('hide');
-    $('.panel-2').removeClass('hide');
-  });
-  $('.panel-3-next').click(function () {
-    $('.panel-3').addClass('hide');
-    $('.panel-4').removeClass('hide');
-  });
-  $('.panel-4-back').click(function () {
-    $('.panel-4').addClass('hide');
-    $('.panel-3').removeClass('hide');
-  });
-  // Funcion para previsualiazr la imagen //
-
-
-  $(function () {
-
-    $('.restaurant-toggle').click(function () {
-      var link = $(this).attr('data-link');
-      $("#restaurant-content").load(link);
-      // $("#myModal").addClass('active');
-    });
-  });
-
-  $(function () {
-    // Multiple images preview in browser
-    var imagesPreview = function imagesPreview(input, placeToInsertImagePreview) {
-      if (input.files) {
-        var filesAmount = input.files.length;
-        for (i = 0; i < filesAmount; i++) {
-          var reader = new FileReader();
-          reader.onload = function (event) {
-            var template = '<div class="img-container"><img class="img-responsive" src="' + event.target.result + '"></div>';
-            $(template).appendTo(placeToInsertImagePreview);
-          };
-          reader.readAsDataURL(input.files[i]);
-        }
-      }
-    };
-    $('#gallery-photo-add').on('change', function () {
-      imagesPreview(this, 'div.gallery');
-    });
-  });
-
-  //Insertamos la cantidad de mesas que el usuario diga
-  var valueInput = 0;
-  $(document).on('click', '.more-val', function () {
-    if (valueInput >= 25) {
-      console.log('Valor demasiado grande');
-    } else {
-      valueInput++;
-      $('.input-tables').val(valueInput);
-    }
-  });
-  $(document).on('click', '.less-val', function () {
-    if (valueInput <= 0) {
-      console.log('Valor demasiado pequeño');
-    } else {
-      valueInput--;
-      $('.input-tables').val(valueInput);
-    }
-  });
-
-  // $(document).on('click','.printImage', function(){
-  //   var popup = window.open(); // display popup
-  //   popup.document.write("<div style='position:relative;display:inline-block;'><img src='"+this.src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa 1</div></div>"); // This is where the image url goes which will just open up the image
-  //   setTimeout(function(){ popup.print(); }, 1000);
-  // });
-
-  // $(document).on('click','.delete-table', function(){
-  //   $(this).addClass('loading');
-  // });
-
-  // $('#printAll').on('click', function(){
-  //   var tables = document.getElementsByClassName('printImage');
-  //   if (tables.length > 0) {
-  //     $(this).addClass('loading');
-  //     var popup = window.open();
-  //     for (var i = 0; i < tables.length; i++) {
-  //       $(popup.document.body).append("<div style='position:relative;display:inline-block;'><img src='"+tables[i].src+"' /><div style='position:absolute;bottom:0;left:50%;transform:translateX(-50%);'>Mesa "+(i+1)+"</div></div>");
-  //     }
-  //     setTimeout(function(){ 
-  //       $('#printAll').removeClass('loading');
-  //       popup.print(); 
-  //     }, 3000);
-  //   }else{
-  //     alert("No hay mesas para imprimir");
-  //   }
-
-  // });
-});
 
 /***/ })
 /******/ ]);

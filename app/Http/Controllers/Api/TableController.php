@@ -11,13 +11,20 @@ class TableController extends ApiController {
      *
      * @return Json
      */
-    public function show($table, $restaurant)
+    public function getTables($restaurant)
     {
       //falta un middleware para auth con el token de la api.
-      $table = RestaurantTable::where('id', $table)->where('restaurant_id', $restaurant)->last();
+      $table = RestaurantTable::where('id_restaurant_id', $restaurant)->get();
 
       return response()->json([
             'table' => $table->toJson()
         ]);
+    }
+    public function get($table){
+      $tables = RestaurantTable::all();
+
+      return response()->json([
+          'tables' => $table->toJson()
+      ]);
     }
 }

@@ -3,7 +3,7 @@
   @include('navbar')
 @endsection
 @section('content')
-  <div class="col-xs-12 tables-select">
+  <div class="right-column column">
       <div id="app">
         <mesas></mesas>
       </div>
