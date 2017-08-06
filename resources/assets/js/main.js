@@ -121,6 +121,16 @@ $(document).ready(function(){
         }else{
           alert("No hay mesas para imprimir");
         }
-        
+      });
+
+      //Nav para ver los restaurantes
+      $('.toggle-nav-res').on('click',function(){
+        $('.nav-res').toggleClass('open-nav');
+        $('#main').toggleClass('close-main-padding');
+      });
+      //cerrar nav 
+      $('#close-button-nav').on('click', function(){
+        $('.nav-res').removeClass('open-nav');
+        $('#main').removeClass('close-main-padding');
       });
 });

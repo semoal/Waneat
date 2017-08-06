@@ -1,5 +1,42 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
+
+//home nav 
+.nav-res{
+  background-color:yellow;
+  z-index:9999;
+  position: fixed;
+  right:0;
+  width:0;
+  top: 0;
+  height:100%;
+  transition: 0.5s;
+  overflow-x: hidden;
+}
+.open-nav{
+  background-color:yellow;
+  z-index:9999;
+  position: fixed;
+  right:0;
+  width:25%;
+  top: 0;
+  height:100%;
+  transition: 0.5s;
+  overflow-x: hidden;
+}
+div.open-main-padding {
+  padding-right: 0%;
+  transition: padding-right .5s;
+}
+div.close-main-padding {
+  padding-right: 25%;
+  transition: padding-right .5s;
+}
+@media screen and (max-width: 450px) {
+  .nav-res {width:0%;}
+  .open-nav {width: 100%;}
+}
+
 //tables
 
 .tables-select{
@@ -23,19 +60,19 @@
 //dropdown
 
 .dropdown-menu {
-    display: none;
-    position: absolute;
+  display: none;
+  position: absolute;
 }
 a.dropdown-toggle:focus,
 a.dropdown-toggle:active {
-    background: #f2f2f2;
+  background: #f2f2f2;
 }
 a.dropdown-toggle:focus+.dropdown-menu,
 a.dropdown-toggle:active+.dropdown-menu {
-    display: block;
+  display: block;
 }
 .dropdown-menu:hover {
-    display: block;
+  display: block;
 }
 
 .collapse-toggler:hover{
@@ -140,10 +177,10 @@ label input[type="checkbox"]:checked ~ .day-box{
 }
 
 .not-select{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 //Mierda varias
