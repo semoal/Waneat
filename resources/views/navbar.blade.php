@@ -43,7 +43,7 @@
                 <a href="{{ route('table.index') }}"> Mesas </a>
               </li>
               <li class="nav-item">
-                <a href="#">Carta</a>
+                <a href="{{ route('menu.index') }}">Carta</a>
               </li>
               <li class="nav-item">
                 <a href="#">Pedidos</a>

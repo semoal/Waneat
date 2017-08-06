@@ -14,6 +14,8 @@ window.axios = require('axios');
 window.VueQRCodeComponent = require('vue-qrcode-component');
 
 Vue.component('mesas', require('./components/mesas.vue'));
+Vue.component('menus', require('./components/menus.vue'));
+
 Vue.component('qr-code', VueQRCodeComponent)
 
 

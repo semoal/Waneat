@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => 'exist.restaurant'], function() {
 
   Route::resource('table', 'TableController');
-
+  Route::resource('menu', 'MenuController');
 });
 
 Route::group(['middleware' => ['api.token']], function () {
