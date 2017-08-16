@@ -13,14 +13,16 @@
     display: inline-block;
     margin:5px;
  }
-
+.min{
+  min-width: 350px;
+}
 .nav-res{
   background:rgba(243, 242, 242, 0.97);
   box-shadow: 1px 0px 13px -3px #888888;
   z-index:9999;
   position: fixed;
   right:0;
-  width:0;
+  width:0%;
   top: 0;
   height:100%;
   transition: 0.5s;

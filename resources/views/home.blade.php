@@ -9,8 +9,10 @@
 
 <div class="docs-content column col-9 col-sm-12 open-main-padding" id="main">
   <div class="nav-res">
-    <div id="app">
-      <res></res>
+    <div class="min">
+      <div id="app">
+        <res></res>
+      </div>
     </div>
   </div>
   <div class="container rel" id="#modals">
@@ -18,16 +20,14 @@
       <div class="container">
         <div class="columns">
           <div class="col-6">
-            <button type="button" class="btn btn-primary toggle-nav-res"> Nav </button>
-          </div>
-          <div class="col-6">
             <div class="dropdown float-left">
               @if(session()->has('message'))
               <div class="alert alert-success">
                 {{ session()->get('message') }}
               </div>
               @endif
-              <a href="#" onclick="javascript:return false;" class="btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Restaurantes
+              <a href="#" class="btn toggle-nav-res"> Restaurantes </a>
+              <!--<a href="#" onclick="javascript:return false;" class="btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Restaurantes
                <i class="caret fa fa-caret-down"></i>
              </a>
              <ul class="dropdown-menu menu">
@@ -39,7 +39,7 @@
               @empty
               No tienes restaurantes añadidos
               @endforelse
-            </ul>
+            </ul>-->
           </div>
         </div>
         <div class="col-6">
