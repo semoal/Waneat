@@ -1772,7 +1772,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getRestaurants: function getRestaurants() {
       var _this = this;
 
-      axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
+      axios.get("http://localhost:8000/api/showUserRestaurants").then(function (response) {
         _this.restaurants = response.data.restaurants;
         _this.rest = response.data.restaurants[0].id;
       });
@@ -1889,7 +1889,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getRestaurants: function getRestaurants() {
       var _this2 = this;
 
-      axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
+      axios.get("http://localhost:8000/api/showUserRestaurants").then(function (response) {
         _this2.restaurants = response.data.restaurants;
         _this2.rest = response.data.restaurants[0].id;
         _this2.getTables(_this2.rest);
@@ -13037,7 +13037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getRestaurants: function getRestaurants() {
       var _this2 = this;
 
-      axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
+      axios.get("http://localhost:8000/api/showUserRestaurants").then(function (response) {
         _this2.restaurants = response.data.restaurants;
         _this2.firstId = response.data.restaurants[0].id;
         _this2.getRestaurant(_this2.firstId);

@@ -78,7 +78,7 @@
         });
       },
       getRestaurants () {
-        axios.get("http://localhost:8000/api/userRestaurants").then(response => {
+        axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
           this.firstId = response.data.restaurants[0].id;
           this.getRestaurant(this.firstId);

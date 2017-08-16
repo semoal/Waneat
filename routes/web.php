@@ -40,8 +40,7 @@ Route::group(['middleware' => ['api.token']], function () {
 
 Route::get('/api/restaurant/{id}', 'Api\RestaurantController@show');
 Route::get('/api/restaurant', 'Api\RestaurantController@showAll');
-
-Route::get('/api/userRestaurants', 'Api\RestaurantController@userRestaurants');
-Route::post('/api/destroyTables', 'Api\RestaurantController@destroyTables');
-Route::post('/api/putTables', 'Api\RestaurantController@putTables');
+Route::get('/api/showUserRestaurants', 'Api\RestaurantController@showUserRestaurants');
+Route::post('/api/destroyTables', 'Api\TableController@destroyTables');
+Route::post('/api/putTables', 'Api\TableController@putTables');
 Route::get('/api/getTables/{id}', 'Api\TableController@getTables');

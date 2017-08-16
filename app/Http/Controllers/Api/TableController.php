@@ -17,4 +17,25 @@ class TableController extends ApiController {
             'table' => $table->toJson()
         ]);
     }
+    
+    public function destroyTables(Request $request){
+      Table::destroy($request->id);
+      return response()->json([
+          'success' => 'Mesa eliminada',
+      ]);
+    }
+
+    public function putTables(Request $request){
+        for ($i=1; $i <= $request->quantity; $i++) {
+            $data[] = [
+            'title' => "Mesa-".$i,
+            'captcha_url' => '',
+            'id_restaurant_id' => $request->id,
+            'created_at' => new \DateTime(),
+            'updated_at' => new \DateTime(),
+          ];
+        }
+        Table::insert($data);
+        return redirect()->route('table.index'); 
+    }
 }

@@ -28,7 +28,7 @@
         this.rest=event.target.value;
       },
       getRestaurants () {
-        axios.get("http://localhost:8000/api/userRestaurants").then(response => {
+        axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
           this.rest = response.data.restaurants[0].id;
         });

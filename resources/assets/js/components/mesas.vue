@@ -42,7 +42,7 @@
 </div>
 <div class="columns" v-if="tables.length > 0"> 
   <div class="column col-6" v-for="r in tables">
-    <ul class="menu printImage" >
+    <ul class="menu printImage">
       <li class="menu-item">
         <div class="tile tile-centered">
           <div class="tile-icon">
@@ -95,7 +95,7 @@
         });
       },
       getRestaurants () {
-        axios.get("http://localhost:8000/api/userRestaurants").then(response => {
+        axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
           this.rest = response.data.restaurants[0].id;
           this.getTables(this.rest);
