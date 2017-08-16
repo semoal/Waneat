@@ -813,7 +813,7 @@ window.VueQRCodeComponent = __webpack_require__(34);
 
 Vue.component('mesas', __webpack_require__(36));
 Vue.component('menus', __webpack_require__(35));
-
+Vue.component('res', __webpack_require__(48));
 Vue.component('qr-code', VueQRCodeComponent);
 
 var app = new Vue({
@@ -1931,12 +1931,15 @@ $(document).ready(function () {
     schedules++;
     var $foo = $('<div class="time-inner"> <div class="form-group"> <div class="col-md-6"> ' + '<label> <input type="checkbox" name="days[' + schedules + '][]" value="Lunes">' + '<span class="day-box">Lun</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Martes"> <span class="day-box">Mar</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Miercoles">' + '<span class="day-box">Mié</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Jueves"> <span class="day-box">Jue</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Viernes"> ' + '<span class="day-box">Vie</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Sabado"> <span class="day-box">Sáb</span> </label> - <label> <input type="checkbox" name="days[' + schedules + '][]" value="Domingo">' + '<span class="day-box">Dom</span> </label> </div></div><div class="form-group"> <label class="col-md-4 control-label">Apertura: </label> <div class="col-md-6"> <input type="time" id="hour1" name="hour1[]"class="form-control"> </div></div>' + '<div class="form-group"> <label class="col-md-4 control-label">Cierre: </label> <div class="col-md-6"> <input type="time" id="hour2" name="hour2[]" class="form-control"> <div class="divider"> </div> </div></div></div>');
     $("#time-template").append($foo);
+    console.log("timeinner creacion" + schedules);
   });
 
-  $('.remove-schedule').click(function (e) {
-    $(".time-inner:last-child").remove();
-    e.event;
-  });
+  if (schedules >= 1) {
+    $('.remove-schedule').click(function (e) {
+      console.log("timeiner delete" + schedules);
+      $(".time-inner:last-child").remove();
+    });
+  }
 
   //Navegación entre paneles en el registro de restaurantes
   $('.panel-1-next').click(function () {
@@ -12939,6 +12942,187 @@ module.exports = function(module) {
 __webpack_require__(8);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      restaurantId: 0,
+      restaurants: [],
+      firstId: 0,
+      rest: []
+    };
+  },
+
+  methods: {
+    getItem: function getItem(event) {
+      this.restaurantId = event.target.id;
+      this.getRestaurant(this.restaurantId);
+    },
+    getRestaurant: function getRestaurant(id) {
+      var _this = this;
+
+      axios.get("http://localhost:8000/api/restaurant/" + id).then(function (response) {
+        _this.rest = response.data.restaurant;
+        console.log(response.data.restaurant);
+      });
+    },
+    getRestaurants: function getRestaurants() {
+      var _this2 = this;
+
+      axios.get("http://localhost:8000/api/userRestaurants").then(function (response) {
+        _this2.restaurants = response.data.restaurants;
+        _this2.firstId = response.data.restaurants[0].id;
+        _this2.getRestaurant(_this2.firstId);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getRestaurants();
+  }
+});
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(47),
+  /* template */
+  __webpack_require__(49),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/sergiomoreno/Desktop/waneat/resources/assets/js/components/restaurante.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] restaurante.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3f883650", Component.options)
+  } else {
+    hotAPI.reload("data-v-3f883650", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "horizontal-scroll"
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.restaurants), function(restaurant) {
+    return _c('button', {
+      staticClass: "btn item-scroll",
+      attrs: {
+        "type": "button",
+        "id": restaurant.id
+      },
+      on: {
+        "click": function($event) {
+          _vm.getItem($event)
+        }
+      }
+    }, [_vm._v("\n      " + _vm._s(restaurant.name_restaurant) + "\n    ")])
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "card"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "card-header"
+  }, [_c('div', {
+    staticClass: "card-title h5"
+  }, [_vm._v(_vm._s(_vm.rest.name_restaurant))]), _vm._v(" "), _c('div', {
+    staticClass: "card-subtitle"
+  }, [_vm._v("Software and hardware")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_vm._v("\n      Empower every person and every organization on the planet to achieve more.\n    ")]), _vm._v(" "), _vm._m(2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button",
+      "id": "close-button-nav"
+    }
+  }, [_c('i', {
+    staticClass: "icon icon-arrow-left"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-image"
+  }, [_c('img', {
+    staticClass: "img-responsive",
+    attrs: {
+      "src": "https://picturepan2.github.io/spectre/img/osx-el-capitan.jpg",
+      "alt": "OS X El Capitan"
+    }
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-footer"
+  }, [_c('a', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "href": "#cards"
+    }
+  }, [_vm._v("Do")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3f883650", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

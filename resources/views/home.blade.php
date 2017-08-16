@@ -9,17 +9,16 @@
 
 <div class="docs-content column col-9 col-sm-12 open-main-padding" id="main">
   <div class="nav-res">
-  <h5> Restaurente x </h5>
-  <button class="btn btn-primary" id="close-button-nav"> 
-  <i class="icon icon-cross"></i>
-  </button>
+    <div id="app">
+      <res></res>
+    </div>
   </div>
   <div class="container rel" id="#modals">
     <div class="abs" style="top: 30%; left: 0;">
       <div class="container">
         <div class="columns">
-        <div class="col-6">
-          <button type="button" class="btn btn-primary toggle-nav-res"> Nav </button>
+          <div class="col-6">
+            <button type="button" class="btn btn-primary toggle-nav-res"> Nav </button>
           </div>
           <div class="col-6">
             <div class="dropdown float-left">

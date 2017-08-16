@@ -2,8 +2,21 @@
 
 
 //home nav 
+.horizontal-scroll { 
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    font-size: 0;
+     overflow: auto; 
+     }
+.item-scroll { 
+    display: inline-block;
+    margin:5px;
+ }
+
 .nav-res{
-  background-color:yellow;
+  background:rgba(243, 242, 242, 0.97);
+  box-shadow: 1px 0px 13px -3px #888888;
   z-index:9999;
   position: fixed;
   right:0;
@@ -14,7 +27,8 @@
   overflow-x: hidden;
 }
 .open-nav{
-  background-color:yellow;
+  background:rgba(243, 242, 242, 0.97);
+  box-shadow: 1px 0px 13px -3px #888888;
   z-index:9999;
   position: fixed;
   right:0;

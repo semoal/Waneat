@@ -15,7 +15,7 @@ window.VueQRCodeComponent = require('vue-qrcode-component');
 
 Vue.component('mesas', require('./components/mesas.vue'));
 Vue.component('menus', require('./components/menus.vue'));
-
+Vue.component('res', require('./components/restaurante.vue'));
 Vue.component('qr-code', VueQRCodeComponent)
 
 
