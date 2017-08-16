@@ -20,7 +20,36 @@
         Empower every person and every organization on the planet to achieve more.
       </div>
       <div class="card-footer">
-        <a href="#cards" class="btn btn-primary">Do</a>
+      <!-- Horarios -->
+        <details class="menu-item">
+          <summary class="collapse-toggler">
+            <i class="icon icon-link"></i> Horarios
+          </summary>
+          <table>
+            <tbody v-for="day in days">
+              <tr>
+                <th> {{day}}</th>
+                <th style="font-weight: lighter;"> </th>
+                <td style="font-weight:bolder;" class="block"> </td>
+                <td class="block"> </td>
+                <td style="font-weight:bolder;">Cerrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </details>
+        <!-- ./horarios -->
+        <ul>
+          <li> Dirección: {{rest.address_restaurant}} </li>
+          <li> Ciudad: {{rest.city_restaurant}} </li>
+          <li> Pais: {{rest.country_restaurant}} </li>
+          <li> CP: {{rest.postalcode_restaurant}} </li>
+          <li> Provincia: {{rest.state_restaurant}} </li>
+          <li> Descripción: {{rest.description}} </li>
+          <li> Email: {{rest.email_restaurant}} </li>
+          <li> Especialidad: {{rest.specialty}} </li>
+          <li> Página web: {{rest.restaurant_url}} </li>
+          <li> Creado el: {{rest.created_at}} </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -34,6 +63,7 @@
         restaurants: [],
         firstId: 0,
         rest: [],
+        days: ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
       }
     },
     methods: {

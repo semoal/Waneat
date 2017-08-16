@@ -82,7 +82,7 @@
               @endif
             @foreach ($restaurant->schedules as $key => $schedule)
               @forelse (explode(";",$schedule->days) as $key => $dayDatabase)
-                @if ($dayDatabase==$day)
+                @if ($dayDatabase == $day)
                   @if (!$boolean)
                     <?php $boolean=!$boolean ?>
                   @endif

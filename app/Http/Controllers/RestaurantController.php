@@ -58,7 +58,7 @@ class RestaurantController extends Controller {
         $restaurante = new Restaurant;
 
         $restaurante->name_restaurant = $request->name_restaurant;
-/*        $restaurante->address_restaurant = $request->address_restaurant;
+        $restaurante->address_restaurant = $request->address_restaurant;
         $restaurante->city_restaurant = $request->city_restaurant;
         $restaurante->postalcode_restaurant = $request->postalcode_restaurant;
         $restaurante->country_restaurant = $request->country_restaurant;
@@ -66,7 +66,7 @@ class RestaurantController extends Controller {
         $restaurante->description = $request->description;
         $restaurante->email_restaurant = $request->email_restaurant;
         $restaurante->specialty = $request->specialty;
-        $restaurante->restaurant_url = $request->restaurant_url;*/
+        $restaurante->restaurant_url = $request->restaurant_url;
         $restaurante->id_user_id = Auth::User()->id;
 
         $restaurante->save();
