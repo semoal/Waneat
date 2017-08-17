@@ -29,7 +29,6 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::group(['middleware' => 'exist.restaurant'], function() {
-
   Route::resource('table', 'TableController');
   Route::resource('menu', 'MenuController');
 });
@@ -41,6 +40,6 @@ Route::group(['middleware' => ['api.token']], function () {
 Route::get('/api/restaurant/{id}', 'Api\RestaurantController@show');
 Route::get('/api/restaurant', 'Api\RestaurantController@showAll');
 Route::get('/api/showUserRestaurants', 'Api\RestaurantController@showUserRestaurants');
+Route::get('/api/getTables/{id}', 'Api\TableController@getTables');
 Route::post('/api/destroyTables', 'Api\TableController@destroyTables');
 Route::post('/api/putTables', 'Api\TableController@putTables');
-Route::get('/api/getTables/{id}', 'Api\TableController@getTables');

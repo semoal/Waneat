@@ -72,4 +72,5 @@ class RestaurantController extends ApiController {
           'restaurants' => $restaurant,
       ]);
     }
+
 }

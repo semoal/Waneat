@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\RestaurantTable as Table;
 
-use App\RestaurantTable;
 class TableController extends ApiController {
     /**
      * Show Information to table of restaurant
@@ -12,14 +12,15 @@ class TableController extends ApiController {
      * @return Json
      */
     public function getTables($restaurant) {
-      $table = RestaurantTable::where('id_restaurant_id', $restaurant)->get();
+      $table = Table::where('id_restaurant_id', $restaurant)->get();
       return response()->json([
             'table' => $table->toJson()
         ]);
     }
-    
+
     public function destroyTables(Request $request){
       Table::destroy($request->id);
+      error_log($request->id);
       return response()->json([
           'success' => 'Mesa eliminada',
       ]);
@@ -38,4 +39,5 @@ class TableController extends ApiController {
         Table::insert($data);
         return redirect()->route('table.index'); 
     }
+
 }

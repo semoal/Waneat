@@ -6,8 +6,8 @@
         <a href="#tables" class="btn btn-primary">Generar mesas</a>
         <select v-on:change="changeSelect($event)" class="form-select col-3" id="select-restaurant" form="input-form" name="restaurantId">
           <option
-          v-for="restaurant in restaurants"
-          v-bind:value="restaurant.id">
+          v-for="(restaurant,index) in restaurants"
+          v-bind:value="index">
           {{restaurant.name_restaurant}}
         </option>
       </select>
@@ -70,25 +70,24 @@
     data(){
       return{
         restaurants: [],
-        rest: '',
         tables: [],
+        idArray: 0,
         firstId: null,
       }
     },
     methods: {
       changeSelect(event){
-        this.rest=event.target.value;
-        this.getTables(event.target.value);
+        this.idArray = event.target.value;
+        this.getTables();
       },
       setTables() {
         let quantity = $('.input-tables').val();
-        let idRestaurant = this.rest;
         axios.post('http://localhost:8000/api/putTables', {
-          id: idRestaurant,
+          id: this.restaurants[this.idArray].id,
           quantity: quantity,
         })
         .then(response => {
-          this.getTables(this.rest);
+          this.getTables(this.idArray);
         })
         .catch(function (error) {
           console.log(error);
@@ -97,22 +96,18 @@
       getRestaurants () {
         axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
-          this.rest = response.data.restaurants[0].id;
-          this.getTables(this.rest);
+          this.getTables(0);
         });
       },
-      getTables (id) {
-        console.log("Tables:"+id);
-        axios.get("http://localhost:8000/api/getTables/"+id).then(response => {
-          this.tables = JSON.parse(response.data.table);
-        });
+      getTables () {
+        this.tables = this.restaurants[this.idArray].tables;
       },
       destroyTables(id){
         axios.post('http://localhost:8000/api/destroyTables', {
           id: id,
         })
         .then(response => {
-          this.getTables(this.rest);
+          this.getTables(this.idArray);
         })
         .catch(function (error) {
           console.log(error);

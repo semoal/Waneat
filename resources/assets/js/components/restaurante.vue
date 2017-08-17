@@ -4,7 +4,9 @@
       <button type="button" class="btn btn-primary" id="close-button-nav"> 
         <i class="icon icon-arrow-left"></i>
       </button>
-      <button type="button" class="btn item-scroll" v-on:click="getItem($event)" v-for="restaurant in restaurants" v-bind:id="restaurant.id" >
+      <button type="button" class="btn item-scroll" v-on:click="getItem($event)" 
+      v-for="(restaurant, index) in restaurants" 
+      v-bind:id="index">
         {{restaurant.name_restaurant}}
       </button>
     </div>
@@ -59,29 +61,22 @@
   export default {
     data(){
       return{
-        restaurantId: 0,
         restaurants: [],
-        firstId: 0,
         rest: [],
         days: ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'],
       }
     },
     methods: {
       getItem(event){
-        this.restaurantId = event.target.id;
-        this.getRestaurant(this.restaurantId);
+        this.getRestaurant(event.target.id);
       },
       getRestaurant(id){
-        axios.get("http://localhost:8000/api/restaurant/"+id).then(response => {
-          this.rest = response.data.restaurant;
-          console.log(response.data.restaurant);
-        });
+        this.rest = this.restaurants[id];
       },
       getRestaurants () {
         axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
-          this.firstId = response.data.restaurants[0].id;
-          this.getRestaurant(this.firstId);
+          this.getRestaurant(0);
         });
       },
     },
