@@ -1868,6 +1868,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    // Imprimimos una mesa en concreto con su nombre
+    printQR: function printQR(event) {
+      var item = event.target.parentElement.parentElement;
+      var popup = window.open();
+      var src = $(item).find('img').attr('src');
+      var tableName = $(item).find('div');
+      popup.document.write("<div style='position:relative;display:inline-block;margin:20px;'><img src='" + src + "' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>" + $(tableName[3]).text() + "</div></div>");
+      setTimeout(function () {
+        popup.print();
+      }, 1000);
+    },
     changeSelect: function changeSelect(event) {
       this.idArray = event.target.value;
       this.getTables();
@@ -2104,17 +2115,6 @@ $(document).ready(function () {
   });
   $(document).on('click', '.btn-create-tables', function () {
     $('.input-tables').val(0);
-  });
-
-  // Imprimimos una mesa en concreto con su nombre
-  $(document).on('click', '.printImage', function () {
-    var popup = window.open();
-    var src = $(this).find('img').attr('src');
-    var tableName = $(this).find('div');
-    popup.document.write("<div style='position:relative;display:inline-block;margin:20px;'><img src='" + src + "' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>" + $(tableName[3]).text() + "</div></div>"); // This is where the image url goes which will just open up the image
-    setTimeout(function () {
-      popup.print();
-    }, 1000);
   });
 
   // Imprimimos todas las mesas que hay en X restaurante
@@ -3258,7 +3258,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "column col-6"
     }, [_c('ul', {
-      staticClass: "menu printImage"
+      staticClass: "menu"
     }, [_c('li', {
       staticClass: "menu-item"
     }, [_c('div', {
@@ -3279,7 +3279,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }), _vm._v(" "), _c('li', {
       staticClass: "menu-item"
     }, [_c('button', {
-      staticClass: "btn btn-link btn-block"
+      staticClass: "btn btn-link btn-block",
+      on: {
+        "click": function($event) {
+          _vm.printQR($event)
+        }
+      }
     }, [_vm._v(" Imprimir ")]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-link btn-block delete-table",
       on: {

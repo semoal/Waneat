@@ -42,7 +42,7 @@
 </div>
 <div class="columns" v-if="tables.length > 0"> 
   <div class="column col-6" v-for="r in tables">
-    <ul class="menu printImage">
+    <ul class="menu">
       <li class="menu-item">
         <div class="tile tile-centered">
           <div class="tile-icon">
@@ -55,7 +55,7 @@
       </li>
       <li class="divider"></li>
       <li class="menu-item">
-        <button class="btn btn-link btn-block"> Imprimir </button>
+        <button class="btn btn-link btn-block" v-on:click="printQR($event)"> Imprimir </button>
         <button class="btn btn-link btn-block delete-table" v-on:click="destroyTables(r.id)"> Eliminar </button>
       </li>
     </ul>
@@ -76,6 +76,15 @@
       }
     },
     methods: {
+      // Imprimimos una mesa en concreto con su nombre
+      printQR(event){
+        let item = event.target.parentElement.parentElement;
+        var popup = window.open();
+        var src = $(item).find('img').attr('src');
+        var tableName = $(item).find('div');
+        popup.document.write("<div style='position:relative;display:inline-block;margin:20px;'><img src='"+src+"' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>"+$(tableName[3]).text()+"</div></div>"); 
+        setTimeout(function(){ popup.print(); }, 1000);
+      },
       changeSelect(event){
         this.idArray = event.target.value;
         this.getTables();

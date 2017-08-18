@@ -100,15 +100,6 @@ $(document).ready(function(){
           $('.input-tables').val(0);
         });
 
-      // Imprimimos una mesa en concreto con su nombre
-      $(document).on('click','.printImage', function(){
-        var popup = window.open();
-        var src = $(this).find('img').attr('src');
-        var tableName = $(this).find('div');
-        popup.document.write("<div style='position:relative;display:inline-block;margin:20px;'><img src='"+src+"' /><div style='position: absolute;bottom: -20px;font-weight: bold;left: 50%;font-size: 14px;font-family: Arial;transform: translateX(-50%);'>"+$(tableName[3]).text()+"</div></div>"); // This is where the image url goes which will just open up the image
-        setTimeout(function(){ popup.print(); }, 1000);
-      });
-
       // Imprimimos todas las mesas que hay en X restaurante
       $('#printAll').on('click', function(){
         var tables = document.getElementsByClassName('printImage');
