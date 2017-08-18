@@ -42,7 +42,7 @@
 </div>
 <div class="columns" v-if="tables.length > 0"> 
   <div class="column col-6" v-for="r in tables">
-    <ul class="menu">
+    <ul class="menu printImage">
       <li class="menu-item">
         <div class="tile tile-centered">
           <div class="tile-icon">
@@ -76,7 +76,7 @@
       }
     },
     methods: {
-      // Imprimimos una mesa en concreto con su nombre
+
       printQR(event){
         let item = event.target.parentElement.parentElement;
         var popup = window.open();
@@ -96,7 +96,7 @@
           quantity: quantity,
         })
         .then(response => {
-          this.getTables(this.idArray);
+          this.getRestaurants();
         })
         .catch(function (error) {
           console.log(error);
@@ -105,7 +105,7 @@
       getRestaurants () {
         axios.get("http://localhost:8000/api/showUserRestaurants").then(response => {
           this.restaurants = response.data.restaurants;
-          this.getTables(0);
+          this.getTables(this.idArray);
         });
       },
       getTables () {
@@ -116,7 +116,7 @@
           id: id,
         })
         .then(response => {
-          this.getTables(this.idArray);
+          this.getRestaurants();
         })
         .catch(function (error) {
           console.log(error);

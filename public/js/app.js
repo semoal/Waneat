@@ -1868,7 +1868,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    // Imprimimos una mesa en concreto con su nombre
     printQR: function printQR(event) {
       var item = event.target.parentElement.parentElement;
       var popup = window.open();
@@ -1891,7 +1890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         id: this.restaurants[this.idArray].id,
         quantity: quantity
       }).then(function (response) {
-        _this.getTables(_this.idArray);
+        _this.getRestaurants();
       }).catch(function (error) {
         console.log(error);
       });
@@ -1901,7 +1900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get("http://localhost:8000/api/showUserRestaurants").then(function (response) {
         _this2.restaurants = response.data.restaurants;
-        _this2.getTables(0);
+        _this2.getTables(_this2.idArray);
       });
     },
     getTables: function getTables() {
@@ -1913,7 +1912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post('http://localhost:8000/api/destroyTables', {
         id: id
       }).then(function (response) {
-        _this3.getTables(_this3.idArray);
+        _this3.getRestaurants();
       }).catch(function (error) {
         console.log(error);
       });
@@ -3258,7 +3257,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "column col-6"
     }, [_c('ul', {
-      staticClass: "menu"
+      staticClass: "menu printImage"
     }, [_c('li', {
       staticClass: "menu-item"
     }, [_c('div', {
